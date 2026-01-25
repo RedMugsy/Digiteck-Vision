@@ -23,6 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 
-# Exclude large assets for initial push
-public/Media/Images/
-public/Media/Video/
+# Exclude only hero.mp4 (too large for GitHub)
+public/Media/Video/hero.mp4
