@@ -1,12 +1,10 @@
-import gsap from "gsap";
-
 const ioMap = new WeakMap<Element, IntersectionObserver>();
 
 /**
  * Plays a timeline when its section becomes the active snapped section.
  * Uses IntersectionObserver so it works with CSS scroll-snap.
  */
-export function animateOnSnap(section: Element, tl: gsap.core.Timeline) {
+export function animateOnSnap(section: Element, tl: any) {
   // Kill any previous observer for this section (dev HMR safe)
   const prev = ioMap.get(section);
   if (prev) prev.disconnect();

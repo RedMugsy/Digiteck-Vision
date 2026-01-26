@@ -38,7 +38,7 @@ export default function Footer() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-start",
-          overflow: hidden,
+          overflow: "hidden",
         }}
       >
         <div
@@ -78,8 +78,8 @@ export default function Footer() {
           <div style={{ textAlign: "left" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem", alignItems: "flex-start" }}>
               <img src={siteContent.hero.logoSrc || "/Media/Images/logo.png"} alt="Visto Logo" style={{ height: "96px", objectFit: "contain" }} onError={(e) => {(e.target as HTMLImageElement).style.display = 'none';}} />
-              <div style={{ fontWeight: 800, fontSize: "2.25rem", lineHeight: 1 }}>{siteContent.hero.title || "Visto"}</div>
-              <div style={{ opacity: 0.6, fontSize: "1rem" }}>{siteContent.footer?.tagline ?? siteContent.hero.tagline ?? "AI Intelligence in motion."}</div>
+              <div style={{ fontWeight: 800, fontSize: "2.25rem", lineHeight: 1 }}>{siteContent.hero.title || "DIGITECK VISION"}</div>
+              <div style={{ opacity: 0.6, fontSize: "1rem" }}>{siteContent.hero.tagline || "A technology development firm operating from strategy to execution."}</div>
             </div>
 
             <div style={{ height: "1.25rem" }} />
@@ -123,13 +123,13 @@ export default function Footer() {
             </div>
 
             <div>
-              <h4 style={{ marginBottom: "1rem" }}>{siteContent.footer.policies?.heading || "Policies"}</h4>
+              <h4 style={{ marginBottom: "1rem" }}>Policies</h4>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                {(siteContent.footer.policies?.links || [
+                {[
                   { text: "Privacy Policy", href: "#privacy" },
                   { text: "Terms of Service", href: "#terms" },
                   { text: "Cookie Policy", href: "#cookies" },
-                ]).map((l) => (
+                ].map((l: { text: string; href: string }) => (
                   <a key={l.href} href={l.href} style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>{l.text}</a>
                 ))}
               </div>
