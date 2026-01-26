@@ -875,9 +875,26 @@ body {
     font-size: 0.85rem !important;
   }
   
-  /* ImageSwap - adjust for smaller screens */
-  #imageSwap-section .paneContent {
-    padding: 20px !important;
+  /* ImageSwap - stack vertically on tablet (images above, text below) */
+  .imageSwap-wrapper {
+    flex-direction: column !important;
+  }
+
+  .imageSwap-images,
+  .imageSwap-text {
+    flex: none !important;
+    width: 100% !important;
+    min-height: 50vh !important;
+  }
+
+  .imageSwap-title {
+    top: 1rem !important;
+    right: 1rem !important;
+    font-size: clamp(1.8rem, 5vw, 2.9rem) !important;
+  }
+
+  .imageSwap-text {
+    padding: 2rem !important;
   }
   
   /* HoverTable - make rows stack better */
@@ -922,33 +939,50 @@ body {
     flex: 1;
     justify-content: flex-start;
   }
-  
+
+  /* Hero section - center content vertically on mobile (8" and below) */
+  .overlay,
+  .hero-bottom-container {
+    height: 100vh !important;
+    bottom: auto !important;
+    top: 0 !important;
+    padding: 1rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .hero-content-wrapper {
+    padding: 1rem !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .hero-grid-layout {
+    gap: 1rem !important;
+    max-width: 100% !important;
+  }
+
+  .heroTitle {
+    font-size: clamp(32px, 8vw, 48px) !important;
+  }
+
+  .heroTagline {
+    font-size: clamp(12px, 3vw, 16px) !important;
+  }
+
+  .hero-cta-button {
+    font-size: 14px !important;
+    padding: 0.875rem 1.5rem !important;
+  }
+
   /* Even smaller text on phones */
   h2 {
     font-size: clamp(1.2rem, 6vw, 2.9rem) !important;
     padding: 1rem !important;
-  }
-
-  .overlay,
-  .hero-bottom-container {
-    padding: 16px !important;
-  }
-
-  .hero-content-wrapper {
-    padding: 8px 16px !important;
-  }
-
-  .hero-grid-layout {
-    gap: 0.5rem !important;
-  }
-
-  .heroTitle {
-    font-size: clamp(24px, 10vw, 48px) !important;
-  }
-
-  .hero-cta-button {
-    font-size: 12px !important;
-    padding: 0.75rem 1.25rem !important;
   }
   
   /* ProductFlip - single column on mobile - all 8 products visible */
@@ -1015,18 +1049,32 @@ body {
   #coverImage-section .paneContent {
     padding: 16px !important;
   }
-  
+
   /* Reduce padding for all sections */
   .paneContent {
     padding: 16px !important;
   }
-  
+
+  /* ImageSwap - ensure images are fully visible on mobile */
+  .imageSwap-images {
+    min-height: 60vh !important;
+  }
+
+  .imageSwap-text {
+    min-height: 40vh !important;
+    padding: 1.5rem !important;
+  }
+
+  .imageSwap-text > div {
+    max-width: 100% !important;
+  }
+
   /* TripleCards - ensure proper stacking */
   #tripleCards-container {
     padding: 1rem !important;
   }
 
-  /* Footer responsive layout */
+  /* Footer responsive layout - fix overlapping */
   .footer-section {
     min-height: auto !important;
   }
@@ -1036,13 +1084,27 @@ body {
     min-height: auto !important;
   }
 
-  .footer-container > div[style*="gridTemplateColumns"] {
-    grid-template-columns: 1fr !important;
+  /* Footer grid - stack all columns vertically */
+  .footer-container > div[style*="gridTemplateColumns"]:first-of-type {
+    display: flex !important;
+    flex-direction: column !important;
     gap: 2rem !important;
   }
 
+  /* Footer logo section */
+  .footer-container > div[style*="gridTemplateColumns"] > div:first-child {
+    margin-bottom: 2rem !important;
+  }
+
+  /* Footer links section - reduce width, stack vertically */
   .footer-container > div[style*="gridTemplateColumns"] > div:last-child {
-    grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+
+  .footer-container > div[style*="gridTemplateColumns"] > div:last-child > div {
+    width: 100% !important;
   }
 }
 

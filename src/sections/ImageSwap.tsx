@@ -64,9 +64,10 @@ export default function ImageSwap() {
 
   return (
     <section ref={root} className="panel" id="imageSwap-section">
-      <div ref={wrapper} style={{ position: "absolute", inset: 0, display: "flex" }}>
+      <div ref={wrapper} className="imageSwap-wrapper" style={{ position: "absolute", inset: 0, display: "flex" }}>
         {/* Section Title - top right */}
         <h2
+          className="imageSwap-title"
           style={{
             position: "absolute",
             top: "2rem",
@@ -82,7 +83,7 @@ export default function ImageSwap() {
           {siteContent.imageSwap.sectionTitle}
         </h2>
 
-        <div style={{ flex: 1, position: "relative", background: "#000" }}>
+        <div className="imageSwap-images" style={{ flex: 1, position: "relative", background: "#000" }}>
           <div ref={stack} style={{ position: "absolute", inset: 0 }}>
             <div style={{ position: "absolute", inset: 0, backgroundImage: "url(/Media/Images/swap-3.jpg)", backgroundSize: "cover", backgroundPosition: "center", zIndex: 1 }} />
             <div data-img="2" style={{ position: "absolute", inset: 0, backgroundImage: "url(/Media/Images/swap-2.jpg)", backgroundSize: "cover", backgroundPosition: "center", zIndex: 2 }} />
@@ -90,7 +91,7 @@ export default function ImageSwap() {
           </div>
         </div>
 
-        <div style={{ flex: 1, background: "#14141a", display: "flex", alignItems: "center", justifyContent: "center", padding: "4rem" }}>
+        <div className="imageSwap-text" style={{ flex: 1, background: "#14141a", display: "flex", alignItems: "center", justifyContent: "center", padding: "4rem" }}>
           <div ref={textContent} style={{ maxWidth: "500px" }}>
             <h2>{slides[0].title}</h2>
             <p style={{ marginTop: "1rem", opacity: 0.8 }}>{slides[0].body}</p>
