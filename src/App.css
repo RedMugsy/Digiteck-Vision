@@ -466,6 +466,16 @@ body {
   font-size: 13px;
 }
 
+/* Footer links grid alignment with company name */
+.footer-main-grid {
+  align-items: start;
+}
+
+.footer-links-grid {
+  /* Offset to align with company name (logo height + gap) */
+  margin-top: calc(96px + 0.25rem);
+}
+
 /* Hero quote container */
 .hero-quote-container {
   position: absolute;
@@ -1108,13 +1118,15 @@ body {
     font-size: 0.75rem !important;
   }
 
-  /* Footer links grid - 2x2 grid (4th cell empty) */
+  /* Footer links grid - 2 columns side by side */
   .footer-links-grid {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
-    grid-template-rows: auto auto !important;
     gap: 1rem !important;
     width: 100% !important;
+    align-self: start !important;
+    /* Align with company name on mobile (logo 60px + gap 0.25rem) */
+    margin-top: calc(60px + 0.25rem) !important;
   }
 
   .footer-links-grid > div {

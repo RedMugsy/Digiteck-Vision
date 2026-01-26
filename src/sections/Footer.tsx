@@ -79,7 +79,7 @@ export default function Footer() {
           <div className="footer-left-section" style={{ textAlign: "left" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem", alignItems: "flex-start" }}>
               <img src={siteContent.hero.logoSrc || "/Media/Images/logo.png"} alt="Visto Logo" style={{ height: "96px", objectFit: "contain" }} onError={(e) => {(e.target as HTMLImageElement).style.display = 'none';}} />
-              <div style={{ fontWeight: 800, fontSize: "2.25rem", lineHeight: 1 }}>{siteContent.hero.title || "DIGITECK VISION"}</div>
+              <div className="footer-company-name" style={{ fontWeight: 800, fontSize: "2.25rem", lineHeight: 1 }}>{siteContent.hero.title || "DIGITECK VISION"}</div>
               <div style={{ opacity: 0.6, fontSize: "1rem" }}>{siteContent.hero.tagline || "A technology development firm operating from strategy to execution."}</div>
             </div>
 
@@ -103,17 +103,8 @@ export default function Footer() {
             </div>
           </div>
 
-          {/** Right block: render three columns (product, company, policies) using content.ts where available */}
-          <div className="footer-links-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(160px, 1fr))", gap: "2rem", justifyContent: "flex-end" }}>
-            <div>
-              <h4 style={{ marginBottom: "1rem" }}>{siteContent.footer.product.heading || "Product"}</h4>
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                {(siteContent.footer.product.links || []).map((l) => (
-                  <a key={l.href} href={l.href} style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>{l.text}</a>
-                ))}
-              </div>
-            </div>
-
+          {/** Right block: render two columns (company, policies) */}
+          <div className="footer-links-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "2rem", justifyContent: "flex-end" }}>
             <div>
               <h4 style={{ marginBottom: "1rem" }}>{siteContent.footer.company.heading || "Company"}</h4>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
