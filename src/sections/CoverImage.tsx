@@ -93,6 +93,10 @@ export default function CoverImage() {
         yPercent: 120,
         duration: 1,
       }, 1.1667)
+      .to(img2Bottom.current!, {
+        opacity: 0,
+        duration: 0.3,
+      }, 2.0667)
       .to(text2.current!, {
         opacity: 0,
         duration: 0.5,
