@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useScene } from "../hooks/useScene";
@@ -8,6 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroVideo() {
   const root = useRef<HTMLDivElement>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useScene(root, () => {
     // Pin for exactly one viewport scroll
@@ -35,7 +36,58 @@ export default function HeroVideo() {
           <a href="#solutions">Solutions</a>
           <button className="btn">Get started</button>
         </div>
+
+        {/* Hamburger menu button - shown on mobile/tablet */}
+        <button
+          className={`hamburger ${isMobileMenuOpen ? 'open' : ''}`}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
+          style={{ display: 'none' }}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </div>
+
+      {/* Mobile menu overlay */}
+      {isMobileMenuOpen && (
+        <div
+          className="mobile-menu-overlay"
+          onClick={() => setIsMobileMenuOpen(false)}
+          style={{
+            position: 'fixed',
+            top: '60px',
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(11, 11, 15, 0.98)',
+            backdropFilter: 'blur(10px)',
+            zIndex: 99,
+            display: 'flex',
+            flexDirection: 'column',
+            padding: '2rem',
+            gap: '1.5rem',
+            pointerEvents: 'auto',
+          }}
+        >
+          <a href="#home" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#fff', fontSize: '1.5rem', textDecoration: 'none', padding: '0.5rem 0' }}>
+            Home
+          </a>
+          <a href="#about" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#fff', fontSize: '1.5rem', textDecoration: 'none', padding: '0.5rem 0' }}>
+            About
+          </a>
+          <a href="#how" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#fff', fontSize: '1.5rem', textDecoration: 'none', padding: '0.5rem 0' }}>
+            How it works
+          </a>
+          <a href="#solutions" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#fff', fontSize: '1.5rem', textDecoration: 'none', padding: '0.5rem 0' }}>
+            Solutions
+          </a>
+          <button className="btn" style={{ marginTop: '1rem', width: 'fit-content', fontSize: '1.2rem' }}>
+            Get started
+          </button>
+        </div>
+      )}
 
       {/* Fullscreen video carousel container */}
       <div

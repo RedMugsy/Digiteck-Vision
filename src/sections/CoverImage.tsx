@@ -141,6 +141,7 @@ export default function CoverImage() {
         <div ref={img1Container} style={{ position: "absolute", inset: 0, zIndex: 3 }}>
           <div
             ref={img1Left}
+            className="coverImage-split-left"
             style={{
               position: "absolute",
               left: 0,
@@ -149,11 +150,12 @@ export default function CoverImage() {
               height: "100%",
               backgroundImage: "url(/Media/Images/split-v1-left.jpg)",
               backgroundSize: "cover",
-              backgroundPosition: "center",
+              backgroundPosition: "right center",
             }}
           />
           <div
             ref={img1Right}
+            className="coverImage-split-right"
             style={{
               position: "absolute",
               right: 0,
@@ -162,7 +164,7 @@ export default function CoverImage() {
               height: "100%",
               backgroundImage: "url(/Media/Images/split-v1-right.jpg)",
               backgroundSize: "cover",
-              backgroundPosition: "center",
+              backgroundPosition: "left center",
             }}
           />
           <div
@@ -252,6 +254,7 @@ export default function CoverImage() {
         >
           <div
             ref={img3Left}
+            className="coverImage-split-left"
             style={{
               position: "absolute",
               left: 0,
@@ -260,11 +263,12 @@ export default function CoverImage() {
               height: "100%",
               backgroundImage: "url(/Media/Images/split-v2-left.jpg)",
               backgroundSize: "cover",
-              backgroundPosition: "center",
+              backgroundPosition: "right center",
             }}
           />
           <div
             ref={img3Right}
+            className="coverImage-split-right"
             style={{
               position: "absolute",
               right: 0,
@@ -273,7 +277,7 @@ export default function CoverImage() {
               height: "100%",
               backgroundImage: "url(/Media/Images/split-v2-right.jpg)",
               backgroundSize: "cover",
-              backgroundPosition: "center",
+              backgroundPosition: "left center",
             }}
           />
           <div

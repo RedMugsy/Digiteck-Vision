@@ -23,11 +23,13 @@ export default function Footer() {
   });
 
   return (
-    <section ref={root} style={{ height: "60vh", position: "relative", marginTop: "4rem" }}>
+    <section ref={root} className="footer-section" style={{ minHeight: "60vh", height: "auto", position: "relative", marginTop: "4rem" }}>
       <div
+        className="footer-container"
         style={{
           width: "100%",
           height: "100%",
+          minHeight: "60vh",
           background: "#08080c",
           padding: "4rem 2rem 2rem 2rem",
           position: "relative",
@@ -35,7 +37,8 @@ export default function Footer() {
           borderTop: "1px solid rgba(255, 255, 255, 0.1)",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "flex-end",
+          justifyContent: "flex-start",
+          overflow: hidden,
         }}
       >
         <div
