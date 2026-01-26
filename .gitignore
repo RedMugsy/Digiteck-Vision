@@ -22,6 +22,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-# Exclude only hero.mp4 (too large for GitHub)
-public/Media/Video/hero.mp4
