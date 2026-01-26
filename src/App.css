@@ -16,8 +16,6 @@ body {
   background: var(--bg);
   color: var(--fg);
   font-family: 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  /* Smooth scrolling for better transitions */
-  scroll-behavior: smooth;
   /* Optimize text rendering */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -29,9 +27,6 @@ body {
   overflow-x: hidden;
   margin: 0 auto;
   position: relative;
-  /* GPU acceleration for smoother scrolling */
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
 }
 
 /* Each full-screen scene */
@@ -42,43 +37,6 @@ body {
   max-width: 100vw;
   overflow: hidden;
   margin: 0 auto;
-  /* GPU acceleration for smoother transitions */
-  will-change: transform, opacity;
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-/* GPU acceleration for all section content wrappers */
-.panel > div,
-.coverImage-wrapper,
-.imageSwap-wrapper,
-.hoverColumns-content,
-.productFlip-content,
-.hover-table-container,
-.footer-container {
-  will-change: transform;
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-/* Smooth transitions for animated split elements */
-.coverImage-split-left,
-.coverImage-split-right,
-.coverImage-scene {
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-/* Image swap layers need GPU acceleration */
-.imageSwap-images > div > div {
-  will-change: transform;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
 }
 
 /* shared overlay text styling */
