@@ -84,26 +84,27 @@ export default function HeroVideo() {
       </div>
 
       {/* Bottom 25%: full-width line + logo + title */}
-      <div className="overlay" style={{ height: "25vh", bottom: 0, top: "auto", position: "absolute", left: 0, right: 0 }}>
-        <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", padding: "0 56px" }}>
+      <div className="overlay hero-bottom-container" style={{ height: "25vh", bottom: 0, top: "auto", position: "absolute", left: 0, right: 0 }}>
+        <div className="hero-content-wrapper" style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", padding: "0 56px" }}>
           {/* Full-width line */}
           <div className="heroLine" style={{ width: "100%", marginBottom: "0.5vh" }} />
-          
+
           {/* 3-column layout - takes full remaining height */}
-          <div style={{ 
-            display: "grid", 
-            gridTemplateColumns: "auto 1fr auto", 
-            gap: "3rem", 
+          <div className="hero-grid-layout" style={{
+            display: "grid",
+            gridTemplateColumns: "auto 1fr auto",
+            gap: "3rem",
             flex: 1,
             maxWidth: "1400px",
             width: "100%"
           }}>
             {/* Column 1: Logo - aligned to bottom */}
-            <div style={{ display: "flex", alignItems: "flex-end" }}>
+            <div className="hero-logo-column" style={{ display: "flex", alignItems: "flex-end" }}>
               {siteContent.hero.logoSrc && (
-                <img 
+                <img
                   src={siteContent.hero.logoSrc}
                   alt="Digiteck Vision Logo"
+                  className="hero-logo"
                   style={{
                     height: "clamp(18vh, 24vh, 24vh)",
                     width: "auto",
@@ -115,16 +116,16 @@ export default function HeroVideo() {
                 />
               )}
             </div>
-            
+
             {/* Column 2: Title (75% height) and Tagline (25% height) - full height column */}
-            <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+            <div className="hero-text-column" style={{ display: "flex", flexDirection: "column", height: "100%" }}>
               {/* Title takes 75% height */}
               <div style={{ flex: "3", display: "flex", alignItems: "flex-end" }}>
                 <h1 className="heroTitle" style={{ margin: 0 }}>{siteContent.hero.subtitle}</h1>
               </div>
               {/* Tagline takes 25% height */}
               <div style={{ flex: "1", display: "flex", alignItems: "flex-end" }}>
-                <p className="heroTagline" style={{ 
+                <p className="heroTagline" style={{
                   fontSize: "clamp(9.8px, 1.4vw, 22.4px)",
                   margin: 0,
                   opacity: 0.85,
@@ -137,8 +138,8 @@ export default function HeroVideo() {
             </div>
 
             {/* Column 3: CTA Button - centered horizontally and vertically aligned to logo middle */}
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <a 
+            <div className="hero-cta-column" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <a
                 href={siteContent.hero.ctaLink}
                 className="hero-cta-button"
                 style={{ pointerEvents: "auto" }}

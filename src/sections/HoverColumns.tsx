@@ -91,6 +91,7 @@ export default function HoverColumns() {
     <section ref={root} className="panel">
       <div
         ref={content}
+        className="hoverColumns-content"
         style={{
           position: "absolute",
           inset: 0,
@@ -102,6 +103,7 @@ export default function HoverColumns() {
         {/* Columns - fill remaining space above the stats row */}
         <div
           id="hoverColumns-container"
+          className="hoverColumns-container"
           style={{
             flex: 1,
             display: "flex",
@@ -115,6 +117,7 @@ export default function HoverColumns() {
             return (
               <div
                 key={index}
+                className="hoverColumns-column"
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
                 style={{
@@ -203,6 +206,7 @@ export default function HoverColumns() {
 
         {/* Row - fixed 25.5% height aligned to bottom */}
         <div
+          className="hoverColumns-stats-row"
           style={{
             height: "25.5%",
             background: "#FFAD01",

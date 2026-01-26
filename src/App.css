@@ -601,18 +601,50 @@ body {
 @media (max-width: 1023px) {
   .panel {
     min-height: 100vh;
-    height: auto;
+    height: auto !important;
+    overflow-y: visible !important;
+  }
+
+  /* Allow sections to grow and scroll on mobile */
+  .productFlip-content,
+  .hoverColumns-content {
+    position: relative !important;
+    height: auto !important;
+    min-height: 100vh !important;
   }
   
   /* Hero section mobile fixes - only below 11.9" */
   /* Proportional scaling: shrink overlay height from 25vh down to fit frame */
-  .overlay {
+  .overlay,
+  .hero-bottom-container {
     height: clamp(18vh, 22vh, 25vh) !important;
     padding: clamp(12px, 2.5vw, 20px) !important;
     align-items: center !important;
     justify-content: center !important;
   }
-  
+
+  .hero-content-wrapper {
+    padding: clamp(12px, 2.5vw, 20px) !important;
+  }
+
+  .hero-grid-layout {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: clamp(0.5rem, 1.5vw, 1rem) !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .hero-text-column,
+  .hero-logo-column,
+  .hero-cta-column {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
   .overlay > div {
     display: flex !important;
     flex-direction: column !important;
@@ -724,7 +756,23 @@ body {
   }
   
   /* ProductFlip - change grid to 2 columns on tablet */
-  #productFlip-grid {
+  .productFlip-content {
+    padding: 2rem !important;
+  }
+
+  .productFlip-section-title {
+    font-size: clamp(1.8rem, 4vw, 2.9rem) !important;
+    top: 1rem !important;
+    left: 1rem !important;
+  }
+
+  .productFlip-heading {
+    margin-bottom: 2rem !important;
+    text-align: center !important;
+  }
+
+  #productFlip-grid,
+  .productFlip-grid {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 1rem !important;
   }
@@ -736,11 +784,30 @@ body {
     padding: 2rem !important;
   }
   
-  /* HoverColumns - change to 2 columns */
-  #hoverColumns-container {
+  /* HoverColumns - change to 2 columns on tablet - all 4 visible with 2x2 grid */
+  #hoverColumns-container,
+  .hoverColumns-container {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-rows: repeat(2, 1fr) !important;
     gap: 0 !important;
+  }
+
+  .hoverColumns-column {
+    min-height: 35vh !important;
+  }
+
+  .hoverColumns-stats-row {
+    padding: 1.5rem 2rem !important;
+    gap: 1rem !important;
+  }
+
+  .hoverColumns-stats-row .stat-number {
+    font-size: 3rem !important;
+  }
+
+  .hoverColumns-stats-row div[style*="fontSize"] {
+    font-size: 0.85rem !important;
   }
   
   /* ImageSwap - adjust for smaller screens */
@@ -779,29 +846,84 @@ body {
     font-size: clamp(1.2rem, 6vw, 2.9rem) !important;
     padding: 1rem !important;
   }
-  
-  .overlay {
+
+  .overlay,
+  .hero-bottom-container {
     padding: 16px !important;
   }
-  
+
+  .hero-content-wrapper {
+    padding: 8px 16px !important;
+  }
+
+  .hero-grid-layout {
+    gap: 0.5rem !important;
+  }
+
   .heroTitle {
     font-size: clamp(24px, 10vw, 48px) !important;
   }
-  
+
   .hero-cta-button {
     font-size: 12px !important;
     padding: 0.75rem 1.25rem !important;
   }
   
-  /* ProductFlip - single column on mobile */
-  #productFlip-grid {
-    grid-template-columns: 1fr !important;
+  /* ProductFlip - single column on mobile - all 8 products visible */
+  .productFlip-content {
+    padding: 1rem !important;
   }
-  
-  /* HoverColumns - single column on mobile */
-  #hoverColumns-container {
-    display: grid !important;
+
+  .productFlip-section-title {
+    font-size: clamp(1.5rem, 6vw, 2.5rem) !important;
+    top: 0.5rem !important;
+    left: 0.5rem !important;
+  }
+
+  .productFlip-heading {
+    margin-bottom: 1rem !important;
+  }
+
+  #productFlip-grid,
+  .productFlip-grid {
     grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  /* HoverColumns - single column on mobile - all 4 columns visible stacked vertically */
+  #hoverColumns-container,
+  .hoverColumns-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    overflow-y: auto !important;
+  }
+
+  .hoverColumns-column {
+    flex: none !important;
+    min-height: 50vh !important;
+    height: auto !important;
+  }
+
+  .hoverColumns-stats-row {
+    padding: 1rem !important;
+    flex-wrap: wrap !important;
+    height: auto !important;
+    min-height: 120px !important;
+  }
+
+  .hoverColumns-stats-row > div {
+    flex: 1 1 45% !important;
+    min-width: 120px !important;
+  }
+
+  .hoverColumns-stats-row .stat-number {
+    font-size: 2.5rem !important;
+  }
+
+  .hoverColumns-stats-row div[style*="fontSize"] {
+    font-size: 0.75rem !important;
   }
   
   /* CoverImage section adjustments */

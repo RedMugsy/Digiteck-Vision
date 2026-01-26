@@ -40,6 +40,7 @@ export default function ProductFlip() {
     <section ref={root} className="panel">
       <div
         ref={content}
+        className="productFlip-content"
         style={{
           position: "absolute",
           inset: 0,
@@ -49,6 +50,7 @@ export default function ProductFlip() {
       >
         {/* Section Title - top left */}
         <h2
+          className="productFlip-section-title"
           style={{
             position: "absolute",
             top: "2rem",
@@ -64,12 +66,13 @@ export default function ProductFlip() {
           {siteContent.productFlip.sectionTitle}
         </h2>
 
-        <div style={{ textAlign: "right", marginBottom: "3rem" }}>
+        <div className="productFlip-heading" style={{ textAlign: "right", marginBottom: "3rem" }}>
           <h2>{siteContent.productFlip.heading}</h2>
         </div>
 
         <div
           id="productFlip-grid"
+          className="productFlip-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(4, 1fr)",
