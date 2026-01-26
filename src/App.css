@@ -1105,10 +1105,47 @@ body {
     z-index: 100 !important;
   }
 
-  /* Hide text overlays on mobile to save space */
+  /* Position text boxes in the bottom 25vh of each scene on mobile */
   .coverImage-scene > div[style*="maxWidth"],
-  .coverImage-scene > div[ref] {
-    display: none !important;
+  .coverImage-scene > div[style*="textAlign"] {
+    display: block !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: auto !important;
+    bottom: 0 !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: 90% !important;
+    max-width: none !important;
+    height: 25vh !important;
+    margin: 0 !important;
+    padding: 1rem !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    backdrop-filter: blur(10px) !important;
+    border-radius: 0 !important;
+    color: white !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    z-index: 50 !important;
+  }
+
+  .coverImage-scene > div[style*="maxWidth"] h3,
+  .coverImage-scene > div[style*="textAlign"] h3 {
+    color: #FFAD01 !important;
+    font-size: 1.2rem !important;
+    margin: 0 0 0.5rem 0 !important;
+  }
+
+  .coverImage-scene > div[style*="maxWidth"] p,
+  .coverImage-scene > div[style*="textAlign"] p {
+    color: white !important;
+    font-size: 0.9rem !important;
+    margin: 0 !important;
+    opacity: 0.9 !important;
   }
 
   /* Reduce padding for all sections */
