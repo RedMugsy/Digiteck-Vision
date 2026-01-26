@@ -25,41 +25,41 @@ export default function ImageSwap() {
         trigger: root.current!,
         start: "top bottom",
         end: "top top",
-        scrub: true,
+        scrub: 0.8, // Smooth scrubbing with 0.8s lag
       },
     });
 
     coverTl.fromTo(
       wrapper.current!,
       { yPercent: 100 },
-      { yPercent: 0, ease: "none" }
+      { yPercent: 0, ease: "power2.inOut" }
     );
 
     // Image swap animation
     const img1 = stack.current!.querySelector<HTMLDivElement>("[data-img='1']");
     const img2 = stack.current!.querySelector<HTMLDivElement>("[data-img='2']");
-    
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: root.current!,
         start: "top top",
         end: "+=250%",
-        scrub: true,
+        scrub: 0.8, // Smooth scrubbing with 0.8s lag
         pin: true,
         pinSpacing: true,
       }
     });
 
     // First image (swap-1) slides at 25%, completes at 1.25
-    tl.to(img1!, { xPercent: -110, duration: 1, ease: "none" }, 0.25)
-      .to(textContent.current!, { opacity: 0, duration: 0.1, ease: "none" }, 1.1)
+    tl.to(img1!, { xPercent: -110, duration: 1, ease: "power2.inOut" }, 0.25)
+      .to(textContent.current!, { opacity: 0, duration: 0.1, ease: "power2.inOut" }, 1.1)
       .set(textContent.current!, { innerHTML: `<h2>${slides[1].title}</h2><p>${slides[1].body}</p>` })
-      .to(textContent.current!, { opacity: 1, duration: 0.1, ease: "none" })
+      .to(textContent.current!, { opacity: 1, duration: 0.1, ease: "power2.inOut" })
       // Second image (swap-2) slides AFTER img1 completes (at 1.25), completes at 2.25
-      .to(img2!, { xPercent: -110, duration: 1, ease: "none" }, 1.25)
-      .to(textContent.current!, { opacity: 0, duration: 0.1, ease: "none" }, 2.1)
+      .to(img2!, { xPercent: -110, duration: 1, ease: "power2.inOut" }, 1.25)
+      .to(textContent.current!, { opacity: 0, duration: 0.1, ease: "power2.inOut" }, 2.1)
       .set(textContent.current!, { innerHTML: `<h2>${slides[2].title}</h2><p>${slides[2].body}</p>` })
-      .to(textContent.current!, { opacity: 1, duration: 0.1, ease: "none" });
+      .to(textContent.current!, { opacity: 1, duration: 0.1, ease: "power2.inOut" });
   });
 
   return (

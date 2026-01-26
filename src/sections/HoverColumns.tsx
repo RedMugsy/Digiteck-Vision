@@ -18,14 +18,14 @@ export default function HoverColumns() {
         trigger: root.current!,
         start: "top bottom",
         end: "top top",
-        scrub: true,
+        scrub: 0.8, // Smooth scrubbing with 0.8s lag
       },
     });
 
     tl.fromTo(
       content.current!,
       { yPercent: 100 },
-      { yPercent: 0, ease: "none" }
+      { yPercent: 0, ease: "power2.inOut" }
     );
 
     // Pin for exactly one viewport scroll

@@ -38,14 +38,14 @@ export default function CoverImage() {
         trigger: root.current!,
         start: "top bottom",
         end: "top top",
-        scrub: true,
+        scrub: 0.8, // Smooth scrubbing with 0.8s lag
       },
     });
 
     coverTl.fromTo(
       wrapper.current!,
       { yPercent: 100 },
-      { yPercent: 0, ease: "none" }
+      { yPercent: 0, ease: "power2.inOut" }
     );
 
     // Main pinned timeline for internal scenes (350% scroll length)
@@ -56,7 +56,7 @@ export default function CoverImage() {
         end: "+=350%",
         pin: true,
         pinSpacing: true,
-        scrub: true,
+        scrub: 0.8, // Smooth scrubbing with 0.8s lag
       },
     });
 
