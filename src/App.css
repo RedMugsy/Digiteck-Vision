@@ -1055,9 +1055,38 @@ body {
     font-size: 0.75rem !important;
   }
   
-  /* CoverImage section adjustments */
+  /* CoverImage section - stack vertically on mobile like ImageSwap */
   #coverImage-section .paneContent {
     padding: 16px !important;
+  }
+
+  .coverImage-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    position: relative !important;
+  }
+
+  .coverImage-scene {
+    position: relative !important;
+    width: 100% !important;
+    min-height: 60vh !important;
+    flex: none !important;
+  }
+
+  .coverImage-split-left,
+  .coverImage-split-right {
+    position: relative !important;
+    width: 100% !important;
+    height: 50% !important;
+    min-height: 30vh !important;
+  }
+
+  .coverImage-title {
+    top: 1rem !important;
+    left: 1rem !important;
+    font-size: clamp(1.8rem, 5vw, 2.9rem) !important;
+    position: sticky !important;
+    z-index: 100 !important;
   }
 
   /* Reduce padding for all sections */

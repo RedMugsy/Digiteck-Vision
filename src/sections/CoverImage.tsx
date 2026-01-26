@@ -119,9 +119,10 @@ export default function CoverImage() {
 
   return (
     <section ref={root} className="panel" id="coverImage-section">
-      <div ref={wrapper} style={{ position: "absolute", inset: 0 }}>
+      <div ref={wrapper} className="coverImage-wrapper" style={{ position: "absolute", inset: 0 }}>
         {/* Section Title - top left */}
         <h2
+          className="coverImage-title"
           style={{
             position: "absolute",
             top: "2rem",
@@ -138,7 +139,7 @@ export default function CoverImage() {
         </h2>
 
         {/* Scene A: Image 1 with vertical split */}
-        <div ref={img1Container} style={{ position: "absolute", inset: 0, zIndex: 3 }}>
+        <div ref={img1Container} className="coverImage-scene" style={{ position: "absolute", inset: 0, zIndex: 3 }}>
           <div
             ref={img1Left}
             className="coverImage-split-left"
