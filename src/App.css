@@ -1084,26 +1084,36 @@ body {
     min-height: auto !important;
   }
 
-  /* Footer grid - stack all columns vertically */
-  .footer-container > div[style*="gridTemplateColumns"]:first-of-type {
+  /* Footer main grid - stack left and right sections vertically */
+  .footer-main-grid {
     display: flex !important;
     flex-direction: column !important;
-    gap: 2rem !important;
+    gap: 3rem !important;
   }
 
-  /* Footer logo section */
-  .footer-container > div[style*="gridTemplateColumns"] > div:first-child {
+  /* Footer left section (logo, title, tagline, subscribe) */
+  .footer-left-section {
+    width: 100% !important;
     margin-bottom: 2rem !important;
   }
 
-  /* Footer links section - reduce width, stack vertically */
-  .footer-container > div[style*="gridTemplateColumns"] > div:last-child {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 1.5rem !important;
+  .footer-left-section img {
+    height: 72px !important;
   }
 
-  .footer-container > div[style*="gridTemplateColumns"] > div:last-child > div {
+  .footer-left-section > div:first-child > div:nth-child(2) {
+    font-size: 1.75rem !important;
+  }
+
+  /* Footer links grid - stack all 3 columns vertically */
+  .footer-links-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem !important;
+    width: 100% !important;
+  }
+
+  .footer-links-grid > div {
     width: 100% !important;
   }
 }

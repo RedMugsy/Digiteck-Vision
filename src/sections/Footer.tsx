@@ -65,6 +65,7 @@ export default function Footer() {
         </div>
 
         <div
+          className="footer-main-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "1fr minmax(300px, 1fr)",
@@ -75,7 +76,7 @@ export default function Footer() {
           }}
         >
           {/** Left block uses hero content for logo/name/tagline */}
-          <div style={{ textAlign: "left" }}>
+          <div className="footer-left-section" style={{ textAlign: "left" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem", alignItems: "flex-start" }}>
               <img src={siteContent.hero.logoSrc || "/Media/Images/logo.png"} alt="Visto Logo" style={{ height: "96px", objectFit: "contain" }} onError={(e) => {(e.target as HTMLImageElement).style.display = 'none';}} />
               <div style={{ fontWeight: 800, fontSize: "2.25rem", lineHeight: 1 }}>{siteContent.hero.title || "DIGITECK VISION"}</div>
@@ -103,7 +104,7 @@ export default function Footer() {
           </div>
 
           {/** Right block: render three columns (product, company, policies) using content.ts where available */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(160px, 1fr))", gap: "2rem", justifyContent: "flex-end" }}>
+          <div className="footer-links-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(160px, 1fr))", gap: "2rem", justifyContent: "flex-end" }}>
             <div>
               <h4 style={{ marginBottom: "1rem" }}>{siteContent.footer.product.heading || "Product"}</h4>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
