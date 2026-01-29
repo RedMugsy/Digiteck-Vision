@@ -9,14 +9,19 @@ gsap.registerPlugin(ScrollTrigger);
 export default function TripleCards() {
   const root = useRef<HTMLDivElement>(null);
   const content = useRef<HTMLDivElement>(null);
+  const leftCard = useRef<HTMLDivElement>(null);
+  const centerCard = useRef<HTMLDivElement>(null);
+  const rightCard = useRef<HTMLDivElement>(null);
 
   useScene(root, () => {
+    const isMobile = window.innerWidth <= 768;
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: root.current!,
         start: "top bottom",
         end: "top top",
-        scrub: 0.8, // Smooth scrubbing with 0.8s lag
+        scrub: 0.8,
       },
     });
 
@@ -33,6 +38,54 @@ export default function TripleCards() {
       pin: true,
       pinSpacing: true,
     });
+
+    // Slide-out animation - cards start stacked in center, then slide out
+    const slideOutTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: root.current!,
+        start: "top top",
+        end: "+=50%",
+        scrub: 0.8,
+      },
+    });
+
+    if (isMobile) {
+      // Mobile: Cards are vertical (tall), animate VERTICALLY
+      slideOutTl
+        .fromTo(leftCard.current!, 
+          { x: 0, y: 0 },
+          { x: 0, y: "-110%", ease: "power2.inOut" },
+          0
+        )
+        .fromTo(centerCard.current!, 
+          { x: 0, y: 0 },
+          { x: 0, y: 0, ease: "power2.inOut" },
+          0
+        )
+        .fromTo(rightCard.current!, 
+          { x: 0, y: 0 },
+          { x: 0, y: "110%", ease: "power2.inOut" },
+          0
+        );
+    } else {
+      // Desktop: Cards start stacked in center, left slides left, right slides right with gap (HORIZONTAL)
+      slideOutTl
+        .fromTo(leftCard.current!, 
+          { x: 0, y: 0 },
+          { x: "-110%", y: 0, ease: "power2.inOut" },
+          0
+        )
+        .fromTo(centerCard.current!, 
+          { x: 0, y: 0 },
+          { x: 0, y: 0, ease: "power2.inOut" },
+          0
+        )
+        .fromTo(rightCard.current!, 
+          { x: 0, y: 0 },
+          { x: "110%", y: 0, ease: "power2.inOut" },
+          0
+        );
+    }
   });
 
   return (
@@ -45,64 +98,88 @@ export default function TripleCards() {
           inset: 0,
           background: "#0e0e12",
           display: "flex",
+          flexDirection: window.innerWidth <= 768 ? "column" : "row",
+          justifyContent: "center",
+          alignItems: "center",
           gap: "2rem",
           padding: "4rem",
         }}
       >
-        {/* Section Title - top left */}
-        <h2
+        {/* Section Title - locked container to prevent overlap */}
+        <div
           style={{
             position: "absolute",
-            top: "2rem",
-            left: "2rem",
-            fontSize: "2.9rem",
-            margin: 0,
-            color: "#FFAD01",
-            fontWeight: 600,
-            letterSpacing: "-0.02em",
-            zIndex: 10,
+            top: 0,
+            left: 0,
+            padding: "2rem",
+            zIndex: 100,
+            background: "linear-gradient(to bottom, #0e0e12 70%, transparent)",
+            pointerEvents: "none",
           }}
         >
-          {siteContent.tripleCards.sectionTitle}
-        </h2>
-
-        {siteContent.tripleCards.cards.map((card, i) => (
-          <div
-            key={i}
+          <h2
             style={{
-              flex: 1,
-              position: "relative",
-              background: "rgba(255, 255, 255, 0.05)",
-              borderRadius: "8px",
-              overflow: "hidden",
-              display: "flex",
-              alignItems: "flex-end",
+              position: "absolute",
+              top: "2rem",
+              left: "2rem",
+              fontSize: window.innerWidth <= 768 ? "2rem" : "2.9rem",
+              margin: 0,
+              color: "#FFAD01",
+              fontWeight: 600,
+              letterSpacing: "-0.02em",
+              zIndex: 100,
             }}
           >
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                backgroundImage: `url(${card.image})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            />
+            {siteContent.tripleCards.sectionTitle}
+          </h2>
+        </div>
 
+        {siteContent.tripleCards.cards.map((card, i) => {
+          // Assign refs to each card
+          const cardRef = i === 0 ? leftCard : i === 1 ? centerCard : rightCard;
+          
+          return (
             <div
+              key={i}
+              ref={cardRef}
               style={{
-                position: "relative",
-                width: "100%",
-                padding: "2rem",
-                background: "linear-gradient(to top, rgba(0,0,0,0.8), transparent)",
-                zIndex: 1,
+                flex: 1,
+                position: "absolute",
+                width: window.innerWidth <= 768 ? "80%" : "30%",
+                height: window.innerWidth <= 768 ? "30%" : "80%",
+                background: "rgba(255, 255, 255, 0.05)",
+                borderRadius: "8px",
+                overflow: "hidden",
+                display: "flex",
+                alignItems: "flex-end",
+                zIndex: i === 1 ? 3 : 2,
               }}
             >
-              <h3>{card.title}</h3>
-              <p style={{ marginTop: "0.5rem", opacity: 0.8 }}>{card.description}</p>
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  backgroundImage: `url(${card.image})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              />
+
+              <div
+                style={{
+                  position: "relative",
+                  width: "100%",
+                  padding: "2rem",
+                  background: "linear-gradient(to top, rgba(0,0,0,0.8), transparent)",
+                  zIndex: 1,
+                }}
+              >
+                <h3>{card.title}</h3>
+                <p style={{ marginTop: "0.5rem", opacity: 0.8 }}>{card.description}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

@@ -12,31 +12,6 @@ export default function HoverColumns() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useScene(root, () => {
-    // Roll up from below
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: root.current!,
-        start: "top bottom",
-        end: "top top",
-        scrub: 0.8, // Smooth scrubbing with 0.8s lag
-      },
-    });
-
-    tl.fromTo(
-      content.current!,
-      { yPercent: 100 },
-      { yPercent: 0, ease: "power2.inOut" }
-    );
-
-    // Pin for exactly one viewport scroll
-    ScrollTrigger.create({
-      trigger: root.current!,
-      start: "top top",
-      end: "+=100%",
-      pin: true,
-      pinSpacing: true,
-    });
-
     // Odometer animation for numbers in row - delayed to ensure elements exist
     setTimeout(() => {
       const numberElements = root.current?.querySelectorAll('.stat-number');
@@ -88,40 +63,161 @@ export default function HoverColumns() {
   };
 
   return (
-    <section ref={root} className="panel">
+    <section 
+      ref={root} 
+      className="panel" 
+      style={{ 
+        height: window.innerWidth <= 768 ? "auto" : "200vh", 
+        minHeight: window.innerWidth <= 768 ? "100vh" : "auto",
+        overflow: "visible" 
+      }}
+    >
+      {/* Section Title - top left */}
+      <h2
+        style={{
+          position: "absolute",
+          top: "2rem",
+          left: "2rem",
+          fontSize: window.innerWidth <= 768 ? "2rem" : "2.9rem",
+          margin: 0,
+          color: "#FFAD01",
+          fontWeight: 600,
+          letterSpacing: "-0.02em",
+          zIndex: 100,
+        }}
+      >
+        {siteContent.hoverColumns.sectionTitle}
+      </h2>
+
       <div
         ref={content}
         className="hoverColumns-content"
         style={{
-          position: "absolute",
-          inset: 0,
+          width: "100%",
           display: "flex",
           flexDirection: "column",
-          minHeight: 0,
+          background: "#0b0b0f",
+          minHeight: "100%",
         }}
       >
-        {/* Columns - fill remaining space above the stats row */}
+        {/* Section 3.1 - Upper new content (100vh) */}
+        <div
+          style={{
+            height: "100vh",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-start",
+            background: "#0b0b0f",
+            position: "relative",
+            backgroundImage: `url(/Media/Images/Whatwedobg.jpg)`,
+            backgroundSize: "cover",
+            backgroundPosition: window.innerWidth <= 768 ? "70% center" : "center",
+            padding: "4rem 4rem 0 4rem",
+          }}
+        >
+          {/* Dark overlay for better text readability */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "rgba(0, 0, 0, 0.5)",
+              zIndex: 0,
+            }}
+          />
+          
+          {/* Right-aligned content container */}
+          <div
+            style={{
+              position: "relative",
+              zIndex: 5,
+              maxWidth: window.innerWidth <= 768 ? "75vw" : "50vw",
+              display: "flex",
+              flexDirection: "column",
+              gap: "1.5rem",
+              transform: window.innerWidth <= 768 ? "translateY(-25%)" : "none",
+            }}
+          >
+            {/* Title Container */}
+            <div>
+              <h3
+                style={{
+                  fontSize: "3rem",
+                  margin: 0,
+                  color: "#fff",
+                  fontWeight: 600,
+                  letterSpacing: "-0.02em",
+                  textAlign: "left",
+                }}
+              >
+                {siteContent.hoverColumns.section31?.title || ""}
+              </h3>
+            </div>
+
+            {/* Body Text Container */}
+            <div>
+              <p
+                style={{
+                  margin: 0,
+                  opacity: 0.8,
+                  fontSize: "1.275rem",
+                  lineHeight: 1.6,
+                  textAlign: "left",
+                  color: "#fff",
+                  whiteSpace: "pre-line",
+                }}
+              >
+                {siteContent.hoverColumns.section31?.body || ""}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Section 3.2 - Current columns section (100vh) */}
+        <div
+          style={{
+            height: window.innerWidth <= 768 ? "auto" : "100vh",
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-start",
+            background: "#0b0b0f",
+          }}
+        >
+        {/* Columns - fixed height */}
         <div
           id="hoverColumns-container"
           className="hoverColumns-container"
           style={{
-            flex: 1,
+            height: window.innerWidth <= 768 ? "auto" : "65vh",
             display: "flex",
-            gap: 0,
-            minHeight: 0,
+            flexDirection: window.innerWidth <= 768 ? "column" : "row",
+            gap: window.innerWidth <= 768 ? "1rem" : 0,
+            position: "relative",
+            background: "#000",
+            padding: window.innerWidth <= 768 ? "2rem" : "0",
           }}
         >
           {siteContent.hoverColumns.columns.map((column, index) => {
             const bg = hexToRgba(columnColors[index], 0.85);
             const textColor = isLight(columnColors[index]) ? "#000000" : "#ffffff";
+            const isMobile = window.innerWidth <= 768;
+            const isExpanded = hoveredIndex === index;
+            
             return (
               <div
                 key={index}
                 className="hoverColumns-column"
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
+                onMouseEnter={() => !isMobile && setHoveredIndex(index)}
+                onMouseLeave={() => !isMobile && setHoveredIndex(null)}
+                onClick={() => {
+                  if (isMobile) {
+                    setHoveredIndex(isExpanded ? null : index);
+                  }
+                }}
                 style={{
-                  flex: 1,
+                  flex: isMobile ? "none" : 1,
+                  minHeight: isMobile ? "40vh" : "auto",
+                  width: isMobile ? "100%" : "auto",
                   position: "relative",
                   overflow: "hidden",
                   cursor: "pointer",
@@ -149,7 +245,8 @@ export default function HoverColumns() {
                     inset: 0,
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
+                    justifyContent: "flex-end",
+                    paddingRight: "2rem",
                     transition: "transform 0.5s ease",
                     transform: hoveredIndex === index ? "translateY(-150%)" : "translateY(0)",
                     pointerEvents: "none",
@@ -161,7 +258,7 @@ export default function HoverColumns() {
                       fontSize: "2.5rem",
                       fontWeight: 600,
                       color: "#ffffff",
-                      textAlign: "center",
+                      textAlign: "right",
                       textShadow: "0 2px 10px rgba(0,0,0,0.5)",
                     }}
                   >
@@ -204,11 +301,11 @@ export default function HoverColumns() {
           })}
         </div>
 
-        {/* Row - fixed 25.5% height aligned to bottom */}
+        {/* Row - fixed height aligned to bottom */}
         <div
           className="hoverColumns-stats-row"
           style={{
-            height: "25.5%",
+            height: "20vh",
             background: "#FFAD01",
             display: "flex",
             alignItems: "center",
@@ -255,6 +352,7 @@ export default function HoverColumns() {
               </div>
             </div>
           ))}
+        </div>
         </div>
       </div>
     </section>

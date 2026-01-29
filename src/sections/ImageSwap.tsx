@@ -71,7 +71,7 @@ export default function ImageSwap() {
           style={{
             position: "absolute",
             top: "2rem",
-            right: "2rem",
+            left: "2rem",
             fontSize: "2.9rem",
             margin: 0,
             color: "#FFAD01",

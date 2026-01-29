@@ -1,6 +1,8 @@
 export const siteContent = {
+  // SECTION 1: Hero
   hero: {
-    title: "DIGITECK VISION",
+    sectionTitle: "", // No title needed for hero
+    title: "",
     subtitle: "DIGITECK VISION",
     tagline: "A technology development firm operating from strategy to execution. 47 systems built | 12 products deployed | 23 market entries enabled",
     quote: "'An invasion of armies can be resisted, but not an IDEA whose time has come.' - Victor Hugo",
@@ -11,10 +13,27 @@ export const siteContent = {
       "/Media/Video/hero.mp4", // Replace with hero-2.mp4 when you have it
       "/Media/Video/hero.mp4", // Replace with hero-3.mp4 when you have it
     ],
-    logoSrc: "/Media/Images/logo.png", // or logo.png
+    logoSrc: "/Media/Images/logo.png",
   },
   
+  // SECTION 2: Who We Are
+  coverSolid: {
+    sectionTitle: "WHO WE ARE",
+    title: "Your Digital Transformation Partner",
+    content: "We are a MENA based technology company that aims to support the region's digital transformation. By partnering with local and international companies to build digital solutions that transform customer and user experiences.",
+    image: "/Media/Images/cover-slide.jpg?v=2",
+  },
+  
+  // SECTION 3: What We Do (with sub-sections 3.1 and 3.2)
   hoverColumns: {
+    sectionTitle: "WHAT WE DO",
+    section31: {
+      title: "",
+      body: "Digiteck Vision is more than just a digital services company; we're your partner in navigating the complexities of today's ever-changing landscape.\n\nWe offer comprehensive strategies, solutions, and services backed by cutting-edge technologies that seamlessly facilitate mobility. \n\nOur team is highly experienced with a proven track record that boasts a rich history of spearheading digital transformation across diverse industries. From healthcare to finance, retail to manufacturing, we bring invaluable expertise to the table. With a track record of success, we're the partner of choice when seeking external input to achieve your digital goals with confidence and clarity.",
+    },
+    ticker: "DIGITECK VISION • INNOVATION • TRANSFORMATION • TECHNOLOGY • SOLUTIONS • INTEGRATOR • ADVISORY • GATEWAY • ",
+    ticker1: "DIGITECK VISION • TRANSFORMATION • INNOVATION • INTELLIGENCE • PRECISION • ",
+    ticker2: "DIGITECK VISION • INNOVATION • TRANSFORMATION • TECHNOLOGY • SOLUTIONS • INTEGRATOR • ADVISORY • GATEWAY • ",
     columns: [
       {
         image: "/Media/Images/column-1.jpg",
@@ -47,13 +66,79 @@ export const siteContent = {
     },
   },
   
-  coverSolid: {
-    sectionTitle: "WHO WE ARE",
-    title: "Your Digital Transformation Partner",
-    content: "DIGITECK VISION harnesses the power of Applications, IOT and AI to transform user experience and enable smarter investment decisions. Our tech combines advanced secureity and integration layers with superior connectivity and real-time data analytics to give you the competitive edge you need.",
-    image: "/Media/Images/cover-solid.jpg",
+  // SECTION 4: Our Solutions
+  productFlip: {
+    sectionTitle: "OUR SOLUTIONS",
+    heading: "",
+    products: [
+      {
+        id: 1,
+        frontTitle: "DIGITAL ID/Identity",
+        backTitle: "NEXVIS XID",
+        backBody: "21st CENTURY ID - For Corproates and Institutions (Universities, Government Offices, Clubs, Fitness centers and much more).",
+        image: "/Media/Images/product-1.jpg",
+        tags: ["Digital Identity", "ID Management", "Corporate Solutions", "Authentication"],
+      },
+      {
+        id: 2,
+        frontTitle: "Digital Insurance",
+        backTitle: "VIXID",
+        backBody: "VIXID is our Smart, AI intelligent medical platform designed as a robust digital infrastructure for the insurance sector. It revolutionizes how individuals access healthcare and manage their medical policies, offering a secure, all-in-one mobile solution.",
+        image: "/Media/Images/product-2.jpg",
+        tags: ["Healthcare", "Insurance Tech", "AI Platform", "Medical Management"],
+      },
+      {
+        id: 3,
+        frontTitle: "Digital Business Card",
+        backTitle: "DBCX",
+        backBody: "Our digital business card solution, to replace paper business cards.",
+        image: "/Media/Images/product-3.jpg",
+        tags: ["Business Cards", "Networking", "Digital Transformation", "Contactless"],
+      },
+      {
+        id: 4,
+        frontTitle: "Visitor Management",
+        backTitle: "ZUWAR",
+        backBody: "Zuwar is mobile first universal mobile app for Visitor Management that replaces traditional isolated and paper/ plastic-based visitor passes with secure, eco-friendly, and efficient digital credentials protected by state-of-the-art security.",
+        image: "/Media/Images/product-4.jpg",
+        tags: ["Visitor Management", "Security", "Access Control", "Mobile First"],
+      },
+      {
+        id: 5,
+        frontTitle: "Digital Valet Ticket",
+        backTitle: "VALETX",
+        backBody: "Replace Paper Claim Tickets with our Digital Vehicle Claim ticket and Mobile First Valet Platform.",
+        image: "/Media/Images/product-5.jpg",
+        tags: ["Valet Service", "Parking Management", "Digital Tickets", "Hospitality"],
+      },
+      {
+        id: 6,
+        frontTitle: "Digital Claim Ticket",
+        backTitle: "CLAIMITX",
+        backBody: "Digital claims solution to be used at Luggage storage,coat/bag check,dry cleaning,valet parking,repair services.",
+        image: "/Media/Images/product-6.jpg",
+        tags: ["Claims Management", "Service Industry", "Digital Receipts", "Tracking"],
+      },
+      {
+        id: 7,
+        frontTitle: "Digital Loyalty card",
+        backTitle: "WALAX",
+        backBody: "Create Brand Loyalty By Creating Benefits to Users from Registered Merchants.",
+        image: "/Media/Images/product-7.jpg",
+        tags: ["Loyalty Programs", "Customer Engagement", "Rewards", "Retail"],
+      },
+      {
+        id: 8,
+        frontTitle: "Digital Emergency",
+        backTitle: "MAYDAY",
+        backBody: "Emergency Calling Also App for Women & Single Workers.",
+        image: "/Media/Images/product-8.jpg",
+        tags: ["Safety", "Emergency Response", "Personal Security", "Mobile App"],
+      },
+    ],
   },
   
+  // SECTION 5: Why Digiteck Vision
   coverImage: {
     sectionTitle: "WHY DIGITECK VISION",
     text1: {
@@ -78,6 +163,12 @@ export const siteContent = {
     },
   },
   
+  // SECTION 6: Expanding Donuts (Transition Animation)
+  expandingDonuts: {
+    sectionTitle: "", // No title for transition section
+  },
+  
+  // SECTION 7: Industries
   hoverTable: {
     sectionTitle: "INDUSTRIES",
     heading: "Industries We Operate In?",
@@ -88,46 +179,54 @@ export const siteContent = {
         title: "Corproates",
         description: "Tester.",
         image: "/Media/Images/capability-1.jpg",
+        tags: ["Corporate", "Enterprise Solutions", "Business Management", "Digital Transformation"],
       },
       {
         n: "02",
-        title: "Risk Assessment",
+        title: "Higher Education",
         description: "AI-powered risk evaluation systems that analyze multiple data points to provide accurate risk scoring and mitigation strategies.",
         image: "/Media/Images/capability-2.jpg",
+        tags: ["Education", "Universities", "Campus Management", "Student Services"],
       },
       {
         n: "03",
-        title: "Portfolio Optimization",
+        title: "Health & Fitness",
         description: "Smart asset allocation strategies that balance risk and return while aligning with your investment goals and market conditions.",
         image: "/Media/Images/capability-3.jpg",
+        tags: ["Healthcare", "Fitness", "Wellness", "Sports Management"],
       },
       {
         n: "04",
-        title: "Trend Prediction",
+        title: "Government & Municipalities",
         description: "Predictive market modeling using machine learning algorithms to forecast market movements and identify potential opportunities.",
         image: "/Media/Images/capability-4.jpg",
+        tags: ["Public Sector", "Government Services", "Civic Tech", "Digital Government"],
       },
       {
         n: "05",
-        title: "Sentiment Analysis",
+        title: "Financial Services",
         description: "Market sentiment tracking through social media, news, and financial data to gauge investor confidence and market direction.",
         image: "/Media/Images/capability-5.jpg",
+        tags: ["Finance", "Banking", "Fintech", "Investment Management"],
       },
       {
         n: "06",
-        title: "Performance Tracking",
+        title: "Memberships & Clubs",
         description: "Real-time performance metrics with detailed analytics and reporting to monitor portfolio health and investment outcomes.",
         image: "/Media/Images/capability-6.jpg",
+        tags: ["Analytics", "Performance Management", "KPI Tracking", "Business Intelligence"],
       },
       {
         n: "07",
-        title: "Compliance Monitoring",
+        title: "Security",
         description: "Automated compliance checks ensuring all investment activities meet regulatory requirements and industry standards.",
         image: "/Media/Images/capability-7.jpg",
+        tags: ["Compliance", "Regulatory Tech", "Risk Management", "Audit Solutions"],
       },
     ],
   },
   
+  // SECTION 8: Innovation
   imageSwap: {
     sectionTitle: "INNOVATION",
     slides: [
@@ -149,69 +248,7 @@ export const siteContent = {
     ],
   },
   
-  productFlip: {
-    sectionTitle: "SOLUTIONS",
-    heading: "",
-    products: [
-      {
-        id: 1,
-        frontTitle: "DIGITAL ID/Identity",
-        backTitle: "NEXVIS XID",
-        backBody: "21st CENTURY ID - For Corproates and Institutions (Universities, Government Offices, Clubs, Fitness centers and much more).",
-        image: "/Media/Images/product-1.jpg",
-      },
-      {
-        id: 2,
-        frontTitle: "Digital Insurance",
-        backTitle: "VIXID",
-        backBody: "VIXID is our Smart, AI intelligent medical platform designed as a robust digital infrastructure for the insurance sector. It revolutionizes how individuals access healthcare and manage their medical policies, offering a secure, all-in-one mobile solution.",
-        image: "/Media/Images/product-2.jpg",
-      },
-      {
-        id: 3,
-        frontTitle: "Digital Business Card",
-        backTitle: "DBCX",
-        backBody: "Our digital business card solution, to replace paper business cards.",
-        image: "/Media/Images/product-3.jpg",
-      },
-      {
-        id: 4,
-        frontTitle: "Visitor Management",
-        backTitle: "ZUWAR",
-        backBody: "Zuwar is mobile first universal mobile app for Visitor Management that replaces traditional isolated and paper/ plastic-based visitor passes with secure, eco-friendly, and efficient digital credentials protected by state-of-the-art security.",
-        image: "/Media/Images/product-4.jpg",
-      },
-      {
-        id: 5,
-        frontTitle: "Digital Valet Ticket",
-        backTitle: "VALETX",
-        backBody: "Replace Paper Claim Tickets with our Digital Vehicle Claim ticket and Mobile First Valet Platform.",
-        image: "/Media/Images/product-5.jpg",
-      },
-      {
-        id: 6,
-        frontTitle: "Digital Claim Ticket",
-        backTitle: "CLAIMITX",
-        backBody: "Digital claims solution to be used at Luggage storage,coat/bag check,dry cleaning,valet parking,repair services.",
-        image: "/Media/Images/product-6.jpg"
-      },
-      {
-        id: 7,
-        frontTitle: "Digital Loyalty card",
-        backTitle: "WALAX",
-        backBody: "Create Brand Loyalty By Creating Benefits to Users from Registered Merchants.",
-        image: "/Media/Images/product-7.jpg",
-      },
-      {
-        id: 8,
-        frontTitle: "Digital Emergency",
-        backTitle: "MAYDAY",
-        backBody: "Emergency Calling Also App for Women & Single Workers.",
-        image: "/Media/Images/product-8.jpg",
-      },
-    ],
-  },
-  
+  // SECTION 9: Our Values
   tripleCards: {
     sectionTitle: "OUR VALUES",
     cards: [
@@ -233,6 +270,7 @@ export const siteContent = {
     ],
   },
   
+  // SECTION 10: Get Started
   mediaLink: {
     sectionTitle: "GET STARTED",
     heading: "Experience the Difference",
@@ -241,8 +279,14 @@ export const siteContent = {
     videoSrc: "/Media/Video/media-link.mp4",
   },
   
+  // SECTION 11: Footer
   footer: {
     ticker: "DIGITECK VISION • TRANSFORMATION • INNOVATION • INTELLIGENCE • PRECISION • ",
+    address: "",
+    contact: {
+      phone: "",
+      email: "",
+    },
     product: {
       heading: "Product",
       links: [

@@ -26,14 +26,6 @@ export default function ProductFlip() {
       { yPercent: 100 },
       { yPercent: 0, ease: "power2.inOut" }
     );
-
-    ScrollTrigger.create({
-      trigger: root.current!,
-      start: "top top",
-      end: "+=100%",
-      pin: true,
-      pinSpacing: true,
-    });
   });
 
   return (
@@ -60,7 +52,7 @@ export default function ProductFlip() {
             color: "#FFAD01",
             fontWeight: 600,
             letterSpacing: "-0.02em",
-            zIndex: 10,
+            zIndex: 100,
           }}
         >
           {siteContent.productFlip.sectionTitle}

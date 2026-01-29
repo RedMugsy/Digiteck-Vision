@@ -27,7 +27,6 @@ export default function HeroVideo() {
       <div className="nav">
         <div className="navLeft">
           <div className="logoDot" />
-          <div style={{ fontWeight: 600, letterSpacing: "-0.02em" }}>{siteContent.hero.title}</div>
         </div>
         <div className="navLinks">
           <a href="#home">Home</a>

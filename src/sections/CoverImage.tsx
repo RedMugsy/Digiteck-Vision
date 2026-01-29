@@ -63,6 +63,11 @@ export default function CoverImage() {
     // Scene A: Image 1 visible at start
     // At 25% progress: split vertically - slides complete off at 1.25
     mainTl
+      // Fade out text1 before images start animating
+      .to(text1.current!, {
+        opacity: 0,
+        duration: 0.3,
+      }, 0.25)
       // Scene B: Image 2 appears instantly when img1 split starts
       .to(img2Container.current!, {
         opacity: 1,
@@ -76,11 +81,12 @@ export default function CoverImage() {
         xPercent: 120,
         duration: 1,
       }, 0.25)
-      .to(text1.current!, {
-        yPercent: -200,
-        duration: 1,
-      }, 0.25)
       // Scene C: Image 3 appears instantly when img2 split starts (at 110% of img1)
+      // Fade out text2 before images start animating
+      .to(text2.current!, {
+        opacity: 0,
+        duration: 0.3,
+      }, 1.1667)
       .to(img3Container.current!, {
         opacity: 1,
         duration: 0.01,
@@ -97,11 +103,12 @@ export default function CoverImage() {
         opacity: 0,
         duration: 0.3,
       }, 2.0667)
-      .to(text2.current!, {
-        opacity: 0,
-        duration: 0.5,
-      }, 1.1667)
       // Scene D: Final solid appears instantly when img3 split starts (at 110% of img2)
+      // Fade out text3 before images start animating
+      .to(text3.current!, {
+        opacity: 0,
+        duration: 0.3,
+      }, 2.0834)
       .to(finalSolid.current!, {
         opacity: 1,
         duration: 0.01,
@@ -112,11 +119,6 @@ export default function CoverImage() {
       }, 2.0834)
       .to(img3Right.current!, {
         xPercent: 120,
-        duration: 1,
-      }, 2.0834)
-      .to(text3.current!, {
-        xPercent: 120,
-        opacity: 0,
         duration: 1,
       }, 2.0834);
   });
@@ -136,7 +138,7 @@ export default function CoverImage() {
             color: "#FFAD01",
             fontWeight: 600,
             letterSpacing: "-0.02em",
-            zIndex: 10,
+            zIndex: 100,
           }}
         >
           {siteContent.coverImage.sectionTitle}
