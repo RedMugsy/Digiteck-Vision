@@ -11,21 +11,8 @@ export default function CoverSolid() {
   const content = useRef<HTMLDivElement>(null);
 
   useScene(root, () => {
-    // Roll up from below to cover Hero at 65% of Hero's pinned duration
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: root.current!,
-        start: "top bottom",
-        end: "top top",
-        scrub: 0.8, // Smooth scrubbing with 0.8s lag
-      },
-    });
-
-    tl.fromTo(
-      content.current!,
-      { yPercent: 100 },
-      { yPercent: 0, ease: "power2.inOut" }
-    );
+    // Set content in position immediately - no slide animation
+    gsap.set(content.current!, { yPercent: 0 });
 
     // Odometer animation for numbers in row
     setTimeout(() => {

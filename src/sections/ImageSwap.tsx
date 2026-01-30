@@ -19,21 +19,8 @@ export default function ImageSwap() {
   const textContent = useRef<HTMLDivElement>(null);
 
   useScene(root, () => {
-    // Roll up transition
-    const coverTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: root.current!,
-        start: "top bottom",
-        end: "top top",
-        scrub: 0.8, // Smooth scrubbing with 0.8s lag
-      },
-    });
-
-    coverTl.fromTo(
-      wrapper.current!,
-      { yPercent: 100 },
-      { yPercent: 0, ease: "power2.inOut" }
-    );
+    // Set content in position immediately - no slide animation
+    gsap.set(wrapper.current!, { yPercent: 0 });
 
     // Image swap animation
     const img1 = stack.current!.querySelector<HTMLDivElement>("[data-img='1']");

@@ -32,21 +32,8 @@ export default function CoverImage() {
   const finalSolid = useRef<HTMLDivElement>(null);
 
   useScene(root, () => {
-    // Roll up from below to cover CoverSolid
-    const coverTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: root.current!,
-        start: "top bottom",
-        end: "top top",
-        scrub: 0.8, // Smooth scrubbing with 0.8s lag
-      },
-    });
-
-    coverTl.fromTo(
-      wrapper.current!,
-      { yPercent: 100 },
-      { yPercent: 0, ease: "power2.inOut" }
-    );
+    // Set content in position immediately - no slide animation
+    gsap.set(wrapper.current!, { yPercent: 0 });
 
     // Main pinned timeline for internal scenes (350% scroll length)
     const mainTl = gsap.timeline({

@@ -16,20 +16,8 @@ export default function TripleCards() {
   useScene(root, () => {
     const isMobile = window.innerWidth <= 768;
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: root.current!,
-        start: "top bottom",
-        end: "top top",
-        scrub: 0.8,
-      },
-    });
-
-    tl.fromTo(
-      content.current!,
-      { yPercent: 100 },
-      { yPercent: 0, ease: "power2.inOut" }
-    );
+    // Set content in position immediately - no slide animation
+    gsap.set(content.current!, { yPercent: 0 });
 
     ScrollTrigger.create({
       trigger: root.current!,
