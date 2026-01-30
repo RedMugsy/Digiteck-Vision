@@ -52,9 +52,9 @@ export default function ImageSwap() {
   return (
     <section ref={root} className="panel" id="imageSwap-section">
       <div ref={wrapper} className="imageSwap-wrapper" style={{ position: "absolute", inset: 0, display: "flex" }}>
-        {/* Section Title - top right */}
+        {/* Section Title - top left */}
         <h2
-          className="imageSwap-title"
+          className="section-title imageSwap-title"
           style={{
             position: "absolute",
             top: "2rem",
@@ -64,7 +64,8 @@ export default function ImageSwap() {
             color: "#FFAD01",
             fontWeight: 600,
             letterSpacing: "-0.02em",
-            zIndex: 10,
+            zIndex: 100,
+            textAlign: "left",
           }}
         >
           {siteContent.imageSwap.sectionTitle}

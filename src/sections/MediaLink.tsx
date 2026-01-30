@@ -34,6 +34,7 @@ export default function MediaLink() {
       >
         {/* Section Title - top left */}
         <h2
+          className="section-title"
           style={{
             position: "absolute",
             top: "2rem",
@@ -43,7 +44,8 @@ export default function MediaLink() {
             color: "#FFAD01",
             fontWeight: 600,
             letterSpacing: "-0.02em",
-            zIndex: 10,
+            zIndex: 100,
+            textAlign: "left",
           }}
         >
           {siteContent.mediaLink.sectionTitle}

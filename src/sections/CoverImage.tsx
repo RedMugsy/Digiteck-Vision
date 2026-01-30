@@ -115,7 +115,7 @@ export default function CoverImage() {
       <div ref={wrapper} className="coverImage-wrapper" style={{ position: "absolute", inset: 0 }}>
         {/* Section Title - top left */}
         <h2
-          className="coverImage-title"
+          className="section-title coverImage-title"
           style={{
             position: "absolute",
             top: "2rem",
@@ -126,6 +126,7 @@ export default function CoverImage() {
             fontWeight: 600,
             letterSpacing: "-0.02em",
             zIndex: 100,
+            textAlign: "left",
           }}
         >
           {siteContent.coverImage.sectionTitle}

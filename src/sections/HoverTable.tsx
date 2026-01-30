@@ -34,6 +34,7 @@ export default function HoverTable() {
       >
         {/* Section Title - top left */}
         <h2
+          className="section-title"
           style={{
             position: "absolute",
             top: "2rem",
@@ -44,6 +45,7 @@ export default function HoverTable() {
             fontWeight: 600,
             letterSpacing: "-0.02em",
             zIndex: 100,
+            textAlign: "left",
           }}
         >
           {siteContent.hoverTable.sectionTitle}

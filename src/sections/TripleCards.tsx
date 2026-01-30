@@ -93,34 +93,24 @@ export default function TripleCards() {
           padding: "4rem",
         }}
       >
-        {/* Section Title - locked container to prevent overlap */}
-        <div
+        {/* Section Title - top left */}
+        <h2
+          className="section-title"
           style={{
             position: "absolute",
-            top: 0,
-            left: 0,
-            padding: "2rem",
+            top: "2rem",
+            left: "2rem",
+            fontSize: "2.9rem",
+            margin: 0,
+            color: "#FFAD01",
+            fontWeight: 600,
+            letterSpacing: "-0.02em",
             zIndex: 100,
-            background: "linear-gradient(to bottom, #0e0e12 70%, transparent)",
-            pointerEvents: "none",
+            textAlign: "left",
           }}
         >
-          <h2
-            style={{
-              position: "absolute",
-              top: "2rem",
-              left: "2rem",
-              fontSize: window.innerWidth <= 768 ? "2rem" : "2.9rem",
-              margin: 0,
-              color: "#FFAD01",
-              fontWeight: 600,
-              letterSpacing: "-0.02em",
-              zIndex: 100,
-            }}
-          >
-            {siteContent.tripleCards.sectionTitle}
-          </h2>
-        </div>
+          {siteContent.tripleCards.sectionTitle}
+        </h2>
 
         {siteContent.tripleCards.cards.map((card, i) => {
           // Assign refs to each card

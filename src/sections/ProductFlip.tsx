@@ -30,7 +30,7 @@ export default function ProductFlip() {
       >
         {/* Section Title - top left */}
         <h2
-          className="productFlip-section-title"
+          className="section-title productFlip-section-title"
           style={{
             position: "absolute",
             top: "2rem",
@@ -41,6 +41,7 @@ export default function ProductFlip() {
             fontWeight: 600,
             letterSpacing: "-0.02em",
             zIndex: 100,
+            textAlign: "left",
           }}
         >
           {siteContent.productFlip.sectionTitle}

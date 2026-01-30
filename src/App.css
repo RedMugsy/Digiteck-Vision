@@ -623,20 +623,45 @@ body {
   }
 }
 
+/* Section titles - always locked top-left with left-aligned text */
+.section-title {
+  position: absolute !important;
+  top: 2rem !important;
+  left: 2rem !important;
+  margin: 0 !important;
+  color: #FFAD01 !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+  z-index: 100 !important;
+  text-align: left !important;
+}
+
 /* Desktop view maintained up to 11.9" (1024px) */
 @media (max-width: 1023px) {
   .panel {
     min-height: 100vh;
     height: auto !important;
-    overflow-y: visible !important;
+    overflow: hidden !important;
+  }
+
+  /* Section titles responsive */
+  .section-title {
+    font-size: 2rem !important;
   }
 
   /* Allow sections to grow and scroll on mobile */
-  .productFlip-content,
-  .hoverColumns-content {
+  .productFlip-content {
     position: relative !important;
     height: auto !important;
     min-height: 100vh !important;
+  }
+
+  /* Section 3 (HoverColumns) - full height, no internal scroll */
+  .hoverColumns-content {
+    position: relative !important;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
   }
   
   /* Hero section mobile fixes - only below 11.9" */
@@ -869,17 +894,34 @@ body {
     padding: 2rem !important;
   }
   
-  /* HoverColumns - change to 2 columns on tablet - all 4 visible with 2x2 grid */
+  /* Section 3 (HoverColumns) - full content visibility on mobile */
+  .hoverColumns-section {
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+
+  .hoverColumns-section32 {
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  /* HoverColumns - columns stacked vertically, all visible */
   #hoverColumns-container,
   .hoverColumns-container {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    grid-template-rows: repeat(2, 1fr) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: auto !important;
     gap: 0 !important;
+    padding: 0 !important;
   }
 
   .hoverColumns-column {
-    min-height: 35vh !important;
+    min-height: 50vh !important;
+    height: auto !important;
+    flex: none !important;
+    width: 100% !important;
   }
 
   .hoverColumns-stats-row {
@@ -1057,13 +1099,22 @@ body {
     display: flex !important;
     flex-direction: column !important;
     gap: 0 !important;
-    overflow-y: auto !important;
+    overflow: visible !important;
+    height: auto !important;
   }
 
   .hoverColumns-column {
     flex: none !important;
-    min-height: 50vh !important;
+    min-height: 60vh !important;
     height: auto !important;
+    width: 100% !important;
+  }
+
+  /* Section 3.2 - no internal scrolling, all columns visible */
+  .hoverColumns-section32 {
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
   }
 
   .hoverColumns-stats-row {
