@@ -12,20 +12,8 @@ export default function HoverTable() {
   const [hoveredRow, setHoveredRow] = useState<string | null>(null);
 
   useScene(root, () => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: root.current!,
-        start: "top bottom",
-        end: "top top",
-        scrub: 0.8,
-      },
-    });
-
-    tl.fromTo(
-      content.current!,
-      { yPercent: 100 },
-      { yPercent: 0, ease: "power2.inOut" }
-    );
+    // Set content in position immediately - no slide animation
+    gsap.set(content.current!, { yPercent: 0 });
   });
 
   return (
@@ -46,6 +34,7 @@ export default function HoverTable() {
       >
         {/* Section Title - top left */}
         <h2
+          className="section-title"
           style={{
             position: "absolute",
             top: "2rem",
@@ -56,6 +45,7 @@ export default function HoverTable() {
             fontWeight: 600,
             letterSpacing: "-0.02em",
             zIndex: 100,
+            textAlign: "left",
           }}
         >
           {siteContent.hoverTable.sectionTitle}

@@ -63,27 +63,29 @@ export default function HoverColumns() {
   };
 
   return (
-    <section 
-      ref={root} 
-      className="panel" 
-      style={{ 
-        height: window.innerWidth <= 768 ? "auto" : "200vh", 
-        minHeight: window.innerWidth <= 768 ? "100vh" : "auto",
-        overflow: "visible" 
+    <section
+      ref={root}
+      className="panel hoverColumns-section"
+      style={{
+        height: "auto",
+        minHeight: "100vh",
+        overflow: "visible"
       }}
     >
       {/* Section Title - top left */}
       <h2
+        className="section-title"
         style={{
           position: "absolute",
           top: "2rem",
           left: "2rem",
-          fontSize: window.innerWidth <= 768 ? "2rem" : "2.9rem",
+          fontSize: "2.9rem",
           margin: 0,
           color: "#FFAD01",
           fontWeight: 600,
           letterSpacing: "-0.02em",
           zIndex: 100,
+          textAlign: "left",
         }}
       >
         {siteContent.hoverColumns.sectionTitle}
@@ -172,10 +174,12 @@ export default function HoverColumns() {
           </div>
         </div>
 
-        {/* Section 3.2 - Current columns section (100vh) */}
+        {/* Section 3.2 - Current columns section */}
         <div
+          className="hoverColumns-section32"
           style={{
-            height: window.innerWidth <= 768 ? "auto" : "100vh",
+            height: "auto",
+            minHeight: "100vh",
             width: "100%",
             display: "flex",
             flexDirection: "column",
@@ -183,18 +187,19 @@ export default function HoverColumns() {
             background: "#0b0b0f",
           }}
         >
-        {/* Columns - fixed height */}
+        {/* Columns - all visible on mobile, no internal scrolling */}
         <div
           id="hoverColumns-container"
           className="hoverColumns-container"
           style={{
-            height: window.innerWidth <= 768 ? "auto" : "65vh",
+            flex: 1,
+            minHeight: "65vh",
             display: "flex",
-            flexDirection: window.innerWidth <= 768 ? "column" : "row",
-            gap: window.innerWidth <= 768 ? "1rem" : 0,
+            flexDirection: "row",
+            gap: 0,
             position: "relative",
             background: "#000",
-            padding: window.innerWidth <= 768 ? "2rem" : "0",
+            padding: 0,
           }}
         >
           {siteContent.hoverColumns.columns.map((column, index) => {

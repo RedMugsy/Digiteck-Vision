@@ -1,4 +1,4 @@
-/* Mobile Responsive Styles */
+/* Mobile Responsive Styles - Under 10" screen (768px) */
 
 @media (max-width: 768px) {
   /* Disable GSAP pinning and scroll effects on mobile */
@@ -56,16 +56,69 @@
     flex-wrap: wrap !important;
     gap: 1rem !important;
   }
-  
+
   .hoverColumns-stats-row > div {
     flex: 1 1 45% !important;
     min-width: 120px !important;
   }
-  
+
   .hoverColumns-stats-row .stat-number {
     font-size: 2rem !important;
   }
-  
+
+  /* Section 3 (HoverColumns) - All columns visible, no internal scrolling */
+  .hoverColumns-section {
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+
+  .hoverColumns-content {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .hoverColumns-section32 {
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+
+  .hoverColumns-container {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+    gap: 0 !important;
+  }
+
+  .hoverColumns-column {
+    flex: none !important;
+    width: 100% !important;
+    min-height: 50vh !important;
+    height: auto !important;
+  }
+
+  /* Section 2 (CoverSolid) - Content containment */
+  .coverSolid-section {
+    overflow: hidden !important;
+  }
+
+  .coverSolid-container {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    padding-top: 6rem !important;
+    padding-bottom: 22vh !important;
+  }
+
+  .coverSolid-text-container {
+    max-width: 90% !important;
+    margin-top: 0 !important;
+  }
+
   /* Section-specific mobile fixes */
   
   /* HoverTable - Stack layout vertically */

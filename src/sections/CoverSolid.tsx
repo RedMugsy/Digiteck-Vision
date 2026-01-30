@@ -11,21 +11,8 @@ export default function CoverSolid() {
   const content = useRef<HTMLDivElement>(null);
 
   useScene(root, () => {
-    // Roll up from below to cover Hero at 65% of Hero's pinned duration
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: root.current!,
-        start: "top bottom",
-        end: "top top",
-        scrub: 0.8, // Smooth scrubbing with 0.8s lag
-      },
-    });
-
-    tl.fromTo(
-      content.current!,
-      { yPercent: 100 },
-      { yPercent: 0, ease: "power2.inOut" }
-    );
+    // Set content in position immediately - no slide animation
+    gsap.set(content.current!, { yPercent: 0 });
 
     // Odometer animation for numbers in row
     setTimeout(() => {
@@ -55,19 +42,21 @@ export default function CoverSolid() {
   });
 
   return (
-    <section ref={root} className="panel">
+    <section ref={root} className="panel coverSolid-section">
       {/* Section Title - top left */}
       <h2
+        className="section-title"
         style={{
           position: "absolute",
           top: "2rem",
           left: "2rem",
-          fontSize: window.innerWidth <= 768 ? "2rem" : "2.9rem",
+          fontSize: "2.9rem",
           margin: 0,
           color: "#FFAD01",
           fontWeight: 600,
           letterSpacing: "-0.02em",
           zIndex: 100,
+          textAlign: "left",
         }}
       >
         {siteContent.coverSolid.sectionTitle}
@@ -76,18 +65,23 @@ export default function CoverSolid() {
       <div
         ref={content}
         id="coverSolid-container"
+        className="coverSolid-container"
         style={{
           position: "absolute",
           inset: 0,
           backgroundImage: `url(${siteContent.coverSolid.image})`,
-          backgroundSize: window.innerWidth <= 768 ? "216%" : "cover",
+          backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           display: "flex",
-          alignItems: window.innerWidth <= 768 ? "flex-start" : "center",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "flex-start",
           padding: "4rem",
-          paddingTop: window.innerWidth <= 768 ? "6.5rem" : "4rem",
+          paddingTop: "6rem",
+          paddingBottom: "22vh",
           zIndex: 1,
+          overflow: "hidden",
         }}
       >
         {/* Dark overlay for better text readability */}
@@ -100,7 +94,7 @@ export default function CoverSolid() {
           }}
         />
 
-        {/* Content - Left aligned */}
+        {/* Content - Left aligned, contained within section */}
         <div
           className="coverSolid-text-container"
           style={{
@@ -108,7 +102,6 @@ export default function CoverSolid() {
             zIndex: 5,
             maxWidth: "600px",
             marginLeft: "0",
-            marginTop: window.innerWidth <= 768 ? "8vh" : "-15vh",
           }}
         >
           <h3 

@@ -19,21 +19,8 @@ export default function ImageSwap() {
   const textContent = useRef<HTMLDivElement>(null);
 
   useScene(root, () => {
-    // Roll up transition
-    const coverTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: root.current!,
-        start: "top bottom",
-        end: "top top",
-        scrub: 0.8, // Smooth scrubbing with 0.8s lag
-      },
-    });
-
-    coverTl.fromTo(
-      wrapper.current!,
-      { yPercent: 100 },
-      { yPercent: 0, ease: "power2.inOut" }
-    );
+    // Set content in position immediately - no slide animation
+    gsap.set(wrapper.current!, { yPercent: 0 });
 
     // Image swap animation
     const img1 = stack.current!.querySelector<HTMLDivElement>("[data-img='1']");
@@ -65,9 +52,9 @@ export default function ImageSwap() {
   return (
     <section ref={root} className="panel" id="imageSwap-section">
       <div ref={wrapper} className="imageSwap-wrapper" style={{ position: "absolute", inset: 0, display: "flex" }}>
-        {/* Section Title - top right */}
+        {/* Section Title - top left */}
         <h2
-          className="imageSwap-title"
+          className="section-title imageSwap-title"
           style={{
             position: "absolute",
             top: "2rem",
@@ -77,7 +64,8 @@ export default function ImageSwap() {
             color: "#FFAD01",
             fontWeight: 600,
             letterSpacing: "-0.02em",
-            zIndex: 10,
+            zIndex: 100,
+            textAlign: "left",
           }}
         >
           {siteContent.imageSwap.sectionTitle}
