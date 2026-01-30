@@ -694,9 +694,21 @@ body {
     overflow: hidden !important;
   }
 
-  /* Section titles responsive */
-  .section-title {
-    font-size: 2rem !important;
+  /* Section titles responsive - ALWAYS top-left on mobile */
+  .section-title,
+  .panel .section-title,
+  .panel > div .section-title,
+  .panel > div > h2.section-title {
+    position: absolute !important;
+    top: 1.5rem !important;
+    left: 1.5rem !important;
+    font-size: 1.8rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    z-index: 100 !important;
+    text-align: left !important;
   }
 
   /* Allow sections to grow and scroll on mobile */
@@ -714,26 +726,38 @@ body {
     overflow: visible !important;
   }
   
-  /* Hero section mobile fixes - only below 11.9" */
-  /* Proportional scaling: shrink overlay height from 25vh down to fit frame */
-  .overlay,
-  .hero-bottom-container {
-    height: clamp(18vh, 22vh, 25vh) !important;
-    padding: clamp(12px, 2.5vw, 20px) !important;
+  /* Hero section mobile fixes - full viewport height, centered content */
+  .overlay.hero-bottom-container {
+    height: 100vh !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    padding: 0 !important;
   }
 
   .hero-content-wrapper {
-    padding: clamp(12px, 2.5vw, 20px) !important;
+    height: auto !important;
+    width: 100% !important;
+    max-width: 90vw !important;
+    padding: 2rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 1.5rem !important;
   }
 
   .hero-grid-layout {
     display: flex !important;
     flex-direction: column !important;
-    gap: clamp(0.5rem, 1.5vw, 1rem) !important;
+    gap: 1.5rem !important;
     align-items: center !important;
     text-align: center !important;
+    width: 100% !important;
   }
 
   .hero-text-column,
@@ -744,47 +768,60 @@ body {
     flex-direction: column !important;
     align-items: center !important;
     text-align: center !important;
+    height: auto !important;
+    flex: none !important;
   }
 
-  .overlay > div {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    text-align: center !important;
-    gap: clamp(0.5rem, 1.5vw, 1rem) !important;
+  /* Proper order and spacing for hero elements on mobile */
+  .hero-logo-column {
+    order: 1 !important;
   }
-  
+
+  .hero-text-column {
+    order: 2 !important;
+    gap: 1rem !important;
+  }
+
+  .hero-text-column > div {
+    flex: none !important;
+    height: auto !important;
+  }
+
+  .hero-cta-column {
+    order: 3 !important;
+  }
+
   /* Hero quote - hide on mobile */
   .hero-quote-container {
     display: none !important;
   }
-  
+
   /* Hero CTA button - inline with content */
   .hero-cta-button {
     position: relative !important;
     bottom: auto !important;
     right: auto !important;
-    margin-top: clamp(0.5rem, 2vw, 1.5rem) !important;
+    margin-top: 0.5rem !important;
     display: inline-block !important;
-    font-size: clamp(10px, 2vw, 14px) !important;
-    padding: clamp(0.5rem, 1.5vw, 0.875rem) clamp(1rem, 2.5vw, 1.5rem) !important;
+    font-size: clamp(12px, 3vw, 16px) !important;
+    padding: 0.75rem 1.5rem !important;
   }
-  
+
   /* Hero title - centered with proportional scaling */
   .heroTitle {
-    font-size: clamp(24px, 6vw, 48px) !important;
+    font-size: clamp(28px, 8vw, 48px) !important;
     text-align: center !important;
-    margin-bottom: clamp(0.25rem, 1vw, 0.5rem) !important;
-    line-height: 1.1 !important;
+    margin-bottom: 0 !important;
+    line-height: 1.2 !important;
   }
-  
+
   /* Hero tagline - centered on mobile with proportional scaling */
   .heroTagline {
     text-align: center !important;
-    font-size: clamp(8px, 1.8vw, 14px) !important;
-    line-height: 1.3 !important;
+    font-size: clamp(12px, 3vw, 16px) !important;
+    line-height: 1.4 !important;
   }
-  
+
   /* Hero line - hide on mobile */
   .heroLine {
     display: none !important;
@@ -794,10 +831,10 @@ body {
   .overlay img,
   .hero-logo {
     display: block !important;
-    height: clamp(60px, 12vh, 100px) !important;
+    height: clamp(80px, 15vh, 120px) !important;
     width: auto !important;
-    max-width: 80px !important;
-    margin: 0 auto 0.5rem !important;
+    max-width: 100px !important;
+    margin: 0 auto !important;
   }
   
   /* Navbar - simplified for tablet */
@@ -870,9 +907,9 @@ body {
     font-size: clamp(1.5rem, 5vw, 2.9rem) !important;
   }
 
-  /* Pin section titles on mobile */
-  .panel > div > h2,
-  .panel > div > div > h2 {
+  /* Pin section titles on mobile - but NOT .section-title elements */
+  .panel > div > h2:not(.section-title),
+  .panel > div > div > h2:not(.section-title) {
     position: sticky !important;
     top: 0 !important;
     background: rgba(11, 11, 15, 0.95) !important;
@@ -937,11 +974,19 @@ body {
     gap: 1rem !important;
   }
   
-  /* TripleCards - stack vertically on tablet */
+  /* TripleCards - cards should be horizontal (shorter/wider) on mobile */
   #tripleCards-container {
     flex-direction: column !important;
-    gap: 1.5rem !important;
+    gap: 1rem !important;
     padding: 2rem !important;
+    padding-top: 5rem !important;
+  }
+
+  /* TripleCards individual cards - horizontal orientation on mobile */
+  .tripleCards-card {
+    width: 85% !important;
+    height: 25vh !important;
+    position: absolute !important;
   }
   
   /* Section 3 (HoverColumns) - full content visibility on mobile */

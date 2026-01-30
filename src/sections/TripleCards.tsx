@@ -86,7 +86,7 @@ export default function TripleCards() {
           inset: 0,
           background: "#0e0e12",
           display: "flex",
-          flexDirection: window.innerWidth <= 768 ? "column" : "row",
+          flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
           gap: "2rem",
@@ -115,16 +115,17 @@ export default function TripleCards() {
         {siteContent.tripleCards.cards.map((card, i) => {
           // Assign refs to each card
           const cardRef = i === 0 ? leftCard : i === 1 ? centerCard : rightCard;
-          
+
           return (
             <div
               key={i}
               ref={cardRef}
+              className="tripleCards-card"
               style={{
                 flex: 1,
                 position: "absolute",
-                width: window.innerWidth <= 768 ? "80%" : "30%",
-                height: window.innerWidth <= 768 ? "30%" : "80%",
+                width: "30%",
+                height: "80%",
                 background: "rgba(255, 255, 255, 0.05)",
                 borderRadius: "8px",
                 overflow: "hidden",
