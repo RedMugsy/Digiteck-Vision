@@ -542,6 +542,28 @@ body {
   text-align: left;
 }
 
+/* Hero section containment - keep all content within bounds */
+.hero-bottom-container {
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.hero-content-wrapper {
+  overflow: hidden !important;
+  max-height: 100% !important;
+}
+
+.hero-grid-layout {
+  overflow: hidden !important;
+}
+
+.hero-logo-column,
+.hero-text-column,
+.hero-cta-column {
+  overflow: hidden !important;
+}
+
 /* Medium screens - prevent overlap between desktop and tablet */
 @media (max-width: 1400px) {
   .hero-quote-container {
@@ -572,54 +594,82 @@ body {
   }
 }
 
-/* 15" screen and below - start shrinking text along with containers */
+/* 15" screen and below (13" screens ~1366px) - start shrinking text along with containers */
 @media (max-width: 1366px) {
+  .hero-bottom-container {
+    height: 25vh !important;
+    max-height: 25vh !important;
+  }
+
+  .hero-content-wrapper {
+    padding: 0 40px !important;
+  }
+
+  .hero-grid-layout {
+    gap: 2rem !important;
+  }
+
   .heroTitle {
-    font-size: clamp(40px, 5.5vw, 80px) !important;
+    font-size: clamp(36px, 5vw, 72px) !important;
   }
-  
+
   .heroTagline {
-    font-size: clamp(10px, 1.2vw, 18px) !important;
+    font-size: clamp(9px, 1.1vw, 16px) !important;
   }
-  
+
   .hero-cta-button {
-    font-size: clamp(12px, 1vw, 16px) !important;
-    padding: 0.75rem 1.25rem !important;
+    font-size: clamp(11px, 0.9vw, 14px) !important;
+    padding: 0.6rem 1rem !important;
   }
-  
-  .overlay img {
-    height: clamp(14vh, 18vh, 22vh) !important;
+
+  .overlay img,
+  .hero-logo {
+    height: clamp(12vh, 16vh, 20vh) !important;
+    max-height: 20vh !important;
   }
 }
 
+/* 11.9" screens (~1200px) - further reduce sizes to fit within 25vh */
 @media (max-width: 1200px) {
   .hero-quote-container {
     max-width: 280px !important;
     top: 30% !important;
   }
-  
+
   .hero-quote-text {
     font-size: 9px !important;
   }
-  
-  .overlay {
-    padding: 32px 32px 1vh 32px !important;
+
+  .hero-bottom-container {
+    height: 25vh !important;
+    max-height: 25vh !important;
   }
-  
+
+  .hero-content-wrapper {
+    padding: 0 32px !important;
+  }
+
+  .hero-grid-layout {
+    gap: 1.5rem !important;
+  }
+
   .heroTitle {
-    font-size: clamp(36px, 5vw, 72px) !important;
+    font-size: clamp(32px, 4.5vw, 64px) !important;
   }
-  
+
   .heroTagline {
-    font-size: clamp(9px, 1.1vw, 16px) !important;
+    font-size: clamp(8px, 1vw, 14px) !important;
   }
-  
-  .overlay img {
-    height: clamp(14vh, 18vh, 20vh) !important;
+
+  .overlay img,
+  .hero-logo {
+    height: clamp(10vh, 14vh, 18vh) !important;
+    max-height: 18vh !important;
   }
-  
+
   .hero-cta-button {
-    font-size: clamp(11px, 0.9vw, 14px) !important;
+    font-size: clamp(10px, 0.8vw, 12px) !important;
+    padding: 0.5rem 0.875rem !important;
   }
 }
 
@@ -636,8 +686,8 @@ body {
   text-align: left !important;
 }
 
-/* Desktop view maintained up to 11.9" (1024px) */
-@media (max-width: 1023px) {
+/* Desktop view maintained until under 10" screen (768px) */
+@media (max-width: 768px) {
   .panel {
     min-height: 100vh;
     height: auto !important;

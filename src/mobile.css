@@ -1,4 +1,4 @@
-/* Mobile Responsive Styles */
+/* Mobile Responsive Styles - Under 10" screen (768px) */
 
 @media (max-width: 768px) {
   /* Disable GSAP pinning and scroll effects on mobile */
