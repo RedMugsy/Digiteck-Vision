@@ -106,7 +106,7 @@ export default function HoverColumns() {
               inset: 0,
               backgroundImage: `url(/Media/Images/whatwedobg.jpg)`,
               backgroundSize: "cover",
-              backgroundPosition: window.innerWidth <= 768 ? "75% center" : "center",
+              backgroundPosition: "center",
               zIndex: 0,
             }}
           />
@@ -129,7 +129,6 @@ export default function HoverColumns() {
               display: "flex",
               flexDirection: "column",
               gap: "1.5rem",
-              transform: window.innerWidth <= 768 ? "translateY(-65%)" : "none",
             }}
           >
             {/* Title Container */}
