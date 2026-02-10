@@ -143,13 +143,13 @@
     gap: 2rem !important;
   }
 
-  section.panel > div > div[style*="willChange"] {
+  section.panel > div > div[style*="will-change"] {
     transform: scale(1) !important;
     opacity: 1 !important;
     filter: blur(0px) !important;
   }
 
-  section.panel > div > div[style*="willChange"] h2 {
+  section.panel > div > div[style*="will-change"] h2 {
     font-size: 2.5rem !important;
   }
 
@@ -202,40 +202,24 @@
     font-size: 1.5rem !important;
   }
 
-  section.panel > div > div[style*="willChange"] h2 {
+  section.panel > div > div[style*="will-change"] h2 {
     font-size: 2rem !important;
   }
-}
 
-  }
-  
-  .footer-links-grid {
-    order: 2 !important;
-    grid-template-columns: 1fr !important;
-    gap: 1.5rem !important;
-  }
-}
-
-@media (max-width: 480px) {
-  /* Extra small phones - Single column for products */
-  .panel > div > div[style*="grid-template-columns"] {
-    grid-template-columns: 1fr !important;
-  }
-  
   /* Reduce padding further */
   .panel > div {
     padding: 1.5rem !important;
   }
-  
+
   /* Smaller text */
   h2 {
     font-size: 1.5rem !important;
   }
-  
+
   h3 {
     font-size: 1.1rem !important;
   }
-  
+
   p {
     font-size: 0.85rem !important;
   }

@@ -11,7 +11,12 @@ export default function HeroVideo() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
+  const isMobile = window.innerWidth <= 768;
+
   useScene(root, () => {
+    // Skip pinning on mobile — it causes blank sections due to position:fixed issues
+    if (isMobile) return;
+
     // Pin for exactly one viewport scroll
     ScrollTrigger.create({
       trigger: root.current!,
@@ -97,7 +102,7 @@ export default function HeroVideo() {
           position: "absolute",
           inset: 0,
           overflow: "hidden",
-          zIndex: -1,
+          zIndex: 0,
           backgroundColor: "#000",
         }}
       >
@@ -127,18 +132,19 @@ export default function HeroVideo() {
           inset: 0,
           backgroundColor: "rgba(0, 0, 0, 0.4)",
           pointerEvents: "none",
+          zIndex: 1,
         }}
       />
 
       {/* Quote container - desktop: right-aligned, mobile: top-centered */}
-      <div className="hero-quote-container">
+      <div className="hero-quote-container" style={{ zIndex: 2 }}>
         <div className="hero-quote-text">
           {siteContent.hero.quote}
         </div>
       </div>
 
       {/* Bottom 25%: full-width line + logo + title */}
-      <div className="overlay hero-bottom-container" style={{ height: "25vh", bottom: 0, top: "auto", position: "absolute", left: 0, right: 0 }}>
+      <div className="overlay hero-bottom-container" style={{ height: "25vh", bottom: 0, top: "auto", position: "absolute", left: 0, right: 0, zIndex: 2 }}>
         <div className="hero-content-wrapper" style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", padding: "0 56px" }}>
           {/* Full-width line */}
           <div className="heroLine" style={{ width: "100%", marginBottom: "0.5vh" }} />

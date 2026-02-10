@@ -12,7 +12,12 @@ export default function Metrics() {
   const metric2 = useRef<HTMLDivElement>(null);
   const metric3 = useRef<HTMLDivElement>(null);
 
+  const isMobile = window.innerWidth <= 768;
+
   useScene(root, () => {
+    // Skip all animations and pinning on mobile — show metrics statically
+    if (isMobile) return;
+
     // Pin the section during animation - longer duration for smoother scroll
     ScrollTrigger.create({
       trigger: root.current!,
@@ -57,14 +62,15 @@ export default function Metrics() {
     <section ref={root} className="panel" style={{ background: "#000" }}>
       <div
         style={{
-          position: "absolute",
-          inset: 0,
+          position: isMobile ? "relative" : "absolute",
+          inset: isMobile ? undefined : 0,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          gap: "4rem",
-          padding: "4rem",
+          gap: isMobile ? "2rem" : "4rem",
+          padding: isMobile ? "4rem 2rem" : "4rem",
+          minHeight: isMobile ? "100vh" : undefined,
         }}
       >
         {siteContent.metrics.items.map((item, index) => {

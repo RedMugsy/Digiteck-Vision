@@ -89,7 +89,7 @@ export default function CoverSolid() {
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
-            transform: window.innerWidth <= 768 ? "scale(0.67) translateX(20%)" : "scale(1)",
+            transform: "scale(1)",
             zIndex: 0,
           }}
         />
@@ -112,7 +112,7 @@ export default function CoverSolid() {
             zIndex: 5,
             maxWidth: "600px",
             marginLeft: "0",
-            transform: window.innerWidth <= 768 ? "translateY(-90%)" : "none",
+            transform: "none",
           }}
         >
           <h3 
@@ -151,10 +151,8 @@ export default function CoverSolid() {
             right: 0,
             height: "20vh",
             background: "#FFAD01",
-            display: window.innerWidth <= 768 ? "grid" : "flex",
-            gridTemplateColumns: window.innerWidth <= 768 ? "repeat(2, 1fr)" : undefined,
-            gridTemplateRows: window.innerWidth <= 768 ? "repeat(2, 1fr)" : undefined,
-            justifyContent: window.innerWidth <= 768 ? undefined : "space-around",
+            display: "flex",
+            justifyContent: "space-around",
             alignItems: "center",
             padding: "2rem 4rem",
             gap: "2rem",
