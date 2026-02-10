@@ -1,19 +1,15 @@
 import { useEffect } from "react";
 import "../App.css";
-import HeroVideo from "../sections/HeroVideo";
-import HoverColumns from "../sections/HoverColumns";
-import CoverSolid from "../sections/CoverSolid";
-import CoverImage from "../sections/CoverImage";
-import ExpandingDonuts from "../sections/ExpandingDonuts";
-import ImageSwap from "../sections/ImageSwap";
-import ProductFlip from "../sections/ProductFlip";
-import MediaLink from "../sections/MediaLink";
+import AboutHero from "../sections/AboutHero";
+import AboutOverview from "../sections/AboutOverview";
+import TripleCards from "../sections/TripleCards";
+import Metrics from "../sections/Metrics";
 import Footer from "../sections/Footer";
 import { updateMetaTags, injectStructuredData } from "../utils/seo";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
-export default function Home() {
-  // Initialize SEO tags from content.ts on mount
+export default function About() {
+  // Initialize SEO tags on mount
   useEffect(() => {
     updateMetaTags();
     injectStructuredData();
@@ -35,14 +31,10 @@ export default function Home() {
 
   return (
     <div className="page">
-      <HeroVideo />
-      <CoverSolid />
-      <HoverColumns />
-      <ExpandingDonuts />
-      <ProductFlip />
-      <CoverImage />
-      <ImageSwap />
-      <MediaLink />
+      <AboutHero />
+      <AboutOverview />
+      <TripleCards />
+      <Metrics />
       <Footer />
     </div>
   );

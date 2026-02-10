@@ -24,7 +24,7 @@ export default function ProductFlip() {
         style={{
           position: "absolute",
           inset: 0,
-          background: "#0b0b0f",
+          background: "#000000",
           padding: "4rem",
         }}
       >

@@ -2,14 +2,13 @@ import { useRef, useState } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useScene } from "../hooks/useScene";
-import { siteContent } from "../content";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function HeroVideo() {
+export default function ContactHero() {
   const root = useRef<HTMLDivElement>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSection] = useState("contact");
 
   useScene(root, () => {
     // Pin for exactly one viewport scroll
@@ -91,7 +90,7 @@ export default function HeroVideo() {
         </div>
       )}
 
-      {/* Fullscreen video carousel container */}
+      {/* Fullscreen image background */}
       <div
         style={{
           position: "absolute",
@@ -101,12 +100,9 @@ export default function HeroVideo() {
           backgroundColor: "#000",
         }}
       >
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
+        <img
+          src="/Media/Images/contactus.jpg"
+          alt="Contact Us"
           style={{
             position: "absolute",
             inset: 0,
@@ -114,10 +110,7 @@ export default function HeroVideo() {
             height: "100%",
             objectFit: "cover",
           }}
-        >
-          <source src={siteContent.hero.videos[0]} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        />
       </div>
 
       {/* Overlay container with 40% opacity */}
@@ -125,84 +118,37 @@ export default function HeroVideo() {
         style={{
           position: "absolute",
           inset: 0,
-          backgroundColor: "rgba(0, 0, 0, 0.4)",
-          pointerEvents: "none",
+          background: "rgba(0, 0, 0, 0.4)",
+          zIndex: 0,
         }}
       />
 
-      {/* Quote container - desktop: right-aligned, mobile: top-centered */}
-      <div className="hero-quote-container">
-        <div className="hero-quote-text">
-          {siteContent.hero.quote}
-        </div>
-      </div>
-
-      {/* Bottom 25%: full-width line + logo + title */}
-      <div className="overlay hero-bottom-container" style={{ height: "25vh", bottom: 0, top: "auto", position: "absolute", left: 0, right: 0 }}>
-        <div className="hero-content-wrapper" style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", padding: "0 56px" }}>
-          {/* Full-width line */}
-          <div className="heroLine" style={{ width: "100%", marginBottom: "0.5vh" }} />
-
-          {/* 3-column layout - takes full remaining height */}
-          <div className="hero-grid-layout" style={{
-            display: "grid",
-            gridTemplateColumns: "auto 1fr auto",
-            gap: "3rem",
-            flex: 1,
-            maxWidth: "1400px",
-            width: "100%"
-          }}>
-            {/* Column 1: Logo - aligned to bottom */}
-            <div className="hero-logo-column" style={{ display: "flex", alignItems: "flex-end" }}>
-              {siteContent.hero.logoSrc && (
-                <img
-                  src={siteContent.hero.logoSrc}
-                  alt="Digiteck Vision Logo"
-                  className="hero-logo"
-                  style={{
-                    height: "clamp(18vh, 24vh, 24vh)",
-                    width: "auto",
-                    objectFit: "contain",
-                  }}
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = 'none';
-                  }}
-                />
-              )}
-            </div>
-
-            {/* Column 2: Title (75% height) and Tagline (25% height) - full height column */}
-            <div className="hero-text-column" style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-              {/* Title takes 75% height */}
-              <div style={{ flex: "3", display: "flex", alignItems: "flex-end" }}>
-                <h1 className="heroTitle" style={{ margin: 0 }}>{siteContent.hero.title}</h1>
-              </div>
-              {/* Tagline takes 25% height */}
-              <div style={{ flex: "1", display: "flex", alignItems: "flex-end" }}>
-                <p className="heroTagline" style={{
-                  fontSize: "clamp(9.8px, 1.4vw, 22.4px)",
-                  margin: 0,
-                  opacity: 0.85,
-                  lineHeight: 1.4,
-                  textAlign: "left"
-                }}>
-                  {siteContent.hero.tagline}
-                </p>
-              </div>
-            </div>
-
-            {/* Column 3: CTA Button - centered horizontally and vertically aligned to logo middle */}
-            <div className="hero-cta-column" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <a
-                href={siteContent.hero.ctaLink}
-                className="hero-cta-button"
-                style={{ pointerEvents: "auto" }}
-              >
-                {siteContent.hero.ctaText}
-              </a>
-            </div>
-          </div>
-        </div>
+      {/* Main content - vertically centered, horizontally right-aligned */}
+      <div
+        ref={root}
+        className="hero-content"
+        style={{
+          position: "relative",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end",
+          padding: "0 4rem",
+          zIndex: 1,
+        }}
+      >
+        <h1
+          style={{
+            fontSize: "4rem",
+            fontWeight: 700,
+            color: "#FFAD01",
+            margin: 0,
+            textAlign: "right",
+            lineHeight: 1.2,
+          }}
+        >
+          Contact Us
+        </h1>
       </div>
     </section>
   );

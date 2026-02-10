@@ -28,3 +28,8 @@ dist-ssr
 *.mov
 *.avi
 *.webm
+
+# Server
+server/.env
+server/logs/
+server/node_modules/

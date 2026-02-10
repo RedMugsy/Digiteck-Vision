@@ -6,21 +6,78 @@ import { siteContent } from "../content";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function HeroVideo() {
+export default function AboutHero() {
   const root = useRef<HTMLDivElement>(null);
+  const imageContainer = useRef<HTMLDivElement>(null);
+  const imageEl = useRef<HTMLImageElement>(null);
+  const piecesContainer = useRef<HTMLDivElement>(null);
+  const heroTitle = useRef<HTMLHeadingElement>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSection] = useState("about");
 
   useScene(root, () => {
-    // Pin for exactly one viewport scroll
+    // Extended pin for the multi-phase animation
     ScrollTrigger.create({
       trigger: root.current!,
       start: "top top",
-      end: "+=100%",
+      end: "+=300%",
       pin: true,
       pinSpacing: true,
     });
+
+    // Create the animation timeline
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: root.current!,
+        start: "top top",
+        end: "+=300%",
+        scrub: 1,
+      },
+    });
+
+    // Phase 1: Shrink image from both sides (0-33% of scroll)
+    tl.to(imageEl.current!, {
+      scaleX: 0.3,
+      ease: "power2.inOut",
+      duration: 1,
+    }, 0)
+    .to(heroTitle.current!, {
+      opacity: 0,
+      y: -50,
+      ease: "power2.in",
+      duration: 0.5,
+    }, 0);
+
+    // Phase 2: Hide original image, show pieces (33% mark)
+    tl.set(imageEl.current!, { opacity: 0 }, 1)
+      .set(piecesContainer.current!, { opacity: 1 }, 1);
+
+    // Phase 3: Slide pieces upward (33-100% of scroll)
+    const pieces = piecesContainer.current?.querySelectorAll('.piece');
+    if (pieces) {
+      pieces.forEach((piece, i) => {
+        const randomDelay = Math.random() * 0.3;
+        const randomY = -100 - Math.random() * 50;
+        tl.to(piece, {
+          y: `${randomY}vh`,
+          opacity: 0,
+          rotation: Math.random() * 20 - 10,
+          ease: "power2.in",
+          duration: 1,
+        }, 1.2 + randomDelay);
+      });
+    }
   });
+
+  // Create grid of pieces (8x6 = 48 pieces)
+  const rows = 6;
+  const cols = 8;
+  const pieces = [];
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < cols; col++) {
+      pieces.push({ row, col });
+    }
+  }
 
   return (
     <section ref={root} className="panel">
@@ -91,33 +148,57 @@ export default function HeroVideo() {
         </div>
       )}
 
-      {/* Fullscreen video carousel container */}
+      {/* Fullscreen image background */}
       <div
+        ref={imageContainer}
         style={{
           position: "absolute",
           inset: 0,
           overflow: "hidden",
           zIndex: -1,
           backgroundColor: "#000",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
+        <img
+          ref={imageEl}
+          src={siteContent.aboutHero.image}
+          alt={siteContent.aboutHero.title}
           style={{
-            position: "absolute",
-            inset: 0,
             width: "100%",
             height: "100%",
             objectFit: "cover",
           }}
+        />
+
+        {/* Pieces container - hidden initially */}
+        <div
+          ref={piecesContainer}
+          style={{
+            position: "absolute",
+            inset: 0,
+            opacity: 0,
+            display: "grid",
+            gridTemplateColumns: `repeat(${cols}, 1fr)`,
+            gridTemplateRows: `repeat(${rows}, 1fr)`,
+          }}
         >
-          <source src={siteContent.hero.videos[0]} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+          {pieces.map(({ row, col }, i) => (
+            <div
+              key={i}
+              className="piece"
+              style={{
+                backgroundImage: `url(${siteContent.aboutHero.image})`,
+                backgroundSize: `${cols * 100}% ${rows * 100}%`,
+                backgroundPosition: `${(col / (cols - 1)) * 100}% ${(row / (rows - 1)) * 100}%`,
+                width: "100%",
+                height: "100%",
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Overlay container with 40% opacity */}
@@ -125,84 +206,37 @@ export default function HeroVideo() {
         style={{
           position: "absolute",
           inset: 0,
-          backgroundColor: "rgba(0, 0, 0, 0.4)",
-          pointerEvents: "none",
+          background: "rgba(0, 0, 0, 0.4)",
+          zIndex: 0,
         }}
       />
 
-      {/* Quote container - desktop: right-aligned, mobile: top-centered */}
-      <div className="hero-quote-container">
-        <div className="hero-quote-text">
-          {siteContent.hero.quote}
-        </div>
-      </div>
-
-      {/* Bottom 25%: full-width line + logo + title */}
-      <div className="overlay hero-bottom-container" style={{ height: "25vh", bottom: 0, top: "auto", position: "absolute", left: 0, right: 0 }}>
-        <div className="hero-content-wrapper" style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", padding: "0 56px" }}>
-          {/* Full-width line */}
-          <div className="heroLine" style={{ width: "100%", marginBottom: "0.5vh" }} />
-
-          {/* 3-column layout - takes full remaining height */}
-          <div className="hero-grid-layout" style={{
-            display: "grid",
-            gridTemplateColumns: "auto 1fr auto",
-            gap: "3rem",
-            flex: 1,
-            maxWidth: "1400px",
-            width: "100%"
-          }}>
-            {/* Column 1: Logo - aligned to bottom */}
-            <div className="hero-logo-column" style={{ display: "flex", alignItems: "flex-end" }}>
-              {siteContent.hero.logoSrc && (
-                <img
-                  src={siteContent.hero.logoSrc}
-                  alt="Digiteck Vision Logo"
-                  className="hero-logo"
-                  style={{
-                    height: "clamp(18vh, 24vh, 24vh)",
-                    width: "auto",
-                    objectFit: "contain",
-                  }}
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = 'none';
-                  }}
-                />
-              )}
-            </div>
-
-            {/* Column 2: Title (75% height) and Tagline (25% height) - full height column */}
-            <div className="hero-text-column" style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-              {/* Title takes 75% height */}
-              <div style={{ flex: "3", display: "flex", alignItems: "flex-end" }}>
-                <h1 className="heroTitle" style={{ margin: 0 }}>{siteContent.hero.title}</h1>
-              </div>
-              {/* Tagline takes 25% height */}
-              <div style={{ flex: "1", display: "flex", alignItems: "flex-end" }}>
-                <p className="heroTagline" style={{
-                  fontSize: "clamp(9.8px, 1.4vw, 22.4px)",
-                  margin: 0,
-                  opacity: 0.85,
-                  lineHeight: 1.4,
-                  textAlign: "left"
-                }}>
-                  {siteContent.hero.tagline}
-                </p>
-              </div>
-            </div>
-
-            {/* Column 3: CTA Button - centered horizontally and vertically aligned to logo middle */}
-            <div className="hero-cta-column" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <a
-                href={siteContent.hero.ctaLink}
-                className="hero-cta-button"
-                style={{ pointerEvents: "auto" }}
-              >
-                {siteContent.hero.ctaText}
-              </a>
-            </div>
-          </div>
-        </div>
+      {/* Main content - vertically centered, horizontally right-aligned */}
+      <div
+        className="hero-content"
+        style={{
+          position: "relative",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end",
+          padding: "0 4rem",
+          zIndex: 1,
+        }}
+      >
+        <h1
+          ref={heroTitle}
+          style={{
+            fontSize: "4rem",
+            fontWeight: 700,
+            color: "#FFAD01",
+            margin: 0,
+            textAlign: "right",
+            lineHeight: 1.2,
+          }}
+        >
+          {siteContent.aboutHero.title}
+        </h1>
       </div>
     </section>
   );

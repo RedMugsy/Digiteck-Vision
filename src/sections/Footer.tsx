@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useScene } from "../hooks/useScene";
@@ -9,6 +9,13 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Footer() {
   const root = useRef<HTMLDivElement>(null);
   const ticker = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useScene(root, () => {
     // Ticker animation - scroll from right to left continuously
@@ -30,7 +37,7 @@ export default function Footer() {
           width: "100%",
           height: "100%",
           minHeight: "60vh",
-          background: "#08080c",
+          background: "#000000",
           padding: "4rem 2rem 2rem 2rem",
           position: "relative",
           zIndex: 2,
@@ -60,7 +67,7 @@ export default function Footer() {
               lineHeight: 1.2,
             }}
           >
-            {(siteContent.footer?.ticker || "VISTO • INTELLIGENCE • PRECISION • GROWTH • ").repeat(3)}
+            {(siteContent.footer?.ticker || "DIGITECK VISION • TRANSFORMATION • INNOVATION • ").repeat(3)}
           </div>
         </div>
 
@@ -68,57 +75,37 @@ export default function Footer() {
           className="footer-main-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr minmax(300px, 1fr)",
-            gap: "3rem",
+            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+            gap: "4rem",
             maxWidth: "1400px",
             margin: "0 auto 3rem",
             alignItems: "start",
           }}
         >
-          {/** Left block uses hero content for logo/name/tagline */}
+          {/** LEFT SIDE: Logo, Name, Slogan, Contact Links + Contact Us Section */}
           <div className="footer-left-section" style={{ textAlign: "left" }}>
             {/* Logo, Company Name, Tagline */}
             <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem", alignItems: "flex-start", marginBottom: "1.5rem" }}>
-              <img src={siteContent.hero.logoSrc || "/Media/Images/logo.png"} alt="Visto Logo" style={{ height: "96px", objectFit: "contain" }} onError={(e) => {(e.target as HTMLImageElement).style.display = 'none';}} />
+              <img src={siteContent.hero.logoSrc || "/Media/Images/logo.png"} alt={`${siteContent.hero.title || "DIGITECK VISION"} Logo`} style={{ height: "96px", objectFit: "contain" }} onError={(e) => {(e.target as HTMLImageElement).style.display = 'none';}} />
               <div className="footer-company-name" style={{ fontWeight: 800, fontSize: "2.25rem", lineHeight: 1 }}>{siteContent.hero.title || "DIGITECK VISION"}</div>
               <div style={{ opacity: 0.6, fontSize: "1rem" }}>{siteContent.hero.tagline || "A technology development firm operating from strategy to execution."}</div>
-            </div>
-
-            {/* Company Address */}
-            {siteContent.footer.address && (
-              <div style={{ marginBottom: "1.5rem" }}>
-                <h4 style={{ marginBottom: "0.5rem", fontSize: "1rem", fontWeight: 600 }}>Address</h4>
-                <p style={{ opacity: 0.6, fontSize: "0.95rem", lineHeight: 1.6, margin: 0, whiteSpace: "pre-line" }}>
-                  {siteContent.footer.address}
-                </p>
-              </div>
-            )}
-
-            {/* Contact Rails */}
-            <div style={{ marginBottom: "1.5rem" }}>
-              <h4 style={{ marginBottom: "0.5rem", fontSize: "1rem", fontWeight: 600 }}>Contact</h4>
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                {siteContent.footer.contact.phone && (
-                  <a href={`tel:${siteContent.footer.contact.phone}`} style={{ opacity: 0.6, fontSize: "0.95rem", textDecoration: "none", color: "inherit" }}>
-                    📞 {siteContent.footer.contact.phone}
-                  </a>
-                )}
-                {siteContent.footer.contact.email && (
-                  <a href={`mailto:${siteContent.footer.contact.email}`} style={{ opacity: 0.6, fontSize: "0.95rem", textDecoration: "none", color: "inherit" }}>
-                    ✉️ {siteContent.footer.contact.email}
-                  </a>
-                )}
-              </div>
             </div>
 
             {/* Social Media Hexagon Rail */}
             <div style={{ marginBottom: "1.5rem" }}>
               {/* First Row */}
               <div style={{ display: "flex", gap: "0.75rem", marginBottom: "0.5rem", justifyContent: "flex-start" }}>
-                {["linkedin.jpg", "x.jpg", "instagram.jpg", "facebook.jpg", "reddit.jpg"].map((img, idx) => (
+                {[
+                  { img: "logo linkedin white.png", name: "linkedin", href: "https://www.linkedin.com/company/digiteckvision" },
+                  { img: "logo x white.png", name: "x", href: "https://x.com/DigiteckVision" },
+                  { img: "logo instagram white.png", name: "instagram", href: "https://www.instagram.com/digiteckvision/" },
+                  { img: "bluesky logo White Trnsprt.png", name: "bluesky", href: "https://bsky.app/profile/digiteckvision.bsky.social" }
+                ].map((item, idx) => (
                   <a
                     key={idx}
-                    href={`#${img.replace('.jpg', '')}`}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     style={{
                       width: "48px",
                       height: "48px",
@@ -141,8 +128,8 @@ export default function Footer() {
                     }}
                   >
                     <img
-                      src={`/Media/Images/${img}`}
-                      alt={img.replace('.jpg', '')}
+                      src={`/Media/Images/${item.img}`}
+                      alt={item.name}
                       style={{
                         width: "60%",
                         height: "60%",
@@ -154,10 +141,15 @@ export default function Footer() {
               </div>
               {/* Second Row */}
               <div style={{ display: "flex", gap: "0.75rem", justifyContent: "flex-start" }}>
-                {["whatsapp.jpg", "telegram.jpg", "discord.jpg"].map((img, idx) => (
+                {[
+                  { img: "logo telegram white.png", name: "telegram", href: "https://t.me/digiteckvision" },
+                  { img: "logo discord white.png", name: "discord", href: "#discord" }
+                ].map((item, idx) => (
                   <a
                     key={idx}
-                    href={`#${img.replace('.jpg', '')}`}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     style={{
                       width: "48px",
                       height: "48px",
@@ -180,8 +172,8 @@ export default function Footer() {
                     }}
                   >
                     <img
-                      src={`/Media/Images/${img}`}
-                      alt={img.replace('.jpg', '')}
+                      src={`/Media/Images/${item.img}`}
+                      alt={item.name}
                       style={{
                         width: "60%",
                         height: "60%",
@@ -192,13 +184,35 @@ export default function Footer() {
                 ))}
               </div>
             </div>
-          </div>
 
-          {/** Right block: subscribe form + links */}
-          <div className="footer-right-section" style={{ display: "flex", flexDirection: "column", gap: "3rem" }}>
+            {/* Contact Us Section */}
+            <h4 style={{ marginBottom: "1.5rem", marginTop: "2rem", fontSize: "1.25rem", fontWeight: 600 }}>Contact Us</h4>
+            
+            {/* Company Address */}
+            {siteContent.footer.address && (
+              <div style={{ marginBottom: "1.5rem" }}>
+                <h5 style={{ marginBottom: "0.5rem", fontSize: "1rem", fontWeight: 600 }}>Address</h5>
+                <p style={{ opacity: 0.6, fontSize: "0.95rem", lineHeight: 1.6, margin: 0, whiteSpace: "pre-line" }}>
+                  {siteContent.footer.address}
+                </p>
+              </div>
+            )}
+
+            {/* Contact Rails */}
+            <div style={{ marginBottom: "1.5rem" }}>
+              <h5 style={{ marginBottom: "0.5rem", fontSize: "1rem", fontWeight: 600 }}>Email</h5>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                {siteContent.footer.contact.email && (
+                  <a href={`mailto:${siteContent.footer.contact.email}`} style={{ opacity: 0.6, fontSize: "0.95rem", textDecoration: "none", color: "inherit" }}>
+                    ✉️ {siteContent.footer.contact.email}
+                  </a>
+                )}
+              </div>
+            </div>
+
             {/* Subscribe Form */}
             <div className="footer-subscribe">
-              <h4 style={{ marginBottom: "0.75rem" }}>{siteContent.footer.subscribe.heading || "Subscribe"}</h4>
+              <h5 style={{ marginBottom: "0.75rem", fontSize: "1rem", fontWeight: 600 }}>{siteContent.footer.subscribe.heading || "Subscribe"}</h5>
               <input
                 type="email"
                 placeholder={siteContent.footer.subscribe.placeholder || "Enter your email"}
@@ -230,30 +244,32 @@ export default function Footer() {
                 Subscribe
               </button>
             </div>
+          </div>
 
-            {/** Links grid */}
+          {/** RIGHT SIDE: Links Table */}
+          <div className="footer-right-section" style={{ textAlign: "left" }}>
             <div className="footer-links-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "2rem" }}>
-            <div>
-              <h4 style={{ marginBottom: "1rem" }}>{siteContent.footer.company.heading || "Company"}</h4>
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                {(siteContent.footer.company.links || []).map((l) => (
-                  <a key={l.href} href={l.href} style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>{l.text}</a>
-                ))}
+              <div>
+                <h4 style={{ marginBottom: "1rem" }}>{siteContent.footer.company.heading || "Company"}</h4>
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                  {(siteContent.footer.company.links || []).map((l) => (
+                    <a key={l.href} href={l.href} style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>{l.text}</a>
+                  ))}
+                </div>
               </div>
-            </div>
 
-            <div>
-              <h4 style={{ marginBottom: "1rem" }}>Policies</h4>
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                {[
-                  { text: "Privacy Policy", href: "#privacy" },
-                  { text: "Terms of Service", href: "#terms" },
-                  { text: "Cookie Policy", href: "#cookies" },
-                ].map((l: { text: string; href: string }) => (
-                  <a key={l.href} href={l.href} style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>{l.text}</a>
-                ))}
+              <div>
+                <h4 style={{ marginBottom: "1rem" }}>Policies</h4>
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                  {[
+                    { text: "Privacy Policy", href: "#privacy" },
+                    { text: "Terms of Service", href: "#terms" },
+                    { text: "Cookie Policy", href: "#cookies" },
+                  ].map((l: { text: string; href: string }) => (
+                    <a key={l.href} href={l.href} style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>{l.text}</a>
+                  ))}
+                </div>
               </div>
-            </div>
             </div>
           </div>
         </div>
@@ -262,7 +278,9 @@ export default function Footer() {
 
         <div style={{ maxWidth: "1400px", margin: "0 auto", width: "100%" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%", flexWrap: "wrap", gap: "1rem" }}>
-            <div style={{ opacity: 0.6, textAlign: "left" }}>© 2026 Visto. All rights reserved.</div>
+            <div style={{ opacity: 0.6, textAlign: "left" }}>
+              {siteContent.footer.copyright.replace(/©\s*\d{4}/, `© ${new Date().getFullYear()}`) || `© ${new Date().getFullYear()} Digiteck Vision. All rights reserved.`}
+            </div>
           </div>
         </div>
 

@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useScene } from "../hooks/useScene";
@@ -12,6 +12,7 @@ export default function TripleCards() {
   const leftCard = useRef<HTMLDivElement>(null);
   const centerCard = useRef<HTMLDivElement>(null);
   const rightCard = useRef<HTMLDivElement>(null);
+  const [flippedCards, setFlippedCards] = useState<boolean[]>([false, false, false]);
 
   useScene(root, () => {
     const isMobile = window.innerWidth <= 768;
@@ -84,7 +85,7 @@ export default function TripleCards() {
         style={{
           position: "absolute",
           inset: 0,
-          background: "#0e0e12",
+          background: "#000000",
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
@@ -126,35 +127,131 @@ export default function TripleCards() {
                 position: "absolute",
                 width: "30%",
                 height: "80%",
-                background: "rgba(255, 255, 255, 0.05)",
-                borderRadius: "8px",
-                overflow: "hidden",
-                display: "flex",
-                alignItems: "flex-end",
+                perspective: "1000px",
                 zIndex: i === 1 ? 3 : 2,
+              }}
+              onMouseEnter={() => {
+                const newFlipped = [...flippedCards];
+                newFlipped[i] = true;
+                setFlippedCards(newFlipped);
+              }}
+              onMouseLeave={() => {
+                const newFlipped = [...flippedCards];
+                newFlipped[i] = false;
+                setFlippedCards(newFlipped);
               }}
             >
               <div
                 style={{
-                  position: "absolute",
-                  inset: 0,
-                  backgroundImage: `url(${card.image})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              />
-
-              <div
-                style={{
                   position: "relative",
                   width: "100%",
-                  padding: "2rem",
-                  background: "linear-gradient(to top, rgba(0,0,0,0.8), transparent)",
-                  zIndex: 1,
+                  height: "100%",
+                  transformStyle: "preserve-3d",
+                  transition: "transform 0.6s",
+                  transform: flippedCards[i] ? "rotateY(180deg)" : "rotateY(0deg)",
                 }}
               >
-                <h3>{card.title}</h3>
-                <p style={{ marginTop: "0.5rem", opacity: 0.8 }}>{card.description}</p>
+                {/* Front of card */}
+                <div
+                  style={{
+                    position: "absolute",
+                    width: "100%",
+                    height: "100%",
+                    backfaceVisibility: "hidden",
+                    background: "rgba(255, 255, 255, 0.05)",
+                    borderRadius: "8px",
+                    overflow: "hidden",
+                    display: "flex",
+                    alignItems: "flex-end",
+                  }}
+                >
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      backgroundImage: `url(${card.image})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
+                  />
+
+                  {/* Hover hint indicator */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "1rem",
+                      right: "1rem",
+                      background: "rgba(255, 173, 1, 0.9)",
+                      color: "#000",
+                      padding: "0.5rem 1rem",
+                      borderRadius: "20px",
+                      fontSize: "0.85rem",
+                      fontWeight: 600,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                      animation: "pulseHint 2s ease-in-out infinite",
+                      zIndex: 2,
+                    }}
+                  >
+                    <span style={{ 
+                      display: "inline-block",
+                      animation: "rotateHint 3s ease-in-out infinite",
+                    }}>
+                      ⟲
+                    </span>
+                    Hover to flip
+                  </div>
+
+                  <div
+                    style={{
+                      position: "relative",
+                      width: "100%",
+                      padding: "2rem",
+                      background: "linear-gradient(to top, rgba(0,0,0,0.8), transparent)",
+                      zIndex: 1,
+                    }}
+                  >
+                    <h3>{card.title}</h3>
+                    <p style={{ marginTop: "0.5rem", opacity: 0.8 }}>{card.description}</p>
+                  </div>
+                </div>
+
+                {/* Back of card */}
+                <div
+                  style={{
+                    position: "absolute",
+                    width: "100%",
+                    height: "100%",
+                    backfaceVisibility: "hidden",
+                    background: "linear-gradient(135deg, #FFAD01 0%, #FF8801 100%)",
+                    borderRadius: "8px",
+                    transform: "rotateY(180deg)",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    padding: "3rem 2rem",
+                    textAlign: "center",
+                  }}
+                >
+                  <h3 style={{ 
+                    fontSize: "2rem", 
+                    marginBottom: "1.5rem", 
+                    color: "#000",
+                    fontWeight: 700,
+                  }}>
+                    {card.title}
+                  </h3>
+                  <p style={{ 
+                    fontSize: "1.1rem", 
+                    lineHeight: 1.6,
+                    color: "#000",
+                    opacity: 0.9,
+                  }}>
+                    {card.backContent}
+                  </p>
+                </div>
               </div>
             </div>
           );

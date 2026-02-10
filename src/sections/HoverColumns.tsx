@@ -9,34 +9,19 @@ gsap.registerPlugin(ScrollTrigger);
 export default function HoverColumns() {
   const root = useRef<HTMLDivElement>(null);
   const content = useRef<HTMLDivElement>(null);
+  const ticker = useRef<HTMLDivElement>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useScene(root, () => {
-    // Odometer animation for numbers in row - delayed to ensure elements exist
-    setTimeout(() => {
-      const numberElements = root.current?.querySelectorAll('.stat-number');
-      if (numberElements) {
-        numberElements.forEach((el, index) => {
-          const stat = siteContent.hoverColumns.row.stats[index];
-          if (stat && el) {
-            const obj = { val: 0 };
-            gsap.to(obj, {
-              val: stat.number,
-              duration: 2.5,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: root.current!,
-                start: "top center",
-                toggleActions: "play none none none",
-              },
-              onUpdate: function () {
-                el.textContent = Math.floor(obj.val).toString();
-              },
-            });
-          }
-        });
-      }
-    }, 100);
+    // Ticker animation - scroll from right to left continuously
+    if (ticker.current) {
+      gsap.to(ticker.current, {
+        xPercent: -50,
+        duration: 20,
+        ease: "none",
+        repeat: -1,
+      });
+    }
   });
 
   const columnColors = ["#FFF4DD", "#FFDE99", "#FFAD01", "#C08200"];
@@ -98,7 +83,7 @@ export default function HoverColumns() {
           width: "100%",
           display: "flex",
           flexDirection: "column",
-          background: "#0b0b0f",
+          background: "#000000",
           minHeight: "100%",
         }}
       >
@@ -109,14 +94,22 @@ export default function HoverColumns() {
             display: "flex",
             alignItems: "center",
             justifyContent: "flex-start",
-            background: "#0b0b0f",
             position: "relative",
-            backgroundImage: `url(/Media/Images/Whatwedobg.jpg)`,
-            backgroundSize: "cover",
-            backgroundPosition: window.innerWidth <= 768 ? "70% center" : "center",
             padding: "4rem 4rem 0 4rem",
+            overflow: "hidden",
           }}
         >
+          {/* Background Image Layer */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundImage: `url(/Media/Images/whatwedobg.jpg)`,
+              backgroundSize: "cover",
+              backgroundPosition: window.innerWidth <= 768 ? "75% center" : "center",
+              zIndex: 0,
+            }}
+          />
           {/* Dark overlay for better text readability */}
           <div
             style={{
@@ -132,11 +125,11 @@ export default function HoverColumns() {
             style={{
               position: "relative",
               zIndex: 5,
-              maxWidth: window.innerWidth <= 768 ? "75vw" : "50vw",
+              maxWidth: window.innerWidth <= 768 ? "90vw" : "50vw",
               display: "flex",
               flexDirection: "column",
               gap: "1.5rem",
-              transform: window.innerWidth <= 768 ? "translateY(-25%)" : "none",
+              transform: window.innerWidth <= 768 ? "translateY(-65%)" : "none",
             }}
           >
             {/* Title Container */}
@@ -184,7 +177,8 @@ export default function HoverColumns() {
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-start",
-            background: "#0b0b0f",
+            background: "transparent",
+            marginTop: "-30vh",
           }}
         >
         {/* Columns - all visible on mobile, no internal scrolling */}
@@ -196,12 +190,25 @@ export default function HoverColumns() {
             minHeight: "65vh",
             display: "flex",
             flexDirection: "row",
-            gap: 0,
+            gap: "1rem",
             position: "relative",
-            background: "#000",
+            background: "transparent",
             padding: 0,
           }}
         >
+          {/* Background layer behind columns */}
+          <div
+            style={{
+              position: "absolute",
+              top: "25%",
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: "rgba(0, 0, 0, 0.65)",
+              zIndex: 0,
+            }}
+          />
+        
           {siteContent.hoverColumns.columns.map((column, index) => {
             const bg = hexToRgba(columnColors[index], 0.85);
             const textColor = isLight(columnColors[index]) ? "#000000" : "#ffffff";
@@ -226,8 +233,22 @@ export default function HoverColumns() {
                   position: "relative",
                   overflow: "hidden",
                   cursor: "pointer",
+                  zIndex: 1,
                 }}
               >
+                {/* Black background layer (cropped from top 25%) */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "25%",
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundColor: "#000",
+                    zIndex: 0,
+                  }}
+                />
+
                 {/* Background Image (show full image without cropping) */}
                 <img
                   src={column.image}
@@ -239,7 +260,7 @@ export default function HoverColumns() {
                     height: "100%",
                     objectFit: "contain",
                     objectPosition: "center",
-                    backgroundColor: "#000",
+                    zIndex: 1,
                   }}
                 />
 
@@ -275,15 +296,18 @@ export default function HoverColumns() {
                 <div
                   style={{
                     position: "absolute",
-                    inset: 0,
+                    top: "25%",
+                    left: 0,
+                    right: 0,
+                    bottom: "20vh",
                     backgroundColor: bg,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     padding: "2rem",
                     transition: "transform 0.5s ease",
-                    transform: hoveredIndex === index ? "translateY(0)" : "translateY(100%)",
-                    zIndex: 1,
+                    transform: hoveredIndex === index ? "translateY(0)" : "translateY(calc(100% + 30vh))",
+                    zIndex: 3,
                   }}
                 >
                   <p
@@ -306,57 +330,34 @@ export default function HoverColumns() {
           })}
         </div>
 
-        {/* Row - fixed height aligned to bottom */}
+        {/* Row - Ticker */}
         <div
-          className="hoverColumns-stats-row"
+          className="hoverColumns-ticker-row"
           style={{
             height: "20vh",
-            background: "#FFAD01",
+            background: "#000000",
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-around",
-            padding: "2rem 4rem",
-            gap: "2rem",
-            boxSizing: "border-box",
+            overflow: "hidden",
+            padding: "2rem 0",
+            marginTop: "-20vh",
+            position: "relative",
+            zIndex: 10,
           }}
         >
-          {siteContent.hoverColumns.row.stats.map((stat, index) => (
-            <div
-              key={index}
-              style={{
-                flex: 1,
-                textAlign: "center",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <div
-                className="stat-number"
-                style={{
-                  fontSize: "4rem",
-                  fontWeight: 700,
-                  color: "#000000",
-                  lineHeight: 1,
-                  marginBottom: "0.5rem",
-                }}
-              >
-                {stat.number}
-              </div>
-              <div
-                style={{
-                  fontSize: "1rem",
-                  fontWeight: 500,
-                  color: "#000000",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.1em",
-                }}
-              >
-                {stat.label}
-              </div>
-            </div>
-          ))}
+          <div 
+            ref={ticker}
+            style={{ 
+              whiteSpace: "nowrap", 
+              fontSize: "3.6rem", 
+              fontWeight: 400,
+              color: "#FFFFFF",
+              display: "inline-block",
+              lineHeight: 1.2,
+            }}
+          >
+            {(siteContent.hoverColumns.row.ticker || "SOLUTIONS • INTEGRATOR • ADVISORY • GATEWAY • ").repeat(3)}
+          </div>
         </div>
         </div>
       </div>

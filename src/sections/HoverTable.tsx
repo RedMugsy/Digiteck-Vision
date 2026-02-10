@@ -23,7 +23,7 @@ export default function HoverTable() {
         style={{
           position: "relative",
           minHeight: "100vh",
-          background: "#0a0a0e",
+          background: "#000000",
           padding: "4rem",
           paddingTop: "8rem",
           display: "flex",
@@ -53,7 +53,7 @@ export default function HoverTable() {
 
         <div style={{ flex: 1, overflowY: "auto" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }} className="hover-table-rows">
-            {siteContent.hoverTable.rows.map((row) => {
+            {siteContent.hoverTable.rows.map((row, index) => {
               const isHovered = hoveredRow === row.n;
               const imageHeight = 300; // Base image height for expanded state
               
@@ -64,7 +64,7 @@ export default function HoverTable() {
                   onMouseLeave={() => setHoveredRow(null)}
                   style={{
                     padding: "1.5rem",
-                    background: "rgba(255, 255, 255, 0.03)",
+                    background: index % 2 === 0 ? "rgba(255, 255, 255, 0.03)" : "rgba(255, 255, 255, 0.06)",
                     borderRadius: "8px",
                     cursor: "pointer",
                     transition: "all 0.4s ease",

@@ -1,5 +1,5 @@
 :root {
-  --bg: #0b0b0f;
+  --bg: #000000;
   --fg: #ffffff;
   --muted: rgba(255, 255, 255, 0.7);
   --line: rgba(255, 255, 255, 0.25);
@@ -438,6 +438,29 @@ body {
 @keyframes ticker {
   0% { transform: translateX(0); }
   100% { transform: translateX(-100%); }
+}
+
+@keyframes pulseHint {
+  0%, 100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes rotateHint {
+  0%, 100% { 
+    transform: rotate(0deg);
+  }
+  25% { 
+    transform: rotate(-15deg);
+  }
+  75% { 
+    transform: rotate(15deg);
+  }
 }
 
 .footerGrid {

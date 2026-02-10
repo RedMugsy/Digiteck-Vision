@@ -6,7 +6,7 @@ import { siteContent } from "../content";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function CoverSolid() {
+export default function AboutOverview() {
   const root = useRef<HTMLDivElement>(null);
   const content = useRef<HTMLDivElement>(null);
 
@@ -19,7 +19,7 @@ export default function CoverSolid() {
       const numberElements = root.current?.querySelectorAll('.stat-number');
       if (numberElements) {
         numberElements.forEach((el, index) => {
-          const stat = siteContent.coverSolid.stats[index];
+          const stat = siteContent.aboutOverview.stats[index];
           if (stat && el) {
             const obj = { val: 0 };
             gsap.to(obj, {
@@ -59,12 +59,12 @@ export default function CoverSolid() {
           textAlign: "left",
         }}
       >
-        {siteContent.coverSolid.sectionTitle}
+        {siteContent.aboutOverview.sectionTitle}
       </h2>
 
       <div
         ref={content}
-        id="coverSolid-container"
+        id="aboutOverview-container"
         className="coverSolid-container"
         style={{
           position: "absolute",
@@ -85,7 +85,7 @@ export default function CoverSolid() {
           style={{
             position: "absolute",
             inset: 0,
-            backgroundImage: `url(${siteContent.coverSolid.image})`,
+            backgroundImage: `url(${siteContent.aboutOverview.image})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -125,7 +125,7 @@ export default function CoverSolid() {
               textAlign: "left" 
             }}
           >
-            {siteContent.coverSolid.title}
+            {siteContent.aboutOverview.title}
           </h3>
           <p 
             style={{ 
@@ -137,7 +137,7 @@ export default function CoverSolid() {
               color: "#fff",
             }}
           >
-            {siteContent.coverSolid.content}
+            {siteContent.aboutOverview.content}
           </p>
         </div>
 
@@ -150,7 +150,7 @@ export default function CoverSolid() {
             left: 0,
             right: 0,
             height: "20vh",
-            background: "#FFAD01",
+            background: "#000000",
             display: window.innerWidth <= 768 ? "grid" : "flex",
             gridTemplateColumns: window.innerWidth <= 768 ? "repeat(2, 1fr)" : undefined,
             gridTemplateRows: window.innerWidth <= 768 ? "repeat(2, 1fr)" : undefined,
@@ -162,7 +162,7 @@ export default function CoverSolid() {
             zIndex: 10,
           }}
         >
-          {siteContent.coverSolid.stats.map((stat, index) => (
+          {siteContent.aboutOverview.stats.map((stat, index) => (
             <div
               key={index}
               style={{
@@ -179,7 +179,7 @@ export default function CoverSolid() {
                 style={{
                   fontSize: "4rem",
                   fontWeight: 700,
-                  color: "#000000",
+                  color: "#FFAD01",
                   lineHeight: 1,
                   marginBottom: "0.5rem",
                 }}
@@ -190,7 +190,7 @@ export default function CoverSolid() {
                 style={{
                   fontSize: "1rem",
                   fontWeight: 500,
-                  color: "#000000",
+                  color: "#FFAD01",
                   textTransform: "uppercase",
                   letterSpacing: "0.1em",
                 }}
