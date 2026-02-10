@@ -10,9 +10,14 @@ export default function MediaLink() {
   const root = useRef<HTMLDivElement>(null);
   const content = useRef<HTMLDivElement>(null);
 
+  const isMobile = window.innerWidth <= 768;
+
   useScene(root, () => {
     // Set content in position immediately - no slide animation
     gsap.set(content.current!, { yPercent: 0 });
+
+    // Skip pinning on mobile — position:fixed breaks mobile rendering
+    if (isMobile) return;
 
     ScrollTrigger.create({
       trigger: root.current!,

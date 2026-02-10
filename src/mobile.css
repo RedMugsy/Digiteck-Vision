@@ -3,6 +3,17 @@
 
 @media (max-width: 768px) {
   /* ===========================================
+     FIX: Remove CSS containment on mobile.
+     contain: layout style paint on .panel clips
+     absolutely-positioned content to 0-height
+     content box when height: auto has no in-flow
+     children (HeroVideo, CoverSolid, MediaLink).
+     =========================================== */
+  .panel {
+    contain: none !important;
+  }
+
+  /* ===========================================
      HOVER TABLE SECTION (not in App.css)
      =========================================== */
   .hover-table-container {
