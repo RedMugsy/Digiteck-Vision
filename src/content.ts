@@ -335,7 +335,7 @@ export const siteContent = {
       title: "Benefits",
       items: [
         "Join a growing and exciting startup",
-        "Help shape an industry that is just launching", 
+        "Help shape industries", 
         "Join the pioneer of Mobile IDs in the MENA Region",
         "Flexible working environment",
         "Challenging roles",
@@ -347,9 +347,10 @@ export const siteContent = {
       positions: [
         {
           id: "job-001",
-          location: "San Francisco",
-          role: "Sustainability Manager",
+          location: "Saudi Arabia",
+          role: "Senior Sales Manager",
           type: "Full time",
+          workModel: "Hybrid",
           description: "I'm a paragraph. Click here to add your own text and edit me. It's easy. Just click \"Edit Text\" or double click me to add your own content and make changes to the font.",
           jobRef: "DV-SM-2026-001",
           dateListed: "2026-02-01",
@@ -365,6 +366,7 @@ export const siteContent = {
           location: "San Francisco",
           role: "Office Manager",
           type: "Full time",
+          workModel: "On-site",
           description: "I'm a paragraph. Click here to add your own text and edit me. It's easy. Just click \"Edit Text\" or double click me to add your own content and make changes to the font.",
           jobRef: "DV-OM-2026-002",
           dateListed: "2026-02-05",
@@ -380,6 +382,7 @@ export const siteContent = {
           location: "San Francisco",
           role: "Senior Project Manager", 
           type: "Full time",
+          workModel: "Remote",
           description: "I'm a paragraph. Click here to add your own text and edit me. It's easy. Just click \"Edit Text\" or double click me to add your own content and make changes to the font.",
           jobRef: "DV-SPM-2026-003",
           dateListed: "2026-02-10",

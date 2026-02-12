@@ -1,0 +1,10 @@
+[
+  {
+    "id": "b9f49310-17fe-4080-96c6-2f4598b78832",
+    "username": "admin",
+    "password": "$2b$10$D5YYQbJYYWazbDoIx1501umqwzcY7sn3Pyt0s1Jl7vcEfIYhC5Ndy",
+    "email": "admin@digiteckvision.com",
+    "role": "admin",
+    "createdAt": "2026-02-12T16:36:24.835Z"
+  }
+]

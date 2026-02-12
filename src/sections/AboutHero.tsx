@@ -154,7 +154,6 @@ export default function AboutHero() {
           <button className="btn" style={{ marginTop: '1rem', width: 'fit-content', fontSize: '1.2rem' }}>
             {siteContent.navigation.ctaButton}
           </button>
-          </button>
         </div>
       )}
 
