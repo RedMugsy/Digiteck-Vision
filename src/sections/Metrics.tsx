@@ -12,54 +12,156 @@ export default function Metrics() {
   const metric2 = useRef<HTMLDivElement>(null);
   const metric3 = useRef<HTMLDivElement>(null);
 
-  const isMobile = window.innerWidth <= 768;
-
   useScene(root, () => {
-    // Skip all animations and pinning on mobile — show metrics statically
-    if (isMobile) return;
-
-    // Pin the section during animation - longer duration for smoother scroll
-    ScrollTrigger.create({
-      trigger: root.current!,
-      start: "top top",
-      end: "+=400%",
-      pin: true,
-      pinSpacing: true,
-    });
-
     const metrics = [metric1.current!, metric2.current!, metric3.current!];
+    const isMobile = window.innerWidth <= 768;
 
-    // Set initial state for all metrics
+    // Set initial state for all metrics - hidden but ready
     metrics.forEach((metric) => {
       gsap.set(metric, {
-        scale: 3,
+        scale: 1,
         opacity: 0,
-        filter: "blur(30px)",
+        filter: "blur(0px)",
       });
     });
 
-    // Animate each metric sequentially with overlap
-    metrics.forEach((metric, index) => {
-      const startProgress = index * 25; // 0%, 25%, 50%
-      const endProgress = startProgress + 50; // 50%, 75%, 100%
-
-      gsap.to(metric, {
-        scale: 1,
-        opacity: 1,
-        filter: "blur(0px)",
-        ease: "power3.out",
+    if (isMobile) {
+      // Mobile: Proper animation without pinning
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: root.current!,
-          start: `top+=${startProgress}% top`,
-          end: `top+=${endProgress}% top`,
-          scrub: 2,
+          start: "top 70%",
+          end: "bottom 30%",
+          scrub: 1,
+          // NO pinning on mobile to prevent overlay
         },
       });
-    });
+
+      // Restore proper mobile animation with scaling and blur
+      tl.to(metrics[0], {
+        opacity: 1,
+        ease: "power2.out",
+        duration: 0.3,
+      })
+      .to(metrics[0], {
+        scale: 2, // Grow effect
+        opacity: 1,
+        ease: "power2.inOut",
+        duration: 0.5,
+      }, "+=0.2")
+      .to(metrics[0], {
+        scale: 3, // Continue growing while dissolving
+        opacity: 0,
+        filter: "blur(8px)", // Blur dissolve effect
+        ease: "power2.out",
+        duration: 0.4,
+      })
+      .to(metrics[1], {
+        opacity: 1,
+        ease: "power2.out",
+        duration: 0.3,
+      }, "-=0.2")
+      .to(metrics[1], {
+        scale: 2,
+        opacity: 1,
+        ease: "power2.inOut",
+        duration: 0.5,
+      }, "+=0.2")
+      .to(metrics[1], {
+        scale: 3,
+        opacity: 0,
+        filter: "blur(8px)",
+        ease: "power2.out",
+        duration: 0.4,
+      })
+      .to(metrics[2], {
+        opacity: 1,
+        ease: "power2.out",
+        duration: 0.3,
+      }, "-=0.2")
+      .to(metrics[2], {
+        scale: 1.1, // Final metric stays with slight emphasis
+        opacity: 1,
+        ease: "power2.out",
+        duration: 0.5,
+      });
+    } else {
+      // Desktop: Full pinning animation
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: root.current!,
+          start: "top top",
+          end: "+=300%",
+          pin: true,
+          pinSpacing: true,
+          scrub: 1,
+        },
+      });
+
+      // Desktop animation: original behavior
+      tl.to(metrics[0], {
+        opacity: 1,
+        ease: "power2.out",
+        duration: 0.3,
+      })
+      .to(metrics[0], {
+        scale: 4,
+        opacity: 1,
+        ease: "power2.inOut",
+        duration: 1.0,
+      }, "+=0.4")
+      .to(metrics[0], {
+        scale: 6,
+        opacity: 0,
+        filter: "blur(10px)",
+        ease: "power2.out",
+        duration: 0.6,
+      })
+      .to(metrics[1], {
+        opacity: 1,
+        ease: "power2.out",
+        duration: 0.3,
+      }, "-=0.3")
+      .to(metrics[1], {
+        scale: 4,
+        opacity: 1,
+        ease: "power2.inOut",
+        duration: 1.0,
+      }, "+=0.4")
+      .to(metrics[1], {
+        scale: 6,
+        opacity: 0,
+        filter: "blur(10px)",
+        ease: "power2.out",
+        duration: 0.6,
+      })
+      .to(metrics[2], {
+        opacity: 1,
+        ease: "power2.out",
+        duration: 0.3,
+      }, "-=0.3")
+      .to(metrics[2], {
+        scale: 1.1,
+        opacity: 1,
+        ease: "power2.out",
+        duration: 1,
+      });
+    }
   });
 
+  const isMobile = window.innerWidth <= 768;
+
   return (
-    <section ref={root} className="panel" style={{ background: "#000" }}>
+    <section 
+      ref={root} 
+      className="panel metrics-section" 
+      style={{ 
+        background: "#000",
+        height: isMobile ? "60vh" : "100vh", // Much shorter on mobile
+        minHeight: isMobile ? "60vh" : "100vh",
+        position: "relative"
+      }}
+    >
       <div
         style={{
           position: isMobile ? "relative" : "absolute",
@@ -68,11 +170,23 @@ export default function Metrics() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          gap: isMobile ? "2rem" : "4rem",
-          padding: isMobile ? "4rem 2rem" : "4rem",
-          minHeight: isMobile ? "100vh" : undefined,
+          gap: 0,
+          padding: isMobile ? "2rem 1rem" : "4rem",
+          minHeight: isMobile ? "60vh" : "100vh",
+          height: isMobile ? "60vh" : "100vh",
         }}
       >
+        {/* Desktop: All metrics in same position using absolute positioning within flex container */}
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            height: isMobile ? "0" : "0", // Zero height for both to stack metrics in center
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
         {siteContent.metrics.items.map((item, index) => {
           const metricRef = index === 0 ? metric1 : index === 1 ? metric2 : metric3;
           
@@ -83,6 +197,8 @@ export default function Metrics() {
               style={{
                 willChange: "opacity, transform, filter",
                 transformStyle: "preserve-3d",
+                position: "absolute", // Use absolute positioning for both mobile and desktop
+                transformOrigin: "center center",
               }}
             >
               <div
@@ -92,7 +208,7 @@ export default function Metrics() {
               >
                 <h2
                   style={{
-                    fontSize: "6rem",
+                    fontSize: isMobile ? "3rem" : "6rem", // Smaller on mobile
                     fontWeight: 700,
                     color: "#FFAD01",
                     margin: 0,
@@ -106,6 +222,7 @@ export default function Metrics() {
             </div>
           );
         })}
+        </div>
       </div>
     </section>
   );

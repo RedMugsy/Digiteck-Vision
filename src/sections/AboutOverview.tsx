@@ -43,6 +43,29 @@ export default function AboutOverview() {
 
   return (
     <section ref={root} className="panel coverSolid-section">
+      {/* Background Image */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: `url('/Media/Images/about us overview.jpg')`,
+          backgroundSize: "cover",
+          backgroundPosition: window.innerWidth <= 768 ? "70% center" : "center",
+          backgroundRepeat: "no-repeat",
+          zIndex: 1,
+        }}
+      />
+
+      {/* Dark overlay for better text readability - gradient from left (opaque) to right (transparent) */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.3) 100%)",
+          zIndex: 2,
+        }}
+      />
+
       {/* Section Title - top left */}
       <h2
         className="section-title"
@@ -76,34 +99,10 @@ export default function AboutOverview() {
           padding: "4rem",
           paddingTop: "6rem",
           paddingBottom: "22vh",
-          zIndex: 1,
+          zIndex: 3,
           overflow: "hidden",
         }}
       >
-        {/* Background Image with zoom out effect in mobile */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage: `url(${siteContent.aboutOverview.image})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            transform: "scale(1)",
-            zIndex: 0,
-          }}
-        />
-
-        {/* Dark overlay for better text readability */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: "rgba(0, 0, 0, 0.5)",
-            zIndex: 0,
-          }}
-        />
-
         {/* Content - Left aligned, contained within section */}
         <div
           className="coverSolid-text-container"
@@ -117,7 +116,7 @@ export default function AboutOverview() {
         >
           <h3 
             style={{ 
-              fontSize: "3rem", 
+              fontSize: "3.6rem", 
               margin: 0, 
               color: "#fff", 
               fontWeight: 600, 
@@ -131,7 +130,7 @@ export default function AboutOverview() {
             style={{ 
               marginTop: "1.5rem", 
               opacity: 0.8, 
-              fontSize: "1.5rem", 
+              fontSize: "1.8rem", 
               lineHeight: 1.6, 
               textAlign: "left",
               color: "#fff",
@@ -175,7 +174,7 @@ export default function AboutOverview() {
               <div
                 className="stat-number"
                 style={{
-                  fontSize: "4rem",
+                  fontSize: "4.8rem",
                   fontWeight: 700,
                   color: "#FFAD01",
                   lineHeight: 1,

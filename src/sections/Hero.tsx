@@ -1,6 +1,8 @@
 export default function Hero() {
   return (
-    <section className="snap-section">
+    <section className="snap-section hero-panel">
+      {/* Mobile spacer: prevents section collapse when content is absolutely positioned */}
+      <div style={{ height: "100vh", pointerEvents: "none" }} />
       <video
         src="/hero.mp4"
         autoPlay

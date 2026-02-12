@@ -28,17 +28,24 @@ export default function HeroVideo() {
   });
 
   return (
-    <section ref={root} className="panel">
+    <section ref={root} className="panel hero-panel">
+      {/* Mobile spacer: prevents section collapse when content is absolutely positioned */}
+      <div style={{ height: "100vh", pointerEvents: "none" }} />
       {/* Minimalist menu overlay */}
       <div className="nav">
         <div className="navLeft">
         </div>
         <div className="navLinks">
-          <a href="/" className={activeSection === "home" ? "active" : ""} onClick={() => setActiveSection("home")}>Home</a>
-          <a href="/about" className={activeSection === "about" ? "active" : ""} onClick={() => setActiveSection("about")}>About</a>
-          <a href="#how" className={activeSection === "how" ? "active" : ""} onClick={() => setActiveSection("how")}>How it works</a>
-          <a href="#solutions" className={activeSection === "solutions" ? "active" : ""} onClick={() => setActiveSection("solutions")}>Solutions</a>
-          <a href="/contact" className={activeSection === "contact" ? "active" : ""} onClick={() => setActiveSection("contact")}>Contact</a>
+          {siteContent.navigation.links.map((link, index) => (
+            <a 
+              key={index}
+              href={link.href} 
+              className={activeSection === link.label.toLowerCase().replace(" ", "") ? "active" : ""} 
+              onClick={() => setActiveSection(link.label.toLowerCase().replace(" ", ""))}
+            >
+              {link.label}
+            </a>
+          ))}
         </div>
 
         {/* Hamburger menu button - shown on mobile/tablet */}
@@ -75,23 +82,23 @@ export default function HeroVideo() {
             pointerEvents: 'auto',
           }}
         >
-          <a href="/" onClick={() => { setIsMobileMenuOpen(false); setActiveSection("home"); }} style={{ color: activeSection === "home" ? '#FFAD01' : '#fff', fontSize: '1.5rem', textDecoration: 'none', padding: '0.5rem 0' }}>
-            Home
-          </a>
-          <a href="/about" onClick={() => { setIsMobileMenuOpen(false); setActiveSection("about"); }} style={{ color: activeSection === "about" ? '#FFAD01' : '#fff', fontSize: '1.5rem', textDecoration: 'none', padding: '0.5rem 0' }}>
-            About
-          </a>
-          <a href="#how" onClick={() => { setIsMobileMenuOpen(false); setActiveSection("how"); }} style={{ color: activeSection === "how" ? '#FFAD01' : '#fff', fontSize: '1.5rem', textDecoration: 'none', padding: '0.5rem 0' }}>
-            How it works
-          </a>
-          <a href="#solutions" onClick={() => { setIsMobileMenuOpen(false); setActiveSection("solutions"); }} style={{ color: activeSection === "solutions" ? '#FFAD01' : '#fff', fontSize: '1.5rem', textDecoration: 'none', padding: '0.5rem 0' }}>
-            Solutions
-          </a>
-          <a href="/contact" onClick={() => { setIsMobileMenuOpen(false); setActiveSection("contact"); }} style={{ color: activeSection === "contact" ? '#FFAD01' : '#fff', fontSize: '1.5rem', textDecoration: 'none', padding: '0.5rem 0' }}>
-            Contact
-          </a>
+          {siteContent.navigation.links.map((link, index) => (
+            <a 
+              key={index}
+              href={link.href} 
+              onClick={() => { setIsMobileMenuOpen(false); setActiveSection(link.label.toLowerCase().replace(" ", "")); }} 
+              style={{ 
+                color: activeSection === link.label.toLowerCase().replace(" ", "") ? '#FFAD01' : '#fff', 
+                fontSize: '1.5rem', 
+                textDecoration: 'none', 
+                padding: '0.5rem 0' 
+              }}
+            >
+              {link.label}
+            </a>
+          ))}
           <button className="btn" style={{ marginTop: '1rem', width: 'fit-content', fontSize: '1.2rem' }}>
-            Get started
+            {siteContent.navigation.ctaButton}
           </button>
         </div>
       )}

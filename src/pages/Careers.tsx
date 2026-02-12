@@ -1,15 +1,13 @@
 import { useEffect } from "react";
 import "../App.css";
-import AboutHero from "../sections/AboutHero";
-import AboutOverview from "../sections/AboutOverview";
-import TripleCards from "../sections/TripleCards";
-import Expertise from "../sections/Expertise";
-import Metrics from "../sections/Metrics";
+import CareersHero from "../sections/CareersHero";
+import CareersBenefits from "../sections/CareersBenefits"; 
+import CareersOpenings from "../sections/CareersOpenings";
 import Footer from "../sections/Footer";
 import { updateMetaTags, injectStructuredData } from "../utils/seo";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
-export default function About() {
+export default function Careers() {
   // Initialize SEO tags on mount
   useEffect(() => {
     updateMetaTags();
@@ -32,11 +30,9 @@ export default function About() {
 
   return (
     <div className="page">
-      <AboutHero />
-      <AboutOverview />
-      <TripleCards />
-      <Expertise />
-      <Metrics />
+      <CareersHero />
+      <CareersBenefits />
+      <CareersOpenings />
       <Footer />
     </div>
   );

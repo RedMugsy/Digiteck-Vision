@@ -1,4 +1,15 @@
 export const siteContent = {
+  navigation: {
+    links: [
+      { label: "Home", href: "/" },
+      { label: "About Us", href: "/about" },
+      { label: "Solutions", href: "/solutions" },
+      { label: "Contact", href: "/contact" },
+      { label: "Careers", href: "/careers" }
+    ],
+    ctaButton: "Get started"
+  },
+  
   hero: {
     title: "DIGITECK VISION",
     subtitle: "",
@@ -282,6 +293,107 @@ export const siteContent = {
     videoSrc: "/Media/Video/media-link.mp4",
   },
   
+  expertise: {
+    sectionTitle: "Our expertise",
+    title: "Driven by lasting excellence",
+    description: "We deliver innovative consulting solutions with focus and precision, guiding businesses to achieve meaningful results, drive sustainable growth, and create lasting success in every project we undertake",
+    ctaText: "Contact today",
+    ctaLink: "/contact",
+    image: "/Media/Images/expertise-hero.jpg",
+    cards: [
+      {
+        icon: "star",
+        title: "Smart strategies",
+        description: "We craft strategies that propel your brand forward with accuracy"
+      },
+      {
+        icon: "play",
+        title: "Expert team", 
+        description: "Our team delivers tailored strategies that drive your brand's growth and success"
+      },
+      {
+        icon: "squares",
+        title: "Market insights",
+        description: "We provide actionable strategies that elevate your brand with proven market insights"
+      },
+      {
+        icon: "refresh",
+        title: "Client focus",
+        description: "We design strategies centered on your needs, driving growth through dedicated collaboration"
+      }
+    ]
+  },
+
+  careers: {
+    hero: {
+      title: "Work With Us",
+      description: "We're looking for the best people to join our innovative team. Submit your application today.",
+      cta: "EXPLORE OPPORTUNITIES", 
+      image: "/Media/Images/careers-team.jpg"
+    },
+    benefits: {
+      title: "Benefits",
+      items: [
+        "Join a growing and exciting startup",
+        "Help shape an industry that is just launching", 
+        "Join the pioneer of Mobile IDs in the MENA Region",
+        "Flexible working environment",
+        "Challenging roles",
+        "Develop your skillset in everything Digital"
+      ]
+    },
+    openings: {
+      title: "Openings",
+      positions: [
+        {
+          id: "job-001",
+          location: "San Francisco",
+          role: "Sustainability Manager",
+          type: "Full time",
+          description: "I'm a paragraph. Click here to add your own text and edit me. It's easy. Just click \"Edit Text\" or double click me to add your own content and make changes to the font.",
+          jobRef: "DV-SM-2026-001",
+          dateListed: "2026-02-01",
+          closingDate: "2026-03-15",
+          department: "Operations",
+          reportingTo: "Head of Operations",
+          numberOfReportees: "3",
+          jobDescription: "Lead our sustainability initiatives and drive environmental responsibility across all company operations. Develop and implement comprehensive sustainability strategies that align with our corporate values and regulatory requirements.",
+          candidateRequirements: "Bachelor's degree in Environmental Science, Sustainability, or related field. 5+ years of experience in sustainability management. Strong analytical and project management skills."
+        },
+        {
+          id: "job-002", 
+          location: "San Francisco",
+          role: "Office Manager",
+          type: "Full time",
+          description: "I'm a paragraph. Click here to add your own text and edit me. It's easy. Just click \"Edit Text\" or double click me to add your own content and make changes to the font.",
+          jobRef: "DV-OM-2026-002",
+          dateListed: "2026-02-05",
+          closingDate: "2026-03-20",
+          department: "Administration",
+          reportingTo: "Chief Operating Officer",
+          numberOfReportees: "2",
+          jobDescription: "Oversee daily office operations and ensure smooth administrative processes. Manage office facilities, coordinate with vendors, and support team productivity through efficient operational systems.",
+          candidateRequirements: "Bachelor's degree in Business Administration or equivalent experience. 3+ years in office management. Excellent organizational and communication skills. Proficiency in office management software."
+        },
+        {
+          id: "job-003",
+          location: "San Francisco",
+          role: "Senior Project Manager", 
+          type: "Full time",
+          description: "I'm a paragraph. Click here to add your own text and edit me. It's easy. Just click \"Edit Text\" or double click me to add your own content and make changes to the font.",
+          jobRef: "DV-SPM-2026-003",
+          dateListed: "2026-02-10",
+          closingDate: "2026-04-01",
+          department: "Project Management",
+          reportingTo: "Director of Projects",
+          numberOfReportees: "5",
+          jobDescription: "Lead complex technology projects from conception to delivery. Coordinate cross-functional teams, manage project timelines, budgets, and stakeholder communications. Ensure project deliverables meet quality standards and business objectives.",
+          candidateRequirements: "PMP certification preferred. 7+ years of project management experience in technology sector. Strong leadership skills and experience managing remote teams. Proficiency in project management tools like JIRA, Confluence."
+        }
+      ]
+    }
+  },
+
   footer: {
     ticker: "DIGITECK VISION • TRANSFORMATION • INNOVATION • INTELLIGENCE • PRECISION • ",
     address: "123 Innovation Street\nDubai, UAE",
@@ -301,7 +413,7 @@ export const siteContent = {
       heading: "Company",
       links: [
         { text: "About", href: "/about" },
-        { text: "Careers", href: "#careers" },
+        { text: "Careers", href: "/careers" },
         { text: "Contact", href: "/contact" },
       ],
     },

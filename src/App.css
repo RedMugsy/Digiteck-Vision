@@ -1493,3 +1493,28 @@ body {
     padding: 0.75rem 1.25rem !important;
   }
 }
+
+/* Careers Openings Panel - Override overflow hidden to prevent button cropping */
+.careers-openings-panel {
+  overflow: visible !important;
+  height: auto !important;
+  min-height: 100vh !important;
+}
+
+.careers-openings-panel > div {
+  overflow: visible !important;
+  max-width: 1200px !important;
+}
+
+/* Job Details page design element */
+@media (max-width: 768px) {
+  .job-details-design-element {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .job-details-design-element {
+    display: block !important;
+  }
+}

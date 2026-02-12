@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { siteContent } from "./content";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -170,7 +171,7 @@ export default function ScrollStory() {
               <a href="#services">Services</a>
               <a href="#solutions">Solutions</a>
             </nav>
-            <a className="navCta" href="/get-started">Get Started</a>
+            <a className="navCta" href="/get-started">{siteContent.navigation.ctaButton}</a>
           </header>
 
           <video className="heroVideo" autoPlay muted loop playsInline>

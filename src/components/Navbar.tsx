@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { siteContent } from "../content";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -7,14 +8,13 @@ export default function Navbar() {
     <header className="nav">
       <div className="navLeft">
         <div className="logoDot" />
-        <span style={{ fontSize: "14px", fontWeight: 600 }}>DIGITECK VISION</span>
+        <span style={{ fontSize: "14px", fontWeight: 600 }}>{siteContent.hero.title}</span>
       </div>
 
       <nav className="navLinks" aria-label="Primary">
-        <a href="#solutions">Solutions</a>
-        <a href="#products">Products</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        {siteContent.navigation.links.map((link, index) => (
+          <a key={index} href={link.href}>{link.label}</a>
+        ))}
       </nav>
 
       {/* Hamburger menu button - hidden on desktop, shown on mobile/tablet */}
@@ -48,18 +48,16 @@ export default function Navbar() {
             gap: '1.5rem',
           }}
         >
-          <a href="#solutions" onClick={() => setIsOpen(false)} style={{ color: '#fff', fontSize: '1.5rem', textDecoration: 'none' }}>
-            Solutions
-          </a>
-          <a href="#products" onClick={() => setIsOpen(false)} style={{ color: '#fff', fontSize: '1.5rem', textDecoration: 'none' }}>
-            Products
-          </a>
-          <a href="#about" onClick={() => setIsOpen(false)} style={{ color: '#fff', fontSize: '1.5rem', textDecoration: 'none' }}>
-            About
-          </a>
-          <a href="#contact" onClick={() => setIsOpen(false)} style={{ color: '#fff', fontSize: '1.5rem', textDecoration: 'none' }}>
-            Contact
-          </a>
+          {siteContent.navigation.links.map((link, index) => (
+            <a 
+              key={index}
+              href={link.href} 
+              onClick={() => setIsOpen(false)} 
+              style={{ color: '#fff', fontSize: '1.5rem', textDecoration: 'none' }}
+            >
+              {link.label}
+            </a>
+          ))}
         </div>
       )}
     </header>

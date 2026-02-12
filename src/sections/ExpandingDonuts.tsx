@@ -313,7 +313,7 @@ export default function ExpandingDonuts() {
   });
 
   return (
-    <section ref={root} className="panel" style={{ background: "#000000", overflow: "visible" }}>
+    <section ref={root} id="expandingDonuts-section" className="panel" style={{ background: "#000000", overflow: "visible" }}>
       {/* Background that reveals */}
       <div
         ref={background}
@@ -907,7 +907,7 @@ export default function ExpandingDonuts() {
         <h2
           style={{
             fontSize: "2.9rem",
-            margin: "0 0 2rem 0",
+            margin: "0 0 1rem 0",
             color: "#FFAD01",
             fontWeight: 600,
             letterSpacing: "-0.02em",
@@ -917,35 +917,35 @@ export default function ExpandingDonuts() {
           {siteContent.hoverTable.sectionTitle}
         </h2>
         
-        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
           {industries.map((row, index) => (
             <div
               key={row.n}
               style={{
-                padding: "1.5rem",
+                padding: "1rem",
                 background: index % 2 === 0 ? "rgba(255, 255, 255, 0.03)" : "rgba(255, 255, 255, 0.06)",
                 borderRadius: "8px",
               }}
             >
-              <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
                 {/* Image */}
                 <div
                   style={{
                     width: "100%",
-                    height: "200px",
+                    height: "150px",
                     backgroundImage: `url(${row.image})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
-                    borderRadius: "8px",
+                    borderRadius: "6px",
                   }}
                 />
                 
                 {/* S.N. and Title */}
-                <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-                  <div style={{ fontSize: "1.5rem", color: "#FFAD01", fontWeight: 600 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                  <div style={{ fontSize: "1.2rem", color: "#FFAD01", fontWeight: 600 }}>
                     {row.n}
                   </div>
-                  <div style={{ fontSize: "1.1rem", fontWeight: 500 }}>
+                  <div style={{ fontSize: "1rem", fontWeight: 500 }}>
                     {row.title}
                   </div>
                 </div>
@@ -972,6 +972,7 @@ export default function ExpandingDonuts() {
           .panel {
             min-height: auto !important;
             height: auto !important;
+            padding: 0 !important;
           }
 
           .desktop-animation,
@@ -982,12 +983,13 @@ export default function ExpandingDonuts() {
 
           .industries-mobile-view {
             display: block;
-            padding: 2rem 1rem;
-            margin-top: 0;
+            padding: 1rem 0.75rem;
+            margin: 0;
           }
 
           .industries-mobile-view h2 {
             font-size: 2rem !important;
+            margin-top: 0 !important;
           }
         }
       `}</style>

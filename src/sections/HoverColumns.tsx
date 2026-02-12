@@ -122,6 +122,7 @@ export default function HoverColumns() {
           
           {/* Right-aligned content container */}
           <div
+            className="hoverColumns-section31-content"
             style={{
               position: "relative",
               zIndex: 5,

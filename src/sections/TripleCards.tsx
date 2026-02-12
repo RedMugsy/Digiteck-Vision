@@ -16,61 +16,68 @@ export default function TripleCards() {
 
   useScene(root, () => {
     const isMobile = window.innerWidth <= 768;
+    
+    console.log('TripleCards - isMobile:', isMobile, 'window.innerWidth:', window.innerWidth);
 
     // Set content in position immediately - no slide animation
     gsap.set(content.current!, { yPercent: 0 });
 
+    // Different ScrollTrigger settings for mobile
     ScrollTrigger.create({
       trigger: root.current!,
       start: "top top",
       end: "+=100%",
-      pin: true,
-      pinSpacing: true,
+      pin: !isMobile, // Disable pinning on mobile
+      pinSpacing: !isMobile,
     });
 
     // Slide-out animation - cards start stacked in center, then slide out
     const slideOutTl = gsap.timeline({
       scrollTrigger: {
         trigger: root.current!,
-        start: "top top",
-        end: "+=50%",
+        start: isMobile ? "top 60%" : "top 80%",
+        end: isMobile ? "top 20%" : "top 30%",
         scrub: 0.8,
+        markers: false, // Set to true for debugging
       },
     });
 
+    // Set initial positions - all cards stacked in center
+    gsap.set([leftCard.current!, centerCard.current!, rightCard.current!], {
+      x: 0,
+      y: 0,
+      position: "absolute"
+    });
+
     if (isMobile) {
-      // Mobile: Cards are vertical (tall), animate VERTICALLY
+      console.log('TripleCards - Applying MOBILE (VERTICAL) animation');
+      // Mobile: Cards animate VERTICALLY ONLY
       slideOutTl
-        .fromTo(leftCard.current!, 
-          { x: 0, y: 0 },
-          { x: 0, y: "-110%", ease: "power2.inOut" },
+        .to(leftCard.current!, 
+          { x: 0, y: "-120%", ease: "power2.inOut" },
           0
         )
-        .fromTo(centerCard.current!, 
-          { x: 0, y: 0 },
+        .to(centerCard.current!, 
           { x: 0, y: 0, ease: "power2.inOut" },
           0
         )
-        .fromTo(rightCard.current!, 
-          { x: 0, y: 0 },
-          { x: 0, y: "110%", ease: "power2.inOut" },
+        .to(rightCard.current!, 
+          { x: 0, y: "120%", ease: "power2.inOut" },
           0
         );
     } else {
-      // Desktop: Cards start stacked in center, left slides left, right slides right with gap (HORIZONTAL)
+      console.log('TripleCards - Applying DESKTOP (HORIZONTAL) animation');
+      // Desktop: Cards animate HORIZONTALLY ONLY
       slideOutTl
-        .fromTo(leftCard.current!, 
-          { x: 0, y: 0 },
+        .to(leftCard.current!, 
           { x: "-110%", y: 0, ease: "power2.inOut" },
           0
         )
-        .fromTo(centerCard.current!, 
-          { x: 0, y: 0 },
+        .to(centerCard.current!, 
           { x: 0, y: 0, ease: "power2.inOut" },
           0
         )
-        .fromTo(rightCard.current!, 
-          { x: 0, y: 0 },
+        .to(rightCard.current!, 
           { x: "110%", y: 0, ease: "power2.inOut" },
           0
         );

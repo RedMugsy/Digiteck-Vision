@@ -29,7 +29,9 @@ export default function MediaLink() {
   });
 
   return (
-    <section ref={root} className="panel">
+    <section ref={root} className="panel mediaLink-section">
+      {/* Mobile spacer: prevents section collapse when content is absolutely positioned */}
+      <div style={{ height: "100vh", pointerEvents: "none" }} />
       <div
         ref={content}
         style={{
