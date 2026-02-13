@@ -45,12 +45,13 @@ export default function AboutOverview() {
     <section ref={root} className="panel coverSolid-section">
       {/* Background Image */}
       <div
+        className="about-overview-bg"
         style={{
           position: "absolute",
           inset: 0,
           backgroundImage: `url('/Media/Images/about us overview.jpg')`,
           backgroundSize: "cover",
-          backgroundPosition: window.innerWidth <= 768 ? "70% center" : "center",
+          backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           zIndex: 1,
         }}
@@ -68,12 +69,12 @@ export default function AboutOverview() {
 
       {/* Section Title - top left */}
       <h2
-        className="section-title"
+        className="section-title about-overview-title"
         style={{
           position: "absolute",
           top: "2rem",
           left: "2rem",
-          fontSize: "2.9rem",
+          fontSize: "clamp(2rem, 4vw, 2.9rem)",
           margin: 0,
           color: "#FFAD01",
           fontWeight: 600,
@@ -88,7 +89,7 @@ export default function AboutOverview() {
       <div
         ref={content}
         id="aboutOverview-container"
-        className="coverSolid-container"
+        className="coverSolid-container about-overview-container"
         style={{
           position: "absolute",
           inset: 0,
@@ -96,8 +97,8 @@ export default function AboutOverview() {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "flex-start",
-          padding: "4rem",
-          paddingTop: "6rem",
+          padding: "clamp(2rem, 4vw, 4rem)",
+          paddingTop: "clamp(4rem, 8vw, 6rem)",
           paddingBottom: "22vh",
           zIndex: 3,
           overflow: "hidden",
@@ -109,14 +110,14 @@ export default function AboutOverview() {
           style={{
             position: "relative",
             zIndex: 5,
-            maxWidth: "600px",
+            maxWidth: "min(600px, 90vw)",
             marginLeft: "0",
             transform: "none",
           }}
         >
           <h3 
             style={{ 
-              fontSize: "2.6rem", 
+              fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", 
               margin: 0, 
               color: "#fff", 
               fontWeight: 600, 
@@ -130,10 +131,11 @@ export default function AboutOverview() {
             style={{ 
               marginTop: "1.5rem", 
               opacity: 0.8, 
-              fontSize: "1.8rem", 
+              fontSize: "clamp(1rem, 2vw, 1.3rem)", 
               lineHeight: 1.6, 
               textAlign: "left",
               color: "#fff",
+              whiteSpace: "pre-wrap"
             }}
           >
             {siteContent.aboutOverview.content}
@@ -142,28 +144,27 @@ export default function AboutOverview() {
 
         {/* Stats Row - Bottom of section */}
         <div
-          className="coverSolid-stats-row"
+          className="coverSolid-stats-row about-overview-stats"
           style={{
             position: "absolute",
             bottom: 0,
             left: 0,
             right: 0,
-            height: "20vh",
+            minHeight: "20vh",
             background: "#000000",
-            display: "flex",
-            justifyContent: "space-around",
-            alignItems: "center",
-            padding: "2rem 4rem",
-            gap: "2rem",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+            gap: "clamp(1rem, 3vw, 2rem)",
+            padding: "clamp(1.5rem, 3vw, 2rem) clamp(2rem, 4vw, 4rem)",
             boxSizing: "border-box",
             zIndex: 10,
+            alignItems: "center",
           }}
         >
           {siteContent.aboutOverview.stats.map((stat, index) => (
             <div
               key={index}
               style={{
-                flex: 1,
                 textAlign: "center",
                 display: "flex",
                 flexDirection: "column",
@@ -174,7 +175,7 @@ export default function AboutOverview() {
               <div
                 className="stat-number"
                 style={{
-                  fontSize: "4.8rem",
+                  fontSize: "clamp(2.5rem, 5vw, 4.8rem)",
                   fontWeight: 700,
                   color: "#FFAD01",
                   lineHeight: 1,
@@ -185,7 +186,7 @@ export default function AboutOverview() {
               </div>
               <div
                 style={{
-                  fontSize: "1rem",
+                  fontSize: "clamp(0.75rem, 1.5vw, 1rem)",
                   fontWeight: 500,
                   color: "#FFAD01",
                   textTransform: "uppercase",

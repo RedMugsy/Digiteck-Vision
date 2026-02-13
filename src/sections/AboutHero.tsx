@@ -16,10 +16,11 @@ export default function AboutHero() {
   const [activeSection, setActiveSection] = useState("about");
 
   useScene(root, () => {
-    const isMobile = window.innerWidth <= 768;
-    
-    if (!isMobile) {
-      // Desktop only - Extended pin for the multi-phase animation
+    // Use gsap.matchMedia for breakpoint-aware animations
+    const mm = gsap.matchMedia();
+
+    // Desktop: Full pinned multi-phase animation
+    mm.add("(min-width: 769px)", () => {
       ScrollTrigger.create({
         trigger: root.current!,
         start: "top top",
@@ -28,7 +29,6 @@ export default function AboutHero() {
         pinSpacing: true,
       });
 
-      // Create the animation timeline - Desktop only
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: root.current!,
@@ -70,7 +70,20 @@ export default function AboutHero() {
           }, 1.2 + randomDelay);
         });
       }
-    }
+    });
+
+    // Mobile: Lighter title entrance animation
+    mm.add("(max-width: 768px)", () => {
+      gsap.from(heroTitle.current!, {
+        opacity: 0,
+        y: 30,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.3,
+      });
+    });
+
+    return () => mm.revert();
   });
 
   // Create grid of pieces (8x6 = 48 pieces)
@@ -221,30 +234,8 @@ export default function AboutHero() {
       />
 
       {/* Main content - vertically centered, horizontally left-aligned */}
-      <div
-        className="hero-content"
-        style={{
-          position: "relative",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "flex-start",
-          padding: window.innerWidth <= 768 ? "0 2rem" : "0 4rem",
-          zIndex: 1,
-        }}
-      >
-        <h1
-          ref={heroTitle}
-          style={{
-            fontSize: window.innerWidth <= 768 ? "2.5rem" : "4rem",
-            fontWeight: 700,
-            color: "#FFAD01",
-            margin: 0,
-            textAlign: "left",
-            lineHeight: 1.2,
-            maxWidth: window.innerWidth <= 768 ? "100%" : "60%",
-          }}
-        >
+      <div className="about-hero-content">
+        <h1 ref={heroTitle} className="about-hero-title">
           {siteContent.aboutHero.title}
         </h1>
       </div>
