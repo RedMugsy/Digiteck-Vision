@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { endpoints } from "../config/api";
+import { endpoints, apiRequest, ApiError } from "../config/api";
+import { useAuth } from "../hooks/useAuth";
 
 interface Job {
   id: string;
@@ -32,15 +33,16 @@ interface Message {
 }
 
 interface AdminDashboardProps {
-  onLogout: () => void;
   admin: any;
 }
 
-export default function AdminDashboard({ onLogout, admin }: AdminDashboardProps) {
+export default function AdminDashboard({ admin }: AdminDashboardProps) {
+  const { logout } = useAuth();
   const [activeTab, setActiveTab] = useState('jobs');
   const [jobs, setJobs] = useState<Job[]>([]);
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [showJobForm, setShowJobForm] = useState(false);
   const [editingJob, setEditingJob] = useState<Job | null>(null);
 

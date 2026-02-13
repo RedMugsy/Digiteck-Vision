@@ -116,7 +116,7 @@ export default function AboutOverview() {
         >
           <h3 
             style={{ 
-              fontSize: "3.6rem", 
+              fontSize: "2.6rem", 
               margin: 0, 
               color: "#fff", 
               fontWeight: 600, 

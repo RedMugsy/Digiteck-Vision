@@ -6,17 +6,36 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { initDatabase } from './database.js';
 import routes from './routes.js';
+import { 
+  securityHeaders, 
+  generalRateLimit, 
+  corsOptions, 
+  validateEnvironment 
+} from './middleware/security.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Load and validate environment
 dotenv.config();
+validateEnvironment();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors());
-app.use(express.json());
+// Security middleware
+app.use(securityHeaders);
+app.use(cors(corsOptions));
+app.use(generalRateLimit);
+
+// Body parsing with limits
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+// Trust proxy in production
+if (process.env.NODE_ENV === 'production') {
+  app.set('trust proxy', 1);
+}
 
 // Initialize database
 try {

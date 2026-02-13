@@ -77,15 +77,14 @@ export const siteContent = {
   },
   
   aboutOverview: {
-    sectionTitle: "Overview",
-    title: "Empowering Digital Excellence",
-    content: "At Digiteck Vision, we combine cutting-edge technology with deep industry expertise to deliver transformative digital solutions. Our commitment to innovation and client success drives everything we do.",
+    sectionTitle: "ABOUT US",
+    content: "Established in 2013, we are a privately owned company operating across the GCC with presence in Bahrain, UAE and KSA. \n\nOur objective is to contribute to the region's transformation and digitization initiatives. In order to further cement ourselves as part of the region's transformation in 2019 we established and relocated our business and our head office to Bahrain. \n\n We pride ourselves with the team that we have, all of which have participated or lea lead digital transformations across multiple sectors before becoming part of Digiteck Vision. We focus on digital solutions and expert services that transform customer and user experiences to meet the demands of today's customers through innovative technologies and a unique value proposition. \n\nAt Digiteck Vision, we combine cutting-edge technology with deep industry expertise to deliver transformative digital solutions. Our commitment to innovation and client success drives everything we do.",
     image: "/Media/Images/about us overview.jpg",
     stats: [
-      { number: 200, label: "Solutions Deployed" },
-      { number: 75, label: "Enterprise Clients" },
+      { number: 28, label: "Solutions Deployed" },
+      { number: 38, label: "Enterprise Clients" },
       { number: 15, label: "Countries Served" },
-      { number: 99, label: "Client Satisfaction" },
+      { number: 62, label: "Qualified Developers" },
     ],
   },
   
@@ -100,7 +99,7 @@ export const siteContent = {
       body: "Transform data into actionable decisions.",
     },
     text3: {
-      title: "Precision Analytics",
+      title: "Practical Global and Regional Experience",
       body: "Every insight backed by rigorous analysis.",
     },
     images: {
@@ -170,21 +169,21 @@ export const siteContent = {
   },
   
   imageSwap: {
-    sectionTitle: "INNOVATION",
+    sectionTitle: "Key Technologies We Excel At",
     slides: [
       {
         image: "/Media/Images/swap-1.jpg",
-        title: "Data Intelligence",
+        title: "AI & Automation through RPA",
         body: "Advanced analytics for smarter decisions.",
       },
       {
         image: "/Media/Images/swap-2.jpg",
-        title: "Market Insights",
+        title: "Enteprise Application Development",
         body: "Real-time market intelligence at your fingertips.",
       },
       {
         image: "/Media/Images/swap-3.jpg",
-        title: "Strategic Edge",
+        title: "VR & AR",
         body: "Turn insights into competitive advantage.",
       },
     ],
@@ -254,39 +253,69 @@ export const siteContent = {
   },
   
   tripleCards: {
-    sectionTitle: "OUR VALUES",
+    sectionTitle: "OUR STRATEGY",
     cards: [
       {
         image: "/Media/Images/triple-1.jpg",
-        title: "Insights",
-        description: "Deep market analysis",
-        backContent: "We leverage advanced analytics and AI-driven insights to provide comprehensive market intelligence. Our data-driven approach helps clients make informed decisions and stay ahead of industry trends.",
+        title: "VISION",
+        description: "Our Vision",
+        backContent: "To be the trusted partner for our clients and suppliers, recognized for our positive contribution to the region's digital transformation and our local expertise.",
       },
       {
         image: "/Media/Images/triple-2.jpg",
-        title: "Strategy",
-        description: "Actionable recommendations",
-        backContent: "Our strategic consulting services transform insights into executable plans. We work closely with clients to develop customized roadmaps that align with their business objectives and drive sustainable growth.",
+        title: "MISSION",
+        description: "Our Mission",
+        backContent: "Help our customers thrive and achieve their digital ambitions:\n\n• Deliver disruptive innovations by leveraging strategic partnerships.\n\n• Develop and graduate regional capabilities in the digital space.",
       },
       {
         image: "/Media/Images/triple-3.jpg",
-        title: "Growth",
-        description: "Measurable results",
-        backContent: "We are committed to delivering tangible outcomes. Through continuous monitoring and optimization, we ensure that our solutions generate measurable value and contribute to long-term business success.",
+        title: "VALUES",
+        description: "Our Values",
+        backContent: "• Perceptive\n• Collaborative\n• Trust & Reliability\n• Agile\n• Bold",
       },
     ],
   },
   
   metrics: {
     items: [
-      { text: "1.2k+ Clients" },
-      { text: "5+ years" },
-      { text: "15+ countries" },
+      { text: "53 Clients" },
+      { text: "7 Years +" },
+      { text: "13 Countries" },
+    ],
+  },
+
+  leadership: {
+    sectionTitle: "OUR LEADERSHIP",
+    leaders: [
+      {
+        name: "Ali Achkar",
+        title: "Chief Executive Officer",
+        bio: "Leading Digiteck Vision's strategic direction with over 15 years of experience in digital transformation and technology innovation across the MENA region.",
+        image: "/Media/Images/leader-1.jpg",
+      },
+      {
+        name: "Sarah Al-Mansouri",
+        title: "Chief Technology Officer",
+        bio: "Driving technical excellence and innovation, with expertise in enterprise solutions and emerging technologies including AI, blockchain, and cloud architecture.",
+        image: "/Media/Images/leader-2.jpg",
+      },
+      {
+        name: "Mohammed Al-Khalifa",
+        title: "Chief Operating Officer",
+        bio: "Overseeing operational excellence and delivery across all client engagements, ensuring world-class service and successful project outcomes.",
+        image: "/Media/Images/leader-3.jpg",
+      },
+      {
+        name: "Fatima Rahman",
+        title: "Chief Strategy Officer",
+        bio: "Shaping the company's growth strategy and market positioning, with deep expertise in digital transformation consulting and strategic partnerships.",
+        image: "/Media/Images/leader-4.jpg",
+      },
     ],
   },
   
   mediaLink: {
-    sectionTitle: "GET STARTED",
+    sectionTitle: "LEARN MORE ABOUT US",
     heading: "Experience the Difference",
     ctaText: "Learn More →",
     ctaLink: "#learn-more",
@@ -399,9 +428,9 @@ export const siteContent = {
 
   footer: {
     ticker: "DIGITECK VISION • TRANSFORMATION • INNOVATION • INTELLIGENCE • PRECISION • ",
-    address: "123 Innovation Street\nDubai, UAE",
+    address: "Office 04111, \nManama, Bahrain",
     contact: {
-      phone: "+971 50 123 4567",
+      phone: "+973 3376 3377",
       email: "info@digiteckvision.com"
     },
     product: {

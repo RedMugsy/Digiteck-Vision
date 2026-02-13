@@ -1,47 +1,18 @@
 import { useState } from "react";
-import { endpoints } from "../config/api";
+import { useAuth } from "../hooks/useAuth";
 
-interface LoginProps {
-  onLoginSuccess: (token: string, admin: any) => void;
-}
-
-export default function AdminLogin({ onLoginSuccess }: LoginProps) {
+export default function AdminLogin() {
+  const { login, loading, error, clearError } = useAuth();
   const [formData, setFormData] = useState({
     username: '',
     password: ''
   });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setError('');
-
-    try {
-      const response = await fetch(`${endpoints.base}/admin/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        localStorage.setItem('adminToken', data.token);
-        localStorage.setItem('adminUser', JSON.stringify(data.admin));
-        onLoginSuccess(data.token, data.admin);
-      } else {
-        setError(data.message || 'Login failed');
-      }
-    } catch (error) {
-      setError('Connection error. Please try again.');
-      console.error('Login error:', error);
-    } finally {
-      setLoading(false);
-    }
+    clearError();
+    await login(formData.username, formData.password);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,6 +20,16 @@ export default function AdminLogin({ onLoginSuccess }: LoginProps) {
       ...formData,
       [e.target.name]: e.target.value
     });
+    // Clear error when user starts typing
+    if (error) {
+      clearError();
+    }
+  };
+
+  const handleFocus = () => {
+    if (error) {
+      clearError();
+    }
   };
 
   return (
@@ -106,20 +87,30 @@ export default function AdminLogin({ onLoginSuccess }: LoginProps) {
               name="username"
               value={formData.username}
               onChange={handleChange}
+              onFocus={handleFocus}
               required
+              autoComplete="username"
+              maxLength={50}
               style={{
                 width: '100%',
                 padding: '1rem',
-                border: '2px solid #ddd',
+                border: error ? '2px solid #d32f2f' : '2px solid #ddd',
                 borderRadius: '8px',
                 fontSize: '1rem',
                 background: '#fff',
                 transition: 'border-color 0.3s ease',
                 boxSizing: 'border-box'
               }}
-              onFocus={(e) => e.target.style.borderColor = '#CC8A00'}
-              onBlur={(e) => e.target.style.borderColor = '#ddd'}
             />
+            {formData.username && (formData.username.length < 3 || formData.username.length > 50) && (
+              <div style={{
+                color: '#d32f2f',
+                fontSize: '0.8rem',
+                marginTop: '0.3rem'
+              }}>
+                Username must be 3-50 characters long
+              </div>
+            )}
           </div>
 
           <div style={{ marginBottom: '2rem' }}>
@@ -131,51 +122,88 @@ export default function AdminLogin({ onLoginSuccess }: LoginProps) {
             }}>
               Password
             </label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              style={{
-                width: '100%',
-                padding: '1rem',
-                border: '2px solid #ddd',
-                borderRadius: '8px',
-                fontSize: '1rem',
-                background: '#fff',
-                transition: 'border-color 0.3s ease',
-                boxSizing: 'border-box'
-              }}
-              onFocus={(e) => e.target.style.borderColor = '#CC8A00'}
-              onBlur={(e) => e.target.style.borderColor = '#ddd'}
-            />
+            <div style={{ position: 'relative' }}>
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                onFocus={handleFocus}
+                required
+                autoComplete="current-password"
+                style={{
+                  width: '100%',
+                  padding: '1rem',
+                  paddingRight: '3rem',
+                  border: error ? '2px solid #d32f2f' : '2px solid #ddd',
+                  borderRadius: '8px',
+                  fontSize: '1rem',
+                  background: '#fff',
+                  transition: 'border-color 0.3s ease',
+                  boxSizing: 'border-box'
+                }}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                style={{
+                  position: 'absolute',
+                  right: '1rem',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  color: '#666',
+                  fontSize: '0.9rem'
+                }}
+              >
+                {showPassword ? '👁️‍🗨️' : '👁️'}
+              </button>
+            </div>
+          </div>
+
+          {/* Security Notice */}
+          <div style={{
+            background: '#f5f5f5',
+            padding: '0.8rem',
+            borderRadius: '6px',
+            marginBottom: '1.5rem',
+            fontSize: '0.85rem',
+            color: '#666',
+            border: '1px solid #e0e0e0'
+          }}>
+            🔒 Your login session will expire after 24 hours for security
           </div>
 
           <button
             type="submit"
-            disabled={loading}
+            disabled={loading || !formData.username || !formData.password}
             style={{
               width: '100%',
               padding: '1rem',
-              background: loading ? '#ccc' : '#CC8A00',
+              background: (loading || !formData.username || !formData.password) ? '#ccc' : '#CC8A00',
               color: '#fff',
               border: 'none',
               borderRadius: '8px',
               fontSize: '1.1rem',
               fontWeight: 600,
-              cursor: loading ? 'not-allowed' : 'pointer',
+              cursor: (loading || !formData.username || !formData.password) ? 'not-allowed' : 'pointer',
               transition: 'background 0.3s ease',
               textTransform: 'uppercase'
             }}
             onMouseEnter={(e) => {
-              if (!loading) e.currentTarget.style.background = '#B87700';
+              if (!loading && formData.username && formData.password) {
+                e.currentTarget.style.background = '#B87700';
+              }
             }}
             onMouseLeave={(e) => {
-              if (!loading) e.currentTarget.style.background = '#CC8A00';
+              if (!loading && formData.username && formData.password) {
+                e.currentTarget.style.background = '#CC8A00';
+              }
             }}
           >
-            {loading ? 'Logging in...' : 'Login'}
+            {loading ? 'Authenticating...' : 'Sign In'}
           </button>
         </form>
       </div>

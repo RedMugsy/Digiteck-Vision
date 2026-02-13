@@ -29,7 +29,53 @@ dist-ssr
 *.avi
 *.webm
 
+# Environment variables (SECURITY: Never commit these)
+**/.env
+**/.env.local
+**/.env.development.local
+**/.env.test.local
+**/.env.production.local
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
 # Server
 server/.env
+server/.env.*
 server/logs/
 server/node_modules/
+server/data/
+server/uploads/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Railway deployment
+railway.json
+.railway/
+
+# Cloudflare
+wrangler.toml
+.dev.vars
+
+# Production secrets
+secrets.json
+config.json
+
+# Backup files
+*.bak
+*.tmp
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

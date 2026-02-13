@@ -5,6 +5,7 @@ import AboutOverview from "../sections/AboutOverview";
 import TripleCards from "../sections/TripleCards";
 import Expertise from "../sections/Expertise";
 import Metrics from "../sections/Metrics";
+import Leadership from "../sections/Leadership";
 import Footer from "../sections/Footer";
 import { updateMetaTags, injectStructuredData } from "../utils/seo";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -37,6 +38,7 @@ export default function About() {
       <TripleCards />
       <Expertise />
       <Metrics />
+      <Leadership />
       <Footer />
     </div>
   );

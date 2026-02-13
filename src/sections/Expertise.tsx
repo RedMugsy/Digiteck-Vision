@@ -210,33 +210,36 @@ export default function Expertise() {
           overflow: "visible"
         }}
       >
-        {/* Section Title */}
+        {/* Section Title - top left */}
+        <h2
+          className="section-title"
+          style={{
+            position: "absolute",
+            top: "2rem",
+            left: "2rem",
+            fontSize: "2.9rem",
+            margin: 0,
+            color: "#FFAD01",
+            fontWeight: 600,
+            letterSpacing: "-0.02em",
+            zIndex: 100,
+            textAlign: "left",
+          }}
+        >
+          {siteContent.expertise.sectionTitle}
+        </h2>
+
+        {/* Main Title */}
         <div
           ref={titleRef}
           style={{
             width: "100%",
             maxWidth: "1200px",
             marginBottom: "3rem",
-            opacity: 0
+            opacity: 0,
+            paddingTop: "6rem" // Add space below section title
           }}
         >
-          <div style={{ 
-            color: "#FFAD01", 
-            fontSize: "1rem", 
-            fontWeight: 600, 
-            marginBottom: "1rem",
-            display: "flex",
-            alignItems: "center",
-            gap: "0.5rem"
-          }}>
-            <div style={{ 
-              width: "8px", 
-              height: "8px", 
-              backgroundColor: "#FFAD01", 
-              borderRadius: "50%" 
-            }} />
-            {siteContent.expertise.sectionTitle}
-          </div>
           <h2 style={{ 
             fontSize: "3.5rem", 
             fontWeight: 700, 

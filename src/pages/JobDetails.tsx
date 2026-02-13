@@ -24,7 +24,7 @@ export default function JobDetails() {
 
 Note to user: Ensure you have attached your CV and optionally you may include the Cover Letter and any other supporting documents you many need.`;
     
-    const mailtoLink = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const mailtoLink = `mailto:info@digiteckvision.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailtoLink;
   };
 
