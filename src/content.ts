@@ -3,7 +3,7 @@ export const siteContent = {
     links: [
       { label: "Home", href: "/" },
       { label: "About Us", href: "/about" },
-      { label: "Solutions", href: "/solutions" },
+      { label: "Solutions", href: "#solutions" },
       { label: "Contact", href: "/contact" },
       { label: "Careers", href: "/careers" }
     ],
@@ -288,27 +288,27 @@ export const siteContent = {
     sectionTitle: "OUR LEADERSHIP",
     leaders: [
       {
-        name: "Ali Achkar",
-        title: "Chief Executive Officer",
-        bio: "Leading Digiteck Vision's strategic direction with over 15 years of experience in digital transformation and technology innovation across the MENA region.",
+        name: "Ali",
+        title: "MD & Founder",
+        bio: "Leading Digiteck Vision's strategic direction with over 28 years of experience across industries. The past 15 years focused solely on digital transformation and technology innovation across different sectors in the MENA region.",
         image: "/Media/Images/leader-1.jpg",
       },
       {
-        name: "Sarah Al-Mansouri",
+        name: "Samil",
         title: "Chief Technology Officer",
         bio: "Driving technical excellence and innovation, with expertise in enterprise solutions and emerging technologies including AI, blockchain, and cloud architecture.",
         image: "/Media/Images/leader-2.jpg",
       },
       {
-        name: "Mohammed Al-Khalifa",
+        name: "Sarah",
         title: "Chief Operating Officer",
         bio: "Overseeing operational excellence and delivery across all client engagements, ensuring world-class service and successful project outcomes.",
         image: "/Media/Images/leader-3.jpg",
       },
       {
-        name: "Fatima Rahman",
-        title: "Chief Strategy Officer",
-        bio: "Shaping the company's growth strategy and market positioning, with deep expertise in digital transformation consulting and strategic partnerships.",
+        name: "Christian",
+        title: "Chief Commercial Officer",
+        bio: "Leading Digiteck Vision’s commercial growth, partnerships, and market expansion across the region. Focused on scaling enterprise and government-grade platforms through strategic alliances, channel ecosystems, and long-term institutional relationships.",
         image: "/Media/Images/leader-4.jpg",
       },
     ],
@@ -324,31 +324,31 @@ export const siteContent = {
   
   expertise: {
     sectionTitle: "Our expertise",
-    title: "Driven by lasting excellence",
-    description: "We deliver innovative consulting solutions with focus and precision, guiding businesses to achieve meaningful results, drive sustainable growth, and create lasting success in every project we undertake",
+    title: "Engineering Digital Infrastructure for a Connected World",
+    description: "We specialize in architecting and deploying enterprise and government-grade digital platforms that unify identity, intelligence, automation, and secure operations into scalable ecosystems.Custom microservices-based platforms built for scale and integration. Super apps, digital wallets, workflow engines, and multi-channel enterprise systems.",
     ctaText: "Contact today",
     ctaLink: "/contact",
     image: "/Media/Images/expertise-hero.jpg",
     cards: [
       {
         icon: "star",
-        title: "Smart strategies",
-        description: "We craft strategies that propel your brand forward with accuracy"
+        title: "Digital Identity & Credential Infrastructure",
+        description: "Design and deploy next-generation mobile ID, biometric authentication, PKI, and verified credential platforms — built to replace legacy plastic IDs and fragmented identity systems.\nFrom corporate ecosystems to national-scale identity frameworks."
       },
       {
         icon: "play",
-        title: "Expert team", 
-        description: "Our team delivers tailored strategies that drive your brand's growth and success"
+        title: "Enterprise Platform Development", 
+        description: "Custom microservices-based platforms built for scale and integration.\nSuper apps, digital wallets, workflow engines, and multi-channel enterprise systems."
       },
       {
         icon: "squares",
-        title: "Market insights",
-        description: "We provide actionable strategies that elevate your brand with proven market insights"
+        title: "Cybersecurity & Trust Architecture",
+        description: "Security is embedded at the core. Our expertise spans:\n• PKI environments\n• Zero Trust frameworks\n• Secure credential management\n• Multi-modal biometrics\n• Secure access control\n• SOC\n• NIST-aligned frameworks\n• Fraud mitigation & identity protection"
       },
       {
-        icon: "refresh",
-        title: "Client focus",
-        description: "We design strategies centered on your needs, driving growth through dedicated collaboration"
+        icon: "brain",
+        title: "AI, Automation & Advanced Analytics",
+        description: "We build intelligent systems that transform operations through: \n• Cognitive automation & RPA\n• Machine learning\n• NLP & conversational AI\n• Intelligent process automation\n• Predictive analytics & market intelligence"
       }
     ]
   },

@@ -32,8 +32,47 @@ export default function CoverImage() {
   const finalSolid = useRef<HTMLDivElement>(null);
 
   useScene(root, () => {
+    const isMobile = window.innerWidth <= 768;
+    
     // Set content in position immediately - no slide animation
     gsap.set(wrapper.current!, { yPercent: 0 });
+
+    if (isMobile) {
+      // Mobile: Pin at 100vh and replicate desktop split animations
+      gsap.set([img2Container.current!, img3Container.current!, finalSolid.current!], { opacity: 0 });
+      gsap.set(img1Container.current!, { opacity: 1 });
+      
+      const mobileTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: root.current!,
+          start: "top top",
+          end: "+=350%",
+          pin: true,
+          pinSpacing: true,
+          scrub: 0.8,
+        },
+      });
+      
+      // Scene A -> B: Fade out text1, reveal image2 behind, split image1 left/right
+      mobileTl
+        .to(text1.current!, { opacity: 0, duration: 0.3 }, 0.25)
+        .to(img2Container.current!, { opacity: 1, duration: 0.01 }, 0.25)
+        .to(img1Left.current!, { xPercent: -120, duration: 1 }, 0.25)
+        .to(img1Right.current!, { xPercent: 120, duration: 1 }, 0.25)
+        // Scene B -> C: Fade out text2, reveal image3 behind, split image2 top/bottom
+        .to(text2.current!, { opacity: 0, duration: 0.3 }, 1.1667)
+        .to(img3Container.current!, { opacity: 1, duration: 0.01 }, 1.1667)
+        .to(img2Top.current!, { yPercent: -120, duration: 1 }, 1.1667)
+        .to(img2Bottom.current!, { yPercent: 120, duration: 1 }, 1.1667)
+        .to(img2Bottom.current!, { opacity: 0, duration: 0.3 }, 2.0667)
+        // Scene C -> D: Fade out text3, reveal final solid, split image3 left/right
+        .to(text3.current!, { opacity: 0, duration: 0.3 }, 2.0834)
+        .to(finalSolid.current!, { opacity: 1, duration: 0.01 }, 2.0834)
+        .to(img3Left.current!, { xPercent: -120, duration: 1 }, 2.0834)
+        .to(img3Right.current!, { xPercent: 120, duration: 1 }, 2.0834);
+      
+      return;
+    }
 
     // Main pinned timeline for internal scenes (350% scroll length)
     const mainTl = gsap.timeline({

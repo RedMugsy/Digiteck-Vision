@@ -236,10 +236,10 @@ export default function TripleCards() {
                     transform: "rotateY(180deg)",
                     display: "flex",
                     flexDirection: "column",
-                    justifyContent: "center",
+                    justifyContent: "flex-start",
                     alignItems: "center",
                     padding: "3rem 2rem",
-                    textAlign: "center",
+                    textAlign: i === 0 ? "center" : "left",
                   }}
                 >
                   <h3 style={{ 
@@ -247,6 +247,7 @@ export default function TripleCards() {
                     marginBottom: "1.5rem", 
                     color: "#000",
                     fontWeight: 700,
+                    textAlign: "center",
                   }}>
                     {card.title}
                   </h3>
@@ -255,6 +256,7 @@ export default function TripleCards() {
                     lineHeight: 1.6,
                     color: "#000",
                     opacity: 0.9,
+                    whiteSpace: "pre-line",
                   }}>
                     {card.backContent}
                   </p>

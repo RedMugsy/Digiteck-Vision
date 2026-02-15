@@ -13,12 +13,42 @@ export default function ImageSwap() {
   const textContent = useRef<HTMLDivElement>(null);
 
   useScene(root, () => {
+    const isMobile = window.innerWidth <= 768;
+    
     // Set content in position immediately - no slide animation
     gsap.set(wrapper.current!, { yPercent: 0 });
 
     // Image swap animation
     const img1 = stack.current!.querySelector<HTMLDivElement>("[data-img='1']");
     const img2 = stack.current!.querySelector<HTMLDivElement>("[data-img='2']");
+
+    if (isMobile) {
+      // Mobile: Pin at 100vh and animate image slides + text swaps
+      const mobileTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: root.current!,
+          start: "top top",
+          end: "+=200%",
+          pin: true,
+          pinSpacing: true,
+          scrub: 1,
+        },
+      });
+
+      // Slide 1 -> 2: slide img1 off left, swap text
+      mobileTl
+        .to(img1!, { xPercent: -110, duration: 1, ease: "power2.inOut" }, 0.25)
+        .to(textContent.current!, { opacity: 0, duration: 0.1 }, 0.9)
+        .set(textContent.current!, { innerHTML: `<h2>${siteContent.imageSwap.slides[1].title}</h2><p>${siteContent.imageSwap.slides[1].body}</p>` })
+        .to(textContent.current!, { opacity: 1, duration: 0.1 })
+        // Slide 2 -> 3: slide img2 off left, swap text
+        .to(img2!, { xPercent: -110, duration: 1, ease: "power2.inOut" }, 1.25)
+        .to(textContent.current!, { opacity: 0, duration: 0.1 }, 2.0)
+        .set(textContent.current!, { innerHTML: `<h2>${siteContent.imageSwap.slides[2].title}</h2><p>${siteContent.imageSwap.slides[2].body}</p>` })
+        .to(textContent.current!, { opacity: 1, duration: 0.1 });
+      
+      return;
+    }
 
     const tl = gsap.timeline({
       scrollTrigger: {

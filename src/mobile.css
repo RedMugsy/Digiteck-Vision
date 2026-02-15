@@ -13,6 +13,35 @@
     contain: none !important;
   }
 
+  /* Sections that pin need overflow:hidden.
+     All others get overflow:visible for content to show. */
+  .panel:not(.metrics-section):not(.leadership-section):not(#imageSwap-section):not(#coverImage-section):not(#leadershipSwap-section) {
+    overflow: visible !important;
+  }
+
+  /* All panels need proper stacking on mobile
+     EXCEPT sections that need GSAP pinning (position:fixed) */
+  .panel:not(.metrics-section):not(.leadership-section):not(#imageSwap-section):not(#coverImage-section):not(#leadershipSwap-section),
+  section:not(.metrics-section):not(.leadership-section):not(#imageSwap-section):not(#coverImage-section):not(#leadershipSwap-section) {
+    position: relative !important;
+    display: block !important;
+    min-height: 100vh !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+
+  /* Pinned sections: allow GSAP to control position for pinning */
+  .metrics-section,
+  .leadership-section,
+  #imageSwap-section,
+  #coverImage-section {
+    display: block !important;
+    min-height: 100vh !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow: hidden !important;
+  }
+
   /* ===========================================
      MOBILE SECTION HEIGHT FIXES
      Ensure sections with absolutely positioned
@@ -32,11 +61,18 @@
     height: 100vh !important;
     min-height: 100vh !important;
     position: relative !important;
-    z-index: 10 !important;
-    background: linear-gradient(135deg, #1a1a1a, #2a2a2a) !important; /* Temporary visible background for debugging */
+    z-index: 1 !important;
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
+  }
+
+  /* AboutOverview section visibility */
+  .coverSolid-section {
+    display: block !important;
+    visibility: visible !important;
+    position: relative !important;
+    min-height: 100vh !important;
   }
 
   /* Hero video container - ensure video is visible on mobile */
@@ -56,20 +92,60 @@
      Elevate content boxes upward on mobile
      =========================================== */
   .coverSolid-text-container {
-    transform: translateY(-12.5vh) !important;
+    transform: translateY(5vh) !important;
+    max-width: 90vw !important;
+  }
+
+  /* CoverSolid (Home): top-align content + reduced font */
+  #coverSolid-container {
+    justify-content: flex-start !important;
+    padding-top: 8rem !important;
+  }
+  #coverSolid-container .coverSolid-text-container {
+    transform: none !important;
+  }
+  #coverSolid-container .coverSolid-text-container h3 {
+    font-size: 2rem !important;
+  }
+  #coverSolid-container .coverSolid-text-container p {
+    font-size: 1.02rem !important;
+  }
+
+  /* AboutOverview: wider text + smaller font */
+  #aboutOverview-container .coverSolid-container {
+    padding: 0.5rem !important;
+    padding-top: 6rem !important;
+  }
+  #aboutOverview-container .coverSolid-text-container {
+    transform: none !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 
   .hoverColumns-section31-content {
     transform: translateY(-12.5vh) !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+  }
+  .hoverColumns-section31-content h3 {
+    font-size: 2rem !important;
+  }
+  .hoverColumns-section31-content p {
+    font-size: 1.02rem !important;
   }
 
-  /* AboutOverview mobile font size increases */
-  .coverSolid-text-container h3 {
-    font-size: 2.43rem !important;
+  /* CoverSolid (Home) font sizes unchanged */
+
+  /* AboutOverview mobile font size - 50% of current */
+  #aboutOverview-container .coverSolid-text-container h3 {
+    font-size: 2rem !important;
   }
 
-  .coverSolid-text-container p {
-    font-size: 1.28rem !important;
+  #aboutOverview-container .coverSolid-text-container p {
+    font-size: 1.02rem !important;
   }
 
   .stat-number {
@@ -98,20 +174,19 @@
     padding-bottom: 0 !important;
     min-height: 100vh !important;
     height: 100vh !important;
+    visibility: visible !important;
+  }
+
+  /* CoverImage section mobile fixes */
+  #coverImage-section {
+    min-height: 100vh !important;
+    height: 100vh !important;
+    visibility: visible !important;
   }
 
   .mediaLink-section {
     margin-top: 0 !important;
     padding-top: 0 !important;
-  }
-
-  /* Further reduce gap - cut min-heights */
-  .imageSwap-images {
-    min-height: 40vh !important;
-  }
-
-  .imageSwap-text {
-    min-height: 30vh !important;
   }
 
   /* Reduce ExpandingDonuts mobile section height */
@@ -131,24 +206,45 @@
      METRICS SECTION - Mobile responsive styling
      (animations handled in component)
      =========================================== */
-  /* Target only the metrics section specifically */
-  .metrics-section {
-    height: 60vh !important;
-    min-height: 60vh !important;
-    position: relative !important;
+  /* Metrics and Leadership: visible + allow pinning */
+  .metrics-section,
+  .panel.metrics-section {
+    height: 100vh !important;
+    min-height: 100vh !important;
+    visibility: visible !important;
+    overflow: hidden !important;
   }
 
-  /* Ensure no GSAP pin-spacer issues on mobile */
+  /* Ensure all About page sections are visible */
+  .about-hero-panel,
+  .coverSolid-section,
+  .panel:has(.tripleCards-card),
+  .expertise-section {
+    display: block !important;
+    visibility: visible !important;
+    position: relative !important;
+    min-height: 100vh !important;
+  }
+
+  /* Leadership section: visible + allow pinning */
+  .leadership-section {
+    visibility: visible !important;
+    min-height: 100vh !important;
+    overflow: hidden !important;
+  }
+
+  /* Hide pin-spacers for sections that shouldn't pin on mobile.
+     Metrics and Leadership DO pin, so keep their spacers. */
   .pin-spacer {
-    display: none !important;
+    /* Allow all pin-spacers by default */
   }
 
 }
 
 @media (max-width: 480px) {
   .metrics-section {
-    height: 50vh !important;
-    min-height: 50vh !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
   }
 }
 
@@ -157,14 +253,15 @@
    =========================================== */
 @media (max-width: 768px) {
   .expertise-section {
-    min-height: 150vh !important;
-    height: 150vh !important;
+    min-height: auto !important;
+    height: auto !important;
     padding: 20px !important;
   }
 
   .expertise-section > div[style*="padding"] {
     padding: 1.5rem 1rem !important;
-    overflow-y: auto !important;
+    overflow-y: visible !important;
+    position: relative !important;
   }
 
   .expertise-section h2 {

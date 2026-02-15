@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useScene } from "../hooks/useScene";
@@ -12,76 +12,112 @@ export default function Leadership() {
   const card2 = useRef<HTMLDivElement>(null);
   const card3 = useRef<HTMLDivElement>(null);
   const card4 = useRef<HTMLDivElement>(null);
+  
+  const [isMobile, setIsMobile] = useState(false);
+  const [cardDimensions, setCardDimensions] = useState({ width: 500, height: 600 });
+
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      
+      if (mobile) {
+        const width = window.innerWidth * 0.8;
+        const height = width * 1.2;
+        setCardDimensions({ width, height });
+      } else {
+        setCardDimensions({ width: 500, height: 600 });
+      }
+    };
+    
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useScene(root, () => {
     const cards = [card1.current!, card2.current!, card3.current!, card4.current!];
     const isMobile = window.innerWidth <= 768;
 
     if (isMobile) {
-      // Mobile: Use xPercent for relative positioning
+      // Mobile: Cards slide fully across the viewport, right to left
+      const mobileCardWidth = window.innerWidth * 0.8;
+      const mobileCardHeight = mobileCardWidth * 1.2;
+      const vw = window.innerWidth;
+      
+      // Position cards off-screen to the right (using left property)
       cards.forEach((card) => {
         gsap.set(card, {
-          xPercent: 100,
+          left: vw,
           opacity: 1,
+          width: `${mobileCardWidth}px`,
+          height: `${mobileCardHeight}px`,
         });
       });
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: root.current!,
-          start: "top 80%",
-          end: "bottom 20%",
+          start: "top top",
+          end: "+=300%",
+          pin: true,
+          pinSpacing: true,
           scrub: 1,
         },
       });
 
-      // Each card slides in from right, then slides out to left
+      const centerLeft = (vw - mobileCardWidth) / 2;
+      const exitLeft = -mobileCardWidth;
+
+      // Each card: slide in from right, pause at center, slide out left
       cards.forEach((card, index) => {
+        const isLast = index === cards.length - 1;
+
         // Slide in from right to center
         tl.to(card, {
-          xPercent: 0,
+          left: centerLeft,
           ease: "power2.out",
-          duration: 0.3,
+          duration: 0.4,
         });
 
-        // Hold in center briefly
-        tl.to(card, {
-          xPercent: 0,
-          duration: 0.15,
-        });
-
-        // Slide out to left (except last card)
-        if (index < cards.length - 1) {
+        if (isLast) {
+          // Last card holds at center
           tl.to(card, {
-            xPercent: -100,
-            ease: "power2.in",
+            left: centerLeft,
             duration: 0.3,
           });
         } else {
-          // Last card stays visible
+          // Hold at center briefly
           tl.to(card, {
-            xPercent: 0,
+            left: centerLeft,
             duration: 0.15,
+          });
+
+          // Slide out to the left, off-screen
+          tl.to(card, {
+            left: exitLeft,
+            ease: "power2.in",
+            duration: 0.4,
           });
         }
       });
     } else {
       // Desktop: Cards travel across ENTIRE viewport width
       const cardWidth = 500;
-      const containerOffset = (window.innerWidth - cardWidth) / 2; // Container is centered
+      const viewportWidth = window.innerWidth;
       
       // Starting position: completely off-screen to the right
-      const startX = window.innerWidth - containerOffset;
+      const startLeft = viewportWidth;
       
-      // Center position: card centered in viewport (x: 0 relative to centered container)
-      const centerX = 0;
+      // Center position: card centered in viewport
+      const centerLeft = (viewportWidth - cardWidth) / 2;
       
       // End position: completely off-screen to the left
-      const endX = -cardWidth - containerOffset;
+      const endLeft = -cardWidth;
 
       cards.forEach((card) => {
         gsap.set(card, {
-          x: startX,
+          left: startLeft,
           opacity: 1,
         });
       });
@@ -103,7 +139,7 @@ export default function Leadership() {
 
         // Slide in from right edge to center
         tl.to(card, {
-          x: centerX,
+          left: centerLeft,
           ease: "power2.out",
           duration: 0.5,
         });
@@ -111,19 +147,19 @@ export default function Leadership() {
         if (isLastCard) {
           // Last card: stop and stay at center
           tl.to(card, {
-            x: centerX,
+            left: centerLeft,
             duration: 0.5,
           });
         } else {
           // Other cards: continue sliding off-screen to the left
           tl.to(card, {
-            x: centerX,
+            left: centerLeft,
             duration: 0.2,
           });
 
           // Slide completely off-screen to the left
           tl.to(card, {
-            x: endX,
+            left: endLeft,
             ease: "power2.in",
             duration: 0.5,
           });
@@ -161,7 +197,7 @@ export default function Leadership() {
             position: "absolute",
             top: "2rem",
             left: "2rem",
-            fontSize: "2.9rem",
+            fontSize: isMobile ? "2rem" : "2.9rem",
             margin: 0,
             color: "#FFAD01",
             fontWeight: 600,
@@ -173,17 +209,15 @@ export default function Leadership() {
           {siteContent.leadership.sectionTitle}
         </h2>
 
-        {/* Cards Container - Fixed size cards that travel full width */}
+        {/* Cards Container - Full width for card travel */}
         <div
           style={{
-            position: "relative",
+            position: "absolute",
+            top: "50%",
+            left: 0,
             width: "100%",
-            maxWidth: "500px",
-            height: "600px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            overflow: "hidden",
+            height: `${cardDimensions.height}px`,
+            transform: "translateY(-50%)",
           }}
         >
           {siteContent.leadership.leaders.map((leader, index) => {
@@ -195,7 +229,9 @@ export default function Leadership() {
                 ref={cardRef}
                 style={{
                   position: "absolute",
-                  width: "100%",
+                  width: `${cardDimensions.width}px`,
+                  top: "50%",
+                  transform: "translateY(-50%)",
                   height: "100%",
                   background: "#fff",
                   borderRadius: "16px",
@@ -221,6 +257,7 @@ export default function Leadership() {
                       backgroundImage: `url(${leader.image})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
+                      transform: "scale(1.4)",
                     }}
                   />
                 </div>
@@ -229,7 +266,7 @@ export default function Leadership() {
                 <div
                   style={{
                     flex: 1,
-                    padding: "2rem",
+                    padding: isMobile ? "1.2rem" : "2rem",
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "center",
@@ -239,7 +276,7 @@ export default function Leadership() {
                   {/* Title Row */}
                   <h3
                     style={{
-                      fontSize: "1.8rem",
+                      fontSize: isMobile ? "1.3rem" : "1.8rem",
                       fontWeight: 700,
                       color: "#000",
                       margin: 0,
@@ -253,10 +290,10 @@ export default function Leadership() {
                   {/* Subtitle/Position */}
                   <div
                     style={{
-                      fontSize: "1rem",
+                      fontSize: isMobile ? "0.75rem" : "1rem",
                       fontWeight: 600,
                       color: "#FFAD01",
-                      marginBottom: "1rem",
+                      marginBottom: isMobile ? "0.6rem" : "1rem",
                       textTransform: "uppercase",
                       letterSpacing: "0.05em",
                     }}
@@ -267,7 +304,7 @@ export default function Leadership() {
                   {/* Bio Text Row */}
                   <p
                     style={{
-                      fontSize: "0.95rem",
+                      fontSize: isMobile ? "0.75rem" : "0.95rem",
                       lineHeight: 1.6,
                       color: "#333",
                       margin: 0,

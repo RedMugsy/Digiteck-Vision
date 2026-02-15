@@ -32,12 +32,20 @@ const RefreshIcon = () => (
   </svg>
 );
 
+const BrainIcon = () => (
+  <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+    <path d="M24 6c-3 0-5.5 1.5-7 4-2.5-.5-5 .5-6.5 3s-1 5.5 1 7.5c-1.5 2-2 5-.5 7.5s4.5 4 7 3.5c1.5 2.5 4 4 7 4s5.5-1.5 7-4c2.5.5 5-.5 6.5-3s1-5.5-1-7.5c1.5-2 2-5 .5-7.5s-4.5-4-7-3.5C29.5 7.5 27 6 24 6z" stroke="#FFAD01" strokeWidth="2" fill="none"/>
+    <path d="M24 6v36M16 14c2 2 6 2 8 0M16 26c2-2 6-2 8 0M32 14c-2 2-6 2-8 0M32 26c-2-2-6-2-8 0" stroke="#FFAD01" strokeWidth="1.5" fill="none"/>
+  </svg>
+);
+
 const getIcon = (iconName: string) => {
   switch (iconName) {
     case "star": return <StarIcon />;
     case "play": return <PlayIcon />;
     case "squares": return <SquaresIcon />;
     case "refresh": return <RefreshIcon />;
+    case "brain": return <BrainIcon />;
     default: return <StarIcon />;
   }
 };
@@ -183,31 +191,20 @@ export default function Expertise() {
   });
 
   return (
-    <section ref={root} className="panel expertise-section">
-      {/* Mobile Spacer for section height fix */}
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100vh",
-          pointerEvents: "none",
-          zIndex: -1
-        }}
-      />
+    <section ref={root} className="panel expertise-section" style={{ height: isMobile ? undefined : "130vh" }}>
       <div
         ref={content}
         style={{
-          position: "absolute",
-          inset: 0,
+          position: isMobile ? "relative" : "absolute",
+          inset: isMobile ? undefined : 0,
           background: "#0B0B0F",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
           padding: "4rem",
-          overflow: "visible"
+          overflow: "visible",
+          minHeight: isMobile ? "100vh" : undefined,
         }}
       >
         {/* Section Title - top left */}
@@ -257,7 +254,7 @@ export default function Expertise() {
             width: "100%",
             maxWidth: "1200px",
             display: "grid",
-            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+            gridTemplateColumns: isMobile ? "1fr" : "1.3fr 0.7fr",
             gap: "4rem",
             alignItems: "start"
           }}
@@ -298,7 +295,8 @@ export default function Expertise() {
                   fontSize: "0.9rem", 
                   color: "#B0B0B0", 
                   margin: 0, 
-                  lineHeight: 1.5 
+                  lineHeight: 1.5,
+                  whiteSpace: "pre-line" 
                 }}>
                   {card.description}
                 </p>

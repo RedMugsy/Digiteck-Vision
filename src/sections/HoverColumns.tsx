@@ -95,7 +95,7 @@ export default function HoverColumns() {
             alignItems: "center",
             justifyContent: "flex-start",
             position: "relative",
-            padding: "4rem 4rem 0 4rem",
+            padding: window.innerWidth <= 768 ? "1rem" : "4rem 4rem 0 4rem",
             overflow: "hidden",
           }}
         >
@@ -106,7 +106,7 @@ export default function HoverColumns() {
               inset: 0,
               backgroundImage: `url(/Media/Images/whatwedobg.jpg)`,
               backgroundSize: "cover",
-              backgroundPosition: "center",
+              backgroundPosition: window.innerWidth <= 768 ? "70% center" : "center",
               zIndex: 0,
             }}
           />
@@ -126,7 +126,7 @@ export default function HoverColumns() {
             style={{
               position: "relative",
               zIndex: 5,
-              maxWidth: window.innerWidth <= 768 ? "90vw" : "50vw",
+              maxWidth: window.innerWidth <= 768 ? "95vw" : "50vw",
               display: "flex",
               flexDirection: "column",
               gap: "1.5rem",
@@ -136,7 +136,7 @@ export default function HoverColumns() {
             <div>
               <h3
                 style={{
-                  fontSize: "3rem",
+                  fontSize: "2.21rem",
                   margin: 0,
                   color: "#fff",
                   fontWeight: 600,
@@ -154,7 +154,7 @@ export default function HoverColumns() {
                 style={{
                   margin: 0,
                   opacity: 0.8,
-                  fontSize: "1.275rem",
+                  fontSize: "1.53rem",
                   lineHeight: 1.6,
                   textAlign: "left",
                   color: "#fff",

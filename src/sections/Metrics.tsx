@@ -26,64 +26,73 @@ export default function Metrics() {
     });
 
     if (isMobile) {
-      // Mobile: Proper animation without pinning
+      // Mobile: Pin the section and animate metrics with proper timing
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: root.current!,
-          start: "top 70%",
-          end: "bottom 30%",
+          start: "top top",
+          end: "+=200%",
+          pin: true,
+          pinSpacing: true,
           scrub: 1,
-          // NO pinning on mobile to prevent overlay
         },
       });
 
-      // Restore proper mobile animation with scaling and blur
+      // Metric 1: Appear, grow, dissolve
       tl.to(metrics[0], {
         opacity: 1,
         ease: "power2.out",
+        duration: 0.2,
+      })
+      .to(metrics[0], {
+        scale: 2,
+        opacity: 1,
+        ease: "power2.inOut",
         duration: 0.3,
       })
       .to(metrics[0], {
-        scale: 2, // Grow effect
-        opacity: 1,
-        ease: "power2.inOut",
-        duration: 0.5,
-      }, "+=0.2")
-      .to(metrics[0], {
-        scale: 3, // Continue growing while dissolving
+        scale: 3,
         opacity: 0,
-        filter: "blur(8px)", // Blur dissolve effect
+        filter: "blur(8px)",
         ease: "power2.out",
-        duration: 0.4,
+        duration: 0.3,
       })
+      // Metric 2: Appear, grow, dissolve
       .to(metrics[1], {
         opacity: 1,
         ease: "power2.out",
-        duration: 0.3,
-      }, "-=0.2")
+        duration: 0.2,
+      })
       .to(metrics[1], {
         scale: 2,
         opacity: 1,
         ease: "power2.inOut",
-        duration: 0.5,
-      }, "+=0.2")
+        duration: 0.3,
+      })
       .to(metrics[1], {
         scale: 3,
         opacity: 0,
         filter: "blur(8px)",
         ease: "power2.out",
-        duration: 0.4,
+        duration: 0.3,
+      })
+      // Metric 3: Appear, stay visible
+      .to(metrics[2], {
+        opacity: 1,
+        ease: "power2.out",
+        duration: 0.2,
       })
       .to(metrics[2], {
+        scale: 1.1,
         opacity: 1,
         ease: "power2.out",
         duration: 0.3,
-      }, "-=0.2")
+      })
+      // Hold third metric visible before transitioning
       .to(metrics[2], {
-        scale: 1.1, // Final metric stays with slight emphasis
+        scale: 1.1,
         opacity: 1,
-        ease: "power2.out",
-        duration: 0.5,
+        duration: 0.2,
       });
     } else {
       // Desktop: Full pinning animation
@@ -157,31 +166,31 @@ export default function Metrics() {
       className="panel metrics-section" 
       style={{ 
         background: "#000",
-        height: isMobile ? "60vh" : "100vh", // Much shorter on mobile
-        minHeight: isMobile ? "60vh" : "100vh",
+        height: "100vh",
+        minHeight: "100vh",
         position: "relative"
       }}
     >
       <div
         style={{
-          position: isMobile ? "relative" : "absolute",
-          inset: isMobile ? undefined : 0,
+          position: "absolute",
+          inset: 0,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
           gap: 0,
           padding: isMobile ? "2rem 1rem" : "4rem",
-          minHeight: isMobile ? "60vh" : "100vh",
-          height: isMobile ? "60vh" : "100vh",
+          minHeight: "100vh",
+          height: "100vh",
         }}
       >
-        {/* Desktop: All metrics in same position using absolute positioning within flex container */}
+        {/* All metrics in same position using absolute positioning within flex container */}
         <div
           style={{
             position: "relative",
             width: "100%",
-            height: isMobile ? "0" : "0", // Zero height for both to stack metrics in center
+            height: "0",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",

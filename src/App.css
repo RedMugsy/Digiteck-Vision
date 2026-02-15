@@ -760,6 +760,7 @@ body {
     align-items: center !important;
     justify-content: center !important;
     padding: 0 !important;
+    overflow: visible !important;
   }
 
   .hero-content-wrapper {
@@ -772,15 +773,17 @@ body {
     align-items: center !important;
     justify-content: center !important;
     gap: 1.5rem !important;
+    overflow: visible !important;
   }
 
   .hero-grid-layout {
     display: flex !important;
     flex-direction: column !important;
-    gap: 1.5rem !important;
+    gap: 1rem !important;
     align-items: center !important;
     text-align: center !important;
     width: 100% !important;
+    overflow: visible !important;
   }
 
   .hero-text-column,
@@ -790,6 +793,7 @@ body {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
+    justify-content: center !important;
     text-align: center !important;
     height: auto !important;
     flex: none !important;
@@ -802,7 +806,7 @@ body {
 
   .hero-text-column {
     order: 2 !important;
-    gap: 1rem !important;
+    gap: 0.5rem !important;
   }
 
   .hero-text-column > div {
@@ -812,6 +816,7 @@ body {
 
   .hero-cta-column {
     order: 3 !important;
+    margin-top: 0.5rem !important;
   }
 
   /* Hero quote - hide on mobile */
@@ -824,10 +829,13 @@ body {
     position: relative !important;
     bottom: auto !important;
     right: auto !important;
-    margin-top: 0.5rem !important;
+    margin-top: 1rem !important;
     display: inline-block !important;
-    font-size: clamp(12px, 3vw, 16px) !important;
+    font-size: clamp(14px, 3.5vw, 18px) !important;
     padding: 0.75rem 1.5rem !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 10 !important;
   }
 
   /* Hero title - centered with proportional scaling */
@@ -841,8 +849,10 @@ body {
   /* Hero tagline - centered on mobile with proportional scaling */
   .heroTagline {
     text-align: center !important;
-    font-size: clamp(12px, 3vw, 16px) !important;
+    font-size: clamp(12px, 3.5vw, 16px) !important;
     line-height: 1.4 !important;
+    opacity: 0.85 !important;
+    max-width: 90vw !important;
   }
 
   /* Hero line - hide on mobile */

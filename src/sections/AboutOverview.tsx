@@ -13,35 +13,11 @@ export default function AboutOverview() {
   useScene(root, () => {
     // Set content in position immediately - no slide animation
     gsap.set(content.current!, { yPercent: 0 });
-
-    // Odometer animation for numbers in row
-    setTimeout(() => {
-      const numberElements = root.current?.querySelectorAll('.stat-number');
-      if (numberElements) {
-        numberElements.forEach((el, index) => {
-          const stat = siteContent.aboutOverview.stats[index];
-          if (stat && el) {
-            const obj = { val: 0 };
-            gsap.to(obj, {
-              val: stat.number,
-              duration: 2.5,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: root.current!,
-                start: "top center",
-                toggleActions: "play none none none",
-              },
-              onUpdate: function () {
-                el.textContent = Math.floor(obj.val).toString();
-              },
-            });
-          }
-        });
-      }
-    }, 100);
   });
 
-  return (
+    const isMobile = window.innerWidth <= 768;
+
+    return (
     <section ref={root} className="panel coverSolid-section">
       {/* Background Image */}
       <div
@@ -94,11 +70,11 @@ export default function AboutOverview() {
           inset: 0,
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
+          justifyContent: isMobile ? "flex-start" : "center",
           alignItems: "flex-start",
-          padding: "4rem",
+          padding: isMobile ? "1rem" : "4rem",
           paddingTop: "6rem",
-          paddingBottom: "22vh",
+          paddingBottom: "4rem",
           zIndex: 3,
           overflow: "hidden",
         }}
@@ -109,14 +85,14 @@ export default function AboutOverview() {
           style={{
             position: "relative",
             zIndex: 5,
-            maxWidth: "600px",
+            maxWidth: window.innerWidth <= 768 ? "95vw" : "50vw",
             marginLeft: "0",
             transform: "none",
           }}
         >
           <h3 
             style={{ 
-              fontSize: "2.6rem", 
+              fontSize: "2.21rem", 
               margin: 0, 
               color: "#fff", 
               fontWeight: 600, 
@@ -130,72 +106,15 @@ export default function AboutOverview() {
             style={{ 
               marginTop: "1.5rem", 
               opacity: 0.8, 
-              fontSize: "1.8rem", 
+              fontSize: "1.53rem", 
               lineHeight: 1.6, 
               textAlign: "left",
               color: "#fff",
+              whiteSpace: "pre-line",
             }}
           >
             {siteContent.aboutOverview.content}
           </p>
-        </div>
-
-        {/* Stats Row - Bottom of section */}
-        <div
-          className="coverSolid-stats-row"
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: "20vh",
-            background: "#000000",
-            display: "flex",
-            justifyContent: "space-around",
-            alignItems: "center",
-            padding: "2rem 4rem",
-            gap: "2rem",
-            boxSizing: "border-box",
-            zIndex: 10,
-          }}
-        >
-          {siteContent.aboutOverview.stats.map((stat, index) => (
-            <div
-              key={index}
-              style={{
-                flex: 1,
-                textAlign: "center",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <div
-                className="stat-number"
-                style={{
-                  fontSize: "4.8rem",
-                  fontWeight: 700,
-                  color: "#FFAD01",
-                  lineHeight: 1,
-                  marginBottom: "0.5rem",
-                }}
-              >
-                {stat.number}
-              </div>
-              <div
-                style={{
-                  fontSize: "1rem",
-                  fontWeight: 500,
-                  color: "#FFAD01",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.1em",
-                }}
-              >
-                {stat.label}
-              </div>
-            </div>
-          ))}
         </div>
       </div>
     </section>

@@ -75,7 +75,7 @@ export default function CoverSolid() {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "flex-start",
-          padding: "4rem",
+          padding: window.innerWidth <= 768 ? "1rem" : "4rem",
           paddingTop: "6rem",
           paddingBottom: "22vh",
           zIndex: 1,
@@ -119,7 +119,7 @@ export default function CoverSolid() {
         >
           <h3 
             style={{ 
-              fontSize: "3rem", 
+              fontSize: "2.21rem", 
               margin: 0, 
               color: "#fff", 
               fontWeight: 600, 
@@ -133,7 +133,7 @@ export default function CoverSolid() {
             style={{ 
               marginTop: "1.5rem", 
               opacity: 0.8, 
-              fontSize: "1.5rem", 
+              fontSize: "1.53rem", 
               lineHeight: 1.6, 
               textAlign: "left",
               color: "#fff",

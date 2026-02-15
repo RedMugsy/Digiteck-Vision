@@ -17,7 +17,7 @@ export default function ProductFlip() {
   });
 
   return (
-    <section ref={root} className="panel">
+    <section ref={root} className="panel" id="solutions">
       <div
         ref={content}
         className="productFlip-content"
