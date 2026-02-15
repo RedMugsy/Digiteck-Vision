@@ -6,23 +6,14 @@ import { siteContent } from "../content";
  */
 
 export function getAllTags(): string[] {
-  const tags = new Set<string>();
-  
-  // Extract tags from hoverTable (Industries)
-  siteContent.hoverTable.rows.forEach(row => {
-    if (row.tags) {
-      row.tags.forEach(tag => tags.add(tag));
-    }
-  });
-  
-  // Extract tags from productFlip (Solutions)
-  siteContent.productFlip.products.forEach(product => {
-    if (product.tags) {
-      product.tags.forEach(tag => tags.add(tag));
-    }
-  });
-  
-  return Array.from(tags);
+  // Return default tags since tags property doesn't exist in content.ts
+  return [
+    "digital transformation",
+    "technology solutions",
+    "enterprise software",
+    "digital identity",
+    "MENA region"
+  ];
 }
 
 export function generateKeywords(): string {
@@ -83,17 +74,17 @@ function updateMetaTag(name: string, content: string) {
 /**
  * Get tags for a specific industry by number
  */
-export function getIndustryTags(industryNumber: string): string[] {
-  const industry = siteContent.hoverTable.rows.find(row => row.n === industryNumber);
-  return industry?.tags || [];
+export function getIndustryTags(_industryNumber: string): string[] {
+  // Tags property doesn't exist, return empty array
+  return [];
 }
 
 /**
  * Get tags for a specific product by id
  */
-export function getProductTags(productId: number): string[] {
-  const product = siteContent.productFlip.products.find(p => p.id === productId);
-  return product?.tags || [];
+export function getProductTags(_productId: number): string[] {
+  // Tags property doesn't exist, return empty array
+  return [];
 }
 
 /**
@@ -109,14 +100,12 @@ export function generateStructuredData() {
     "offers": siteContent.productFlip.products.map(product => ({
       "@type": "Service",
       "name": product.backTitle,
-      "description": product.backBody,
-      "keywords": product.tags
+      "description": product.backBody
     })),
     "areaServed": siteContent.hoverTable.rows.map(row => ({
       "@type": "Industry",
       "name": row.title,
-      "description": row.description,
-      "keywords": row.tags
+      "description": row.description
     }))
   };
   

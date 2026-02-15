@@ -100,7 +100,7 @@ export default function AboutOverview() {
               textAlign: "left" 
             }}
           >
-            {siteContent.aboutOverview.title}
+            {siteContent.aboutOverview.sectionTitle}
           </h3>
           <p 
             style={{ 

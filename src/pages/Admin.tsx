@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { endpoints, apiRequest, ApiError } from "../config/api";
+import { endpoints } from "../config/api";
 import { useAuth } from "../hooks/useAuth";
 
 interface Job {
@@ -42,7 +42,6 @@ export default function AdminDashboard({ admin }: AdminDashboardProps) {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [showJobForm, setShowJobForm] = useState(false);
   const [editingJob, setEditingJob] = useState<Job | null>(null);
 
@@ -247,7 +246,7 @@ export default function AdminDashboard({ admin }: AdminDashboardProps) {
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <span>Welcome, {admin.username}</span>
           <button
-            onClick={onLogout}
+            onClick={logout}
             style={{
               background: '#CC8A00',
               color: '#fff',

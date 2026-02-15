@@ -58,7 +58,7 @@ export default function AboutHero() {
       // Phase 3: Slide pieces upward (33-100% of scroll)
       const pieces = piecesContainer.current?.querySelectorAll('.piece');
       if (pieces) {
-        pieces.forEach((piece, i) => {
+        pieces.forEach((piece) => {
           const randomDelay = Math.random() * 0.3;
           const randomY = -100 - Math.random() * 50;
           tl.to(piece, {

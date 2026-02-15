@@ -121,30 +121,6 @@ export default function HoverTable() {
                           <p style={{ opacity: 0.8, lineHeight: 1.6, margin: 0 }}>
                             {row.description}
                           </p>
-                          {row.tags && (
-                            <div 
-                              style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}
-                              itemScope
-                              itemType="https://schema.org/keywords"
-                            >
-                              {row.tags.map((tag, idx) => (
-                                <span
-                                  key={idx}
-                                  itemProp="keyword"
-                                  style={{
-                                    padding: "0.25rem 0.75rem",
-                                    background: "rgba(255, 173, 1, 0.1)",
-                                    color: "#FFAD01",
-                                    borderRadius: "4px",
-                                    fontSize: "0.85rem",
-                                    border: "1px solid rgba(255, 173, 1, 0.3)",
-                                  }}
-                                >
-                                  {tag}
-                                </span>
-                              ))}
-                            </div>
-                          )}
                         </div>
 
                         {/* Right: Image at 90% of original size, expanding leftward */}
@@ -205,39 +181,6 @@ export default function HoverTable() {
                       <p style={{ opacity: 0.8, lineHeight: 1.6, margin: 0, fontSize: "0.9rem" }}>
                         {row.description}
                       </p>
-
-                      {/* Tags - aligned right, max 3 per row */}
-                      {row.tags && (
-                        <div 
-                          style={{ 
-                            display: "flex", 
-                            gap: "0.5rem", 
-                            flexWrap: "wrap",
-                            justifyContent: "flex-end"
-                          }}
-                          itemScope
-                          itemType="https://schema.org/keywords"
-                        >
-                          {row.tags.map((tag, idx) => (
-                            <span
-                              key={idx}
-                              itemProp="keyword"
-                              style={{
-                                padding: "0.25rem 0.5rem",
-                                background: "rgba(255, 173, 1, 0.1)",
-                                color: "#FFAD01",
-                                borderRadius: "4px",
-                                fontSize: "0.75rem",
-                                border: "1px solid rgba(255, 173, 1, 0.3)",
-                                flexBasis: "calc(33.333% - 0.5rem)",
-                                textAlign: "center",
-                              }}
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      )}
                     </div>
                   </div>
                 </div>

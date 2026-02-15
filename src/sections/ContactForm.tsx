@@ -43,7 +43,7 @@ export default function ContactForm() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(endpoints.contact, {
+      const response = await fetch(endpoints.messages, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
