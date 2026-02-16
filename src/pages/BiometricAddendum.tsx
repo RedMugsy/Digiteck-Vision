@@ -46,7 +46,7 @@ export default function BiometricAddendum() {
           border: "2px solid rgba(0, 0, 0, 0.1)",
           borderRadius: "12px",
           padding: "3rem",
-          background: "rgba(255, 255, 255, 0.5)",
+          background: "rgba(255, 255, 255, 0.3)",
           boxShadow: "0 4px 12px rgba(0, 0, 0, 0.05)",
         }}>
         <h1 style={{
