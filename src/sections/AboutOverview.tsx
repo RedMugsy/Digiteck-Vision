@@ -93,23 +93,9 @@ export default function AboutOverview() {
             boxSizing: "border-box",
           }}
         >
-          <h3 
-            style={{ 
-              fontSize: window.innerWidth <= 768 ? "clamp(1.5rem, 2.5vw, 2.21rem)" : "min(2.21rem, 2.5vw, 3.5vh)", 
-              margin: 0, 
-              color: "#fff", 
-              fontWeight: 600, 
-              letterSpacing: "-0.02em", 
-              textAlign: "left",
-              wordWrap: "break-word",
-              overflowWrap: "break-word",
-            }}
-          >
-            {siteContent.aboutOverview.sectionTitle}
-          </h3>
           <p 
             style={{ 
-              marginTop: "1.5rem", 
+              margin: 0,
               opacity: 0.8, 
               fontSize: window.innerWidth <= 768 ? "clamp(1rem, 1.8vw, 1.53rem)" : "min(1.53rem, 1.8vw, 2.5vh)", 
               lineHeight: 1.6, 
