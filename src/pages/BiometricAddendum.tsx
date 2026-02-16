@@ -31,7 +31,7 @@ export default function BiometricAddendum() {
       />
       
       <div style={{ position: "relative", zIndex: 1 }}>
-        <Navbar />
+        <Navbar theme="light" />
       </div>
       
       <div style={{

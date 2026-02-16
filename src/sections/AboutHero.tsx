@@ -88,6 +88,8 @@ export default function AboutHero() {
       {/* Minimalist menu overlay */}
       <div className="nav">
         <div className="navLeft">
+          <div className="logoDot" />
+          <span style={{ fontSize: "15.7px", fontWeight: 600 }}>{siteContent.hero.title}</span>
         </div>
         <div className="navLinks">
           {siteContent.navigation.links.map((link, index) => (
@@ -143,7 +145,7 @@ export default function AboutHero() {
               onClick={() => { setIsMobileMenuOpen(false); setActiveSection(link.label.toLowerCase().replace(" ", "")); }} 
               style={{ 
                 color: activeSection === link.label.toLowerCase().replace(" ", "") ? '#FFAD01' : '#fff', 
-                fontSize: '1.5rem', 
+                fontSize: '1.68rem', 
                 textDecoration: 'none', 
                 padding: '0.5rem 0' 
               }}

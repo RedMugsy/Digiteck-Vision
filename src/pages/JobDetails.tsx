@@ -172,6 +172,8 @@ Note to user: Ensure you have attached your CV and optionally you may include th
       {/* Minimalist menu overlay */}
       <div className="nav">
         <div className="navLeft">
+          <div className="logoDot" />
+          <span style={{ fontSize: "15.7px", fontWeight: 600 }}>Digiteck Vision</span>
         </div>
         <div className="navLinks">
           <a href="/" className={activeSection === "home" ? "active" : ""} onClick={() => setActiveSection("home")}>Home</a>
@@ -215,11 +217,11 @@ Note to user: Ensure you have attached your CV and optionally you may include th
             paddingTop: '3rem',
           }}
         >
-          <a href="/" style={{ color: '#fff', textDecoration: 'none', padding: '1rem 0', fontSize: '1.2rem' }}>Home</a>
-          <a href="/about" style={{ color: '#fff', textDecoration: 'none', padding: '1rem 0', fontSize: '1.2rem' }}>About Us</a>
-          <a href="/solutions" style={{ color: '#fff', textDecoration: 'none', padding: '1rem 0', fontSize: '1.2rem' }}>Solutions</a>
-          <a href="/contact" style={{ color: '#fff', textDecoration: 'none', padding: '1rem 0', fontSize: '1.2rem' }}>Contact</a>
-          <a href="/careers" style={{ color: '#FFAD01', textDecoration: 'none', padding: '1rem 0', fontSize: '1.2rem' }}>Careers</a>
+          <a href="/" style={{ color: '#fff', textDecoration: 'none', padding: '1rem 0', fontSize: '1.34rem' }}>Home</a>
+          <a href="/about" style={{ color: '#fff', textDecoration: 'none', padding: '1rem 0', fontSize: '1.34rem' }}>About Us</a>
+          <a href="/solutions" style={{ color: '#fff', textDecoration: 'none', padding: '1rem 0', fontSize: '1.34rem' }}>Solutions</a>
+          <a href="/contact" style={{ color: '#fff', textDecoration: 'none', padding: '1rem 0', fontSize: '1.34rem' }}>Contact</a>
+          <a href="/careers" style={{ color: '#FFAD01', textDecoration: 'none', padding: '1rem 0', fontSize: '1.34rem' }}>Careers</a>
         </div>
       )}
 

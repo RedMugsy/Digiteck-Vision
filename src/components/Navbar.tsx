@@ -1,19 +1,26 @@
 import { useState } from "react";
 import { siteContent } from "../content";
 
-export default function Navbar() {
+interface NavbarProps {
+  theme?: "light" | "dark";
+}
+
+export default function Navbar({ theme = "dark" }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  
+  const textColor = theme === "light" ? "#000" : "#fff";
+  const logoDotColor = theme === "light" ? "#000" : "#fff";
 
   return (
     <header className="nav">
       <div className="navLeft">
-        <div className="logoDot" />
-        <span style={{ fontSize: "14px", fontWeight: 600 }}>{siteContent.hero.title}</span>
+        <div className="logoDot" style={{ background: logoDotColor }} />
+        <span style={{ fontSize: "15.7px", fontWeight: 600, color: textColor }}>{siteContent.hero.title}</span>
       </div>
 
       <nav className="navLinks" aria-label="Primary">
         {siteContent.navigation.links.map((link, index) => (
-          <a key={index} href={link.href}>{link.label}</a>
+          <a key={index} href={link.href} style={{ color: textColor }}>{link.label}</a>
         ))}
       </nav>
 
@@ -53,7 +60,7 @@ export default function Navbar() {
               key={index}
               href={link.href} 
               onClick={() => setIsOpen(false)} 
-              style={{ color: '#fff', fontSize: '1.5rem', textDecoration: 'none' }}
+              style={{ color: '#fff', fontSize: '1.68rem', textDecoration: 'none' }}
             >
               {link.label}
             </a>

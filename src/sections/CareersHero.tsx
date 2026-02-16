@@ -33,6 +33,8 @@ export default function CareersHero() {
       {/* Minimalist menu overlay */}
       <div className="nav">
         <div className="navLeft">
+          <div className="logoDot" />
+          <span style={{ fontSize: "15.7px", fontWeight: 600 }}>{siteContent.hero.title}</span>
         </div>
         <div className="navLinks">
           {siteContent.navigation.links.map((link, index) => (
@@ -89,7 +91,7 @@ export default function CareersHero() {
                 color: link.label === 'Careers' ? '#FFAD01' : '#fff', 
                 textDecoration: 'none', 
                 padding: '1rem 0', 
-                fontSize: '1.2rem' 
+                fontSize: '1.34rem' 
               }}
             >
               {link.label}

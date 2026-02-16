@@ -117,6 +117,8 @@ export default function ContactForm() {
       {/* Navigation menu */}
       <div className="nav" style={{ background: 'rgba(11, 11, 15, 0.95)', padding: '1rem 2rem', borderRadius: '8px', left: '24px', right: '24px', top: '24px' }}>
         <div className="navLeft">
+          <div className="logoDot" />
+          <span style={{ fontSize: "15.7px", fontWeight: 600 }}>{siteContent.hero.title}</span>
         </div>
         <div className="navLinks">
           {siteContent.navigation.links.map((link, index) => (
@@ -172,7 +174,7 @@ export default function ContactForm() {
               onClick={() => { setIsMobileMenuOpen(false); setActiveSection(link.label.toLowerCase().replace(" ", "")); }} 
               style={{ 
                 color: activeSection === link.label.toLowerCase().replace(" ", "") ? '#FFAD01' : '#fff', 
-                fontSize: '1.5rem', 
+                fontSize: '1.68rem', 
                 textDecoration: 'none', 
                 padding: '0.5rem 0' 
               }}
@@ -180,7 +182,7 @@ export default function ContactForm() {
               {link.label}
             </a>
           ))}
-          <a href="/contact" onClick={() => { setIsMobileMenuOpen(false); setActiveSection("contact"); }} style={{ color: activeSection === "contact" ? '#FFAD01' : '#fff', fontSize: '1.5rem', textDecoration: 'none', padding: '0.5rem 0' }}>
+          <a href="/contact" onClick={() => { setIsMobileMenuOpen(false); setActiveSection("contact"); }} style={{ color: activeSection === "contact" ? '#FFAD01' : '#fff', fontSize: '1.68rem', textDecoration: 'none', padding: '0.5rem 0' }}>
             Contact
           </a>
           <button className="btn" style={{ marginTop: '1rem', width: 'fit-content', fontSize: '1.2rem' }}>
