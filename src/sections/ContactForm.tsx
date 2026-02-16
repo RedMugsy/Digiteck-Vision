@@ -118,7 +118,6 @@ export default function ContactForm() {
       <div className="nav" style={{ background: 'rgba(11, 11, 15, 0.95)', padding: '1rem 2rem', borderRadius: '8px', left: '24px', right: '24px', top: '24px' }}>
         <div className="navLeft">
           <div className="logoDot" />
-          <span style={{ fontSize: "15.7px", fontWeight: 600 }}>{siteContent.hero.title}</span>
         </div>
         <div className="navLinks">
           {siteContent.navigation.links.map((link, index) => (

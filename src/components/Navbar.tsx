@@ -15,7 +15,6 @@ export default function Navbar({ theme = "dark" }: NavbarProps) {
     <header className="nav">
       <div className="navLeft">
         <div className="logoDot" style={{ background: logoDotColor }} />
-        <span style={{ fontSize: "15.7px", fontWeight: 600, color: textColor }}>{siteContent.hero.title}</span>
       </div>
 
       <nav className="navLinks" aria-label="Primary">

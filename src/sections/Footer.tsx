@@ -262,9 +262,8 @@ export default function Footer() {
                 <h4 style={{ marginBottom: "1rem" }}>Policies</h4>
                 <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                   {[
-                    { text: "Privacy Policy", href: "#privacy" },
-                    { text: "Terms of Service", href: "#terms" },
-                    { text: "Cookie Policy", href: "#cookies" },
+                    { text: "Privacy Policy", href: "/privacy-policy" },
+                    { text: "Biometric Addendum", href: "/biometric-addendum" },
                   ].map((l: { text: string; href: string }) => (
                     <a key={l.href} href={l.href} style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>{l.text}</a>
                   ))}

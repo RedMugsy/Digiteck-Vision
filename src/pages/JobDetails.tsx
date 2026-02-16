@@ -173,7 +173,6 @@ Note to user: Ensure you have attached your CV and optionally you may include th
       <div className="nav">
         <div className="navLeft">
           <div className="logoDot" />
-          <span style={{ fontSize: "15.7px", fontWeight: 600 }}>Digiteck Vision</span>
         </div>
         <div className="navLinks">
           <a href="/" className={activeSection === "home" ? "active" : ""} onClick={() => setActiveSection("home")}>Home</a>

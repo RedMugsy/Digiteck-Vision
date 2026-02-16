@@ -35,7 +35,6 @@ export default function HeroVideo() {
       <div className="nav">
         <div className="navLeft">
           <div className="logoDot" />
-          <span style={{ fontSize: "15.7px", fontWeight: 600 }}>{siteContent.hero.title}</span>
         </div>
         <div className="navLinks">
           {siteContent.navigation.links.map((link, index) => (

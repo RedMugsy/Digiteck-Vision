@@ -30,7 +30,7 @@ export default function PrivacyPolicy() {
         }}
       />
       
-      <div style={{ position: "relative", zIndex: 1 }}>
+      <div style={{ position: "relative", zIndex: 1, pointerEvents: "auto" }}>
         <Navbar theme="light" />
       </div>
       
@@ -42,6 +42,13 @@ export default function PrivacyPolicy() {
         position: "relative",
         zIndex: 1,
       }}>
+        <div style={{
+          border: "2px solid rgba(0, 0, 0, 0.1)",
+          borderRadius: "12px",
+          padding: "3rem",
+          background: "rgba(255, 255, 255, 0.95)",
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.05)",
+        }}>
         <h1 style={{
           fontSize: "3rem",
           fontWeight: 700,
@@ -310,6 +317,7 @@ export default function PrivacyPolicy() {
             <p style={{ margin: "0.25rem 0" }}>Kingdom of Bahrain</p>
             <p style={{ margin: "0.25rem 0" }}>Email: <a href="mailto:privacy@digiteckvision.com" style={{ color: "#FFAD01" }}>privacy@digiteckvision.com</a></p>
           </div>
+        </div>
         </div>
       </div>
       
