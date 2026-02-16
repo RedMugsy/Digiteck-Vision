@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useScene } from "../hooks/useScene";
+import { useIsMobile } from "../hooks/useWindowSize";
 import { siteContent } from "../content";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -13,11 +14,11 @@ export default function TripleCards() {
   const centerCard = useRef<HTMLDivElement>(null);
   const rightCard = useRef<HTMLDivElement>(null);
   const [flippedCards, setFlippedCards] = useState<boolean[]>([false, false, false]);
+  const isMobile = useIsMobile();
 
   useScene(root, () => {
-    const isMobile = window.innerWidth <= 768;
     
-    console.log('TripleCards - isMobile:', isMobile, 'window.innerWidth:', window.innerWidth);
+    console.log('TripleCards - isMobile:', isMobile);
 
     // Set content in position immediately - no slide animation
     gsap.set(content.current!, { yPercent: 0 });

@@ -2,6 +2,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useScene } from "../hooks/useScene";
+import { useIsMobile } from "../hooks/useWindowSize";
 import { siteContent } from "../content";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -11,10 +12,10 @@ export default function Metrics() {
   const metric1 = useRef<HTMLDivElement>(null);
   const metric2 = useRef<HTMLDivElement>(null);
   const metric3 = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   useScene(root, () => {
     const metrics = [metric1.current!, metric2.current!, metric3.current!];
-    const isMobile = window.innerWidth <= 768;
 
     // Set initial state for all metrics - hidden but ready
     metrics.forEach((metric) => {
@@ -157,8 +158,6 @@ export default function Metrics() {
       });
     }
   });
-
-  const isMobile = window.innerWidth <= 768;
 
   return (
     <section 

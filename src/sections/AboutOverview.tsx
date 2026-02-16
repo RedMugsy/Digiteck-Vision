@@ -2,6 +2,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useScene } from "../hooks/useScene";
+import { useIsMobile } from "../hooks/useWindowSize";
 import { siteContent } from "../content";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -9,13 +10,12 @@ gsap.registerPlugin(ScrollTrigger);
 export default function AboutOverview() {
   const root = useRef<HTMLDivElement>(null);
   const content = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   useScene(root, () => {
     // Set content in position immediately - no slide animation
     gsap.set(content.current!, { yPercent: 0 });
   });
-
-    const isMobile = window.innerWidth <= 768;
 
     return (
     <section ref={root} className="panel coverSolid-section">
@@ -26,7 +26,7 @@ export default function AboutOverview() {
           inset: 0,
           backgroundImage: `url('/Media/Images/about us overview.jpg')`,
           backgroundSize: "cover",
-          backgroundPosition: window.innerWidth <= 768 ? "70% center" : "center",
+          backgroundPosition: isMobile ? "70% center" : "center",
           backgroundRepeat: "no-repeat",
           zIndex: 1,
         }}
@@ -86,7 +86,7 @@ export default function AboutOverview() {
           style={{
             position: "relative",
             zIndex: 5,
-            maxWidth: window.innerWidth <= 768 ? "95vw" : "calc(50vw - 4rem)",
+            maxWidth: isMobile ? "95vw" : "calc(50vw - 4rem)",
             marginLeft: "0",
             transform: "none",
             width: "100%",
@@ -97,7 +97,7 @@ export default function AboutOverview() {
             style={{ 
               margin: 0,
               opacity: 0.8, 
-              fontSize: window.innerWidth <= 768 ? "clamp(1rem, 1.8vw, 1.53rem)" : "min(1.53rem, 1.8vw, 2.5vh)", 
+              fontSize: isMobile ? "clamp(1rem, 1.8vw, 1.53rem)" : "min(1.53rem, 1.8vw, 2.5vh)", 
               lineHeight: 1.6, 
               textAlign: "left",
               color: "#fff",

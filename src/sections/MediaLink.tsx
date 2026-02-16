@@ -2,6 +2,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useScene } from "../hooks/useScene";
+import { useIsMobile } from "../hooks/useWindowSize";
 import { siteContent } from "../content";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -9,8 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function MediaLink() {
   const root = useRef<HTMLDivElement>(null);
   const content = useRef<HTMLDivElement>(null);
-
-  const isMobile = window.innerWidth <= 768;
+  const isMobile = useIsMobile();
 
   useScene(root, () => {
     // Set content in position immediately - no slide animation
