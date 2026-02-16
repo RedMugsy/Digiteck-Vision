@@ -246,15 +246,16 @@ router.post('/messages', validateMessage, handleValidationErrors, async (req, re
     const { firstName, lastName, email, phone, company, message, turnstileToken } = req.body;
     
     // Verify Turnstile token
-    const isValidCaptcha = await verifyTurnstile(turnstileToken);
-    if (!isValidCaptcha) {
+    const verification = await verifyTurnstile(turnstileToken);
+    if (!verification.success) {
       securityLogger('CONTACT_MESSAGE_CAPTCHA_FAILED', {
         ip: req.ip,
-        email: email
+        email: email,
+        error: verification.error
       });
       return res.status(400).json({ 
         error: 'Captcha verification failed',
-        message: 'Please complete the security challenge' 
+        message: verification.error || 'Please complete the security challenge' 
       });
     }
     
