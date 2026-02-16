@@ -73,8 +73,9 @@ export default function AboutOverview() {
           justifyContent: isMobile ? "flex-start" : "center",
           alignItems: "flex-start",
           padding: isMobile ? "1rem" : "4rem",
-          paddingTop: "6rem",
+          paddingTop: isMobile ? "6rem" : "7rem",
           paddingBottom: "4rem",
+          paddingRight: isMobile ? "1rem" : "4rem",
           zIndex: 3,
           overflow: "hidden",
         }}
@@ -85,7 +86,7 @@ export default function AboutOverview() {
           style={{
             position: "relative",
             zIndex: 5,
-            maxWidth: window.innerWidth <= 768 ? "95vw" : "50vw",
+            maxWidth: window.innerWidth <= 768 ? "100%" : "calc(50vw - 4rem)",
             marginLeft: "0",
             transform: "none",
             width: "100%",
