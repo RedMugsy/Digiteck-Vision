@@ -180,6 +180,8 @@ export default function HoverColumns() {
             justifyContent: "flex-start",
             background: "transparent",
             marginTop: "-30vh",
+            position: "relative",
+            zIndex: 3,
           }}
         >
         {/* Columns - all visible on mobile, no internal scrolling */}
