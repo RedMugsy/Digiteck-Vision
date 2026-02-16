@@ -95,7 +95,7 @@ export default function AboutOverview() {
         >
           <h3 
             style={{ 
-              fontSize: "clamp(1.5rem, 2.5vw, 2.21rem)", 
+              fontSize: window.innerWidth <= 768 ? "clamp(1.5rem, 2.5vw, 2.21rem)" : "min(2.21rem, 2.5vw, 3.5vh)", 
               margin: 0, 
               color: "#fff", 
               fontWeight: 600, 
@@ -111,7 +111,7 @@ export default function AboutOverview() {
             style={{ 
               marginTop: "1.5rem", 
               opacity: 0.8, 
-              fontSize: "clamp(1rem, 1.8vw, 1.53rem)", 
+              fontSize: window.innerWidth <= 768 ? "clamp(1rem, 1.8vw, 1.53rem)" : "min(1.53rem, 1.8vw, 2.5vh)", 
               lineHeight: 1.6, 
               textAlign: "left",
               color: "#fff",
