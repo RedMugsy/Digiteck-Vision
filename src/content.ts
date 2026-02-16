@@ -16,7 +16,7 @@ export const siteContent = {
     tagline: "A technology development firm building and operationg next fronteir technologies and solutions from strategy to execution, to shape a new era of experiences.",
     quote: "'An invasion of armies can be resisted, but not an IDEA whose time has come.' - Victor Hugo",
     ctaText: "Explore What We Do",
-    ctaLink: "#solutions",
+    ctaLink: "#coversolid",
     videos: [
       "/Media/Video/hero.mp4",
       "/Media/Video/hero.mp4", // Replace with hero-2.mp4 when you have it

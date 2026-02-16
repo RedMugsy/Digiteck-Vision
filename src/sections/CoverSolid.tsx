@@ -42,7 +42,7 @@ export default function CoverSolid() {
   });
 
   return (
-    <section ref={root} className="panel coverSolid-section">
+    <section ref={root} id="coversolid" className="panel coverSolid-section">
       {/* Mobile spacer: prevents section collapse when content is absolutely positioned */}
       <div style={{ height: "100vh", pointerEvents: "none" }} />
       {/* Section Title - top left */}
