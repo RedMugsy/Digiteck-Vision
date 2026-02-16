@@ -30,7 +30,7 @@ export default function PrivacyPolicy() {
         }}
       />
       
-      <div style={{ position: "relative", zIndex: 1, pointerEvents: "auto" }}>
+      <div style={{ position: "relative", zIndex: 100, pointerEvents: "auto" }}>
         <Navbar theme="light" />
       </div>
       
@@ -46,7 +46,7 @@ export default function PrivacyPolicy() {
           border: "2px solid rgba(0, 0, 0, 0.1)",
           borderRadius: "12px",
           padding: "3rem",
-          background: "rgba(255, 255, 255, 0.95)",
+          background: "rgba(255, 255, 255, 0.5)",
           boxShadow: "0 4px 12px rgba(0, 0, 0, 0.05)",
         }}>
         <h1 style={{

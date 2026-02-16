@@ -69,7 +69,6 @@ export default function MediaLink() {
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            filter: "grayscale(100%)",
           }}
         >
           <source src="/Media/Video/media-link.mp4?v=2" type="video/mp4" />
