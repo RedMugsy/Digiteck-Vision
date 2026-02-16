@@ -97,6 +97,7 @@ export default function HoverColumns() {
             position: "relative",
             padding: window.innerWidth <= 768 ? "1rem" : "4rem 4rem 0 4rem",
             overflow: "hidden",
+            zIndex: 2,
           }}
         >
           {/* Background Image Layer */}
@@ -107,7 +108,7 @@ export default function HoverColumns() {
               backgroundImage: `url(/Media/Images/whatwedobg.jpg)`,
               backgroundSize: "cover",
               backgroundPosition: window.innerWidth <= 768 ? "70% center" : "center",
-              zIndex: 1,
+              zIndex: 0,
             }}
           />
           {/* Dark overlay for better text readability */}
@@ -116,7 +117,7 @@ export default function HoverColumns() {
               position: "absolute",
               inset: 0,
               background: "rgba(0, 0, 0, 0.5)",
-              zIndex: 2,
+              zIndex: 1,
             }}
           />
           
@@ -125,7 +126,7 @@ export default function HoverColumns() {
             className="hoverColumns-section31-content"
             style={{
               position: "relative",
-              zIndex: 5,
+              zIndex: 2,
               maxWidth: window.innerWidth <= 768 ? "95vw" : "50vw",
               display: "flex",
               flexDirection: "column",
