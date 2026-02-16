@@ -86,7 +86,7 @@ export default function AboutOverview() {
           style={{
             position: "relative",
             zIndex: 5,
-            maxWidth: window.innerWidth <= 768 ? "100%" : "calc(50vw - 4rem)",
+            maxWidth: window.innerWidth <= 768 ? "95vw" : "calc(50vw - 4rem)",
             marginLeft: "0",
             transform: "none",
             width: "100%",
