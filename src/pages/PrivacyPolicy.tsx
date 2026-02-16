@@ -10,14 +10,37 @@ export default function PrivacyPolicy() {
   }, []);
 
   return (
-    <div className="page" style={{ background: "#fff" }}>
-      <Navbar />
+    <div className="page" style={{ background: "#fff", position: "relative", minHeight: "100vh" }}>
+      {/* Background image with gradient opacity */}
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundImage: "url('/Media/Images/jobsbackground.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
+          mask: "linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.5) 100%)",
+          WebkitMask: "linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.5) 100%)",
+          zIndex: 0,
+          pointerEvents: "none"
+        }}
+      />
+      
+      <div style={{ position: "relative", zIndex: 1 }}>
+        <Navbar />
+      </div>
       
       <div style={{
         maxWidth: "900px",
         margin: "0 auto",
         padding: "8rem 2rem 4rem",
         color: "#000",
+        position: "relative",
+        zIndex: 1,
       }}>
         <h1 style={{
           fontSize: "3rem",
@@ -290,7 +313,9 @@ export default function PrivacyPolicy() {
         </div>
       </div>
       
-      <Footer />
+      <div style={{ position: "relative", zIndex: 1 }}>
+        <Footer />
+      </div>
     </div>
   );
 }
