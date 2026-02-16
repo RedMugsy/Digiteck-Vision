@@ -709,6 +709,29 @@ body {
   text-align: left !important;
 }
 
+/* Intermediate screen sizes - tablets and small laptops (769px to 1200px) */
+@media (min-width: 769px) and (max-width: 1200px) {
+  /* AboutOverview section - ensure text stays contained */
+  #aboutOverview-container .coverSolid-text-container {
+    max-width: min(60vw, 650px) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding-right: 2rem !important;
+  }
+
+  #aboutOverview-container .coverSolid-text-container h3 {
+    font-size: clamp(1.5rem, 2.5vw, 2.21rem) !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  #aboutOverview-container .coverSolid-text-container p {
+    font-size: clamp(1rem, 1.8vw, 1.53rem) !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+}
+
 /* Desktop view maintained until under 10" screen (768px) */
 @media (max-width: 768px) {
   .panel {

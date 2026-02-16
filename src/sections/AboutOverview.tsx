@@ -85,19 +85,23 @@ export default function AboutOverview() {
           style={{
             position: "relative",
             zIndex: 5,
-            maxWidth: window.innerWidth <= 768 ? "95vw" : "50vw",
+            maxWidth: window.innerWidth <= 768 ? "95vw" : "min(50vw, 700px)",
             marginLeft: "0",
             transform: "none",
+            width: "100%",
+            boxSizing: "border-box",
           }}
         >
           <h3 
             style={{ 
-              fontSize: "2.21rem", 
+              fontSize: "clamp(1.5rem, 2.5vw, 2.21rem)", 
               margin: 0, 
               color: "#fff", 
               fontWeight: 600, 
               letterSpacing: "-0.02em", 
-              textAlign: "left" 
+              textAlign: "left",
+              wordWrap: "break-word",
+              overflowWrap: "break-word",
             }}
           >
             {siteContent.aboutOverview.sectionTitle}
@@ -106,11 +110,13 @@ export default function AboutOverview() {
             style={{ 
               marginTop: "1.5rem", 
               opacity: 0.8, 
-              fontSize: "1.53rem", 
+              fontSize: "clamp(1rem, 1.8vw, 1.53rem)", 
               lineHeight: 1.6, 
               textAlign: "left",
               color: "#fff",
               whiteSpace: "pre-line",
+              wordWrap: "break-word",
+              overflowWrap: "break-word",
             }}
           >
             {siteContent.aboutOverview.content}
