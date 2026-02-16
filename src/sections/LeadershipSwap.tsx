@@ -25,9 +25,10 @@ export default function LeadershipSwap() {
     const img3 = stack.current!.querySelector<HTMLDivElement>("[data-img='3']");
 
     const buildTextHTML = (index: number) => {
-      return `<h2 style="font-size: 2rem; margin: 0; font-weight: 700; color: #fff;">${leaders[index].name}</h2>
-              <p style="margin-top: 0.5rem; opacity: 0.6; font-size: 1rem; color: #FFAD01; font-weight: 600;">${leaders[index].title}</p>
-              <p style="margin-top: 1rem; opacity: 0.8; line-height: 1.6; font-size: 1.05rem;">${leaders[index].bio}</p>`;
+      const isMobile = window.innerWidth <= 768;
+      return `<h2 style="font-size: ${isMobile ? '1.3rem' : '2rem'}; margin: 0; font-weight: 700; color: #fff;">${leaders[index].name}</h2>
+              <p style="margin-top: ${isMobile ? '0.4rem' : '0.5rem'}; opacity: 0.6; font-size: ${isMobile ? '0.85rem' : '1rem'}; color: #FFAD01; font-weight: 600;">${leaders[index].title}</p>
+              <p style="margin-top: ${isMobile ? '0.6rem' : '1rem'}; opacity: 0.8; line-height: 1.6; font-size: ${isMobile ? '0.9rem' : '1.05rem'};">${leaders[index].bio}</p>`;
     };
 
     if (isMobile) {
@@ -94,7 +95,12 @@ export default function LeadershipSwap() {
     <section ref={root} className="panel" id="leadershipSwap-section">
       <div
         ref={wrapper}
-        style={{ position: "absolute", inset: 0, display: "flex" }}
+        style={{ 
+          position: "absolute", 
+          inset: 0, 
+          display: "flex",
+          flexDirection: window.innerWidth <= 768 ? "column" : "row",
+        }}
       >
         {/* Section Title - top left */}
         <h2
@@ -115,9 +121,14 @@ export default function LeadershipSwap() {
           {siteContent.leadership.sectionTitle}
         </h2>
 
-        {/* Left side - Stacked leader images */}
+        {/* Left side (or top on mobile) - Stacked leader images */}
         <div
-          style={{ flex: 1, position: "relative", background: "#000" }}
+          style={{ 
+            flex: window.innerWidth <= 768 ? "none" : 1,
+            height: window.innerWidth <= 768 ? "70vh" : "auto",
+            position: "relative", 
+            background: "#000",
+          }}
         >
           <div ref={stack} style={{ position: "absolute", inset: 0 }}>
             {/* Bottom layer - leader 4 (always visible) */}
@@ -170,21 +181,23 @@ export default function LeadershipSwap() {
           </div>
         </div>
 
-        {/* Right side - Text content */}
+        {/* Right side (or bottom on mobile) - Text content */}
         <div
           style={{
-            flex: 1,
+            flex: window.innerWidth <= 768 ? "none" : 1,
+            height: window.innerWidth <= 768 ? "30vh" : "auto",
             background: "#14141a",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            padding: "4rem",
+            padding: window.innerWidth <= 768 ? "2rem 1.5rem" : "4rem",
+            overflow: "auto",
           }}
         >
-          <div ref={textContent} style={{ maxWidth: "500px" }}>
+          <div ref={textContent} style={{ maxWidth: window.innerWidth <= 768 ? "100%" : "500px", width: "100%" }}>
             <h2
               style={{
-                fontSize: "2rem",
+                fontSize: window.innerWidth <= 768 ? "1.3rem" : "2rem",
                 margin: 0,
                 fontWeight: 700,
                 color: "#fff",
@@ -194,9 +207,9 @@ export default function LeadershipSwap() {
             </h2>
             <p
               style={{
-                marginTop: "0.5rem",
+                marginTop: "0.4rem",
                 opacity: 0.6,
-                fontSize: "1rem",
+                fontSize: window.innerWidth <= 768 ? "0.85rem" : "1rem",
                 color: "#FFAD01",
                 fontWeight: 600,
               }}
@@ -205,10 +218,10 @@ export default function LeadershipSwap() {
             </p>
             <p
               style={{
-                marginTop: "1rem",
+                marginTop: window.innerWidth <= 768 ? "0.6rem" : "1rem",
                 opacity: 0.8,
                 lineHeight: 1.6,
-                fontSize: "1.05rem",
+                fontSize: window.innerWidth <= 768 ? "0.9rem" : "1.05rem",
               }}
             >
               {leaders[0].bio}

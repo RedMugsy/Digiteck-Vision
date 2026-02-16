@@ -9,6 +9,7 @@ import ImageSwap from "../sections/ImageSwap";
 import ProductFlip from "../sections/ProductFlip";
 import MediaLink from "../sections/MediaLink";
 import Footer from "../sections/Footer";
+import BackToTop from "../components/BackToTop";
 import { updateMetaTags, injectStructuredData } from "../utils/seo";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
@@ -44,6 +45,7 @@ export default function Home() {
       <ImageSwap />
       <MediaLink />
       <Footer />
+      <BackToTop />
     </div>
   );
 }

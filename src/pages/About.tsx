@@ -7,6 +7,7 @@ import Expertise from "../sections/Expertise";
 import Metrics from "../sections/Metrics";
 import LeadershipSwap from "../sections/LeadershipSwap";
 import Footer from "../sections/Footer";
+import BackToTop from "../components/BackToTop";
 import { updateMetaTags, injectStructuredData } from "../utils/seo";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
@@ -40,6 +41,7 @@ export default function About() {
       <Metrics />
       <LeadershipSwap />
       <Footer />
+      <BackToTop />
     </div>
   );
 }

@@ -205,19 +205,21 @@ export default function CoverImage() {
             ref={text1}
             style={{
               position: "absolute",
-              left: "50%",
-              top: "15%",
-              transform: "translateX(-50%)",
-              maxWidth: "400px",
-              background: "rgba(255, 255, 255, 0.45)",
+              left: window.innerWidth <= 768 ? "50%" : "50%",
+              top: window.innerWidth <= 768 ? "auto" : "15%",
+              bottom: window.innerWidth <= 768 ? "5%" : "auto",
+              transform: window.innerWidth <= 768 ? "translateX(-50%)" : "translateX(-50%)",
+              maxWidth: window.innerWidth <= 768 ? "90%" : "400px",
+              background: window.innerWidth <= 768 ? "rgba(0, 0, 0, 0.85)" : "rgba(255, 255, 255, 0.45)",
               backdropFilter: "blur(10px)",
-              padding: "2rem",
+              padding: window.innerWidth <= 768 ? "1.5rem" : "2rem",
               borderRadius: "8px",
-              color: "black",
+              color: window.innerWidth <= 768 ? "white" : "black",
+              textAlign: "center",
             }}
           >
-            <h3>Data-Driven Insights</h3>
-            <p>Real-time market analysis powered by AI.</p>
+            <h3>{siteContent.coverImage.text1.title}</h3>
+            <p>{siteContent.coverImage.text1.body}</p>
           </div>
         </div>
 
@@ -261,18 +263,21 @@ export default function CoverImage() {
             ref={text2}
             style={{
               position: "absolute",
-              left: "50%",
-              top: "50%",
-              transform: "translate(-50%, -50%)",
+              left: window.innerWidth <= 768 ? "50%" : "50%",
+              top: window.innerWidth <= 768 ? "auto" : "50%",
+              bottom: window.innerWidth <= 768 ? "5%" : "auto",
+              transform: window.innerWidth <= 768 ? "translateX(-50%)" : "translate(-50%, -50%)",
+              maxWidth: window.innerWidth <= 768 ? "90%" : "400px",
               textAlign: "center",
-              background: "rgba(255, 255, 255, 0.1)",
+              background: window.innerWidth <= 768 ? "rgba(0, 0, 0, 0.85)" : "rgba(255, 255, 255, 0.1)",
               backdropFilter: "blur(10px)",
-              padding: "2rem",
+              padding: window.innerWidth <= 768 ? "1.5rem" : "2rem",
               borderRadius: "8px",
+              color: window.innerWidth <= 768 ? "white" : "white",
             }}
           >
-            <h3>Strategic Intelligence</h3>
-            <p>Transform data into actionable decisions.</p>
+            <h3>{siteContent.coverImage.text2.title}</h3>
+            <p>{siteContent.coverImage.text2.body}</p>
           </div>
         </div>
 
@@ -318,19 +323,22 @@ export default function CoverImage() {
             ref={text3}
             style={{
               position: "absolute",
-              right: "5%",
-              top: "50%",
-              transform: "translateY(-50%)",
-              maxWidth: "400px",
-              background: "rgba(255, 255, 255, 0.25)",
+              right: window.innerWidth <= 768 ? "auto" : "5%",
+              left: window.innerWidth <= 768 ? "50%" : "auto",
+              top: window.innerWidth <= 768 ? "auto" : "50%",
+              bottom: window.innerWidth <= 768 ? "5%" : "auto",
+              transform: window.innerWidth <= 768 ? "translateX(-50%)" : "translateY(-50%)",
+              maxWidth: window.innerWidth <= 768 ? "90%" : "400px",
+              background: window.innerWidth <= 768 ? "rgba(0, 0, 0, 0.85)" : "rgba(255, 255, 255, 0.25)",
               backdropFilter: "blur(10px)",
-              padding: "2rem",
+              padding: window.innerWidth <= 768 ? "1.5rem" : "2rem",
               borderRadius: "8px",
-              color: "black",
+              color: window.innerWidth <= 768 ? "white" : "black",
+              textAlign: window.innerWidth <= 768 ? "center" : "left",
             }}
           >
-            <h3>Precision Analytics</h3>
-            <p>Every insight backed by rigorous analysis.</p>
+            <h3>{siteContent.coverImage.text3.title}</h3>
+            <p>{siteContent.coverImage.text3.body}</p>
           </div>
         </div>
 

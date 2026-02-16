@@ -87,10 +87,10 @@ export default function HoverColumns() {
           minHeight: "100%",
         }}
       >
-        {/* Section 3.1 - Upper new content (100vh) */}
+        {/* Section 3.1 - Upper new content (115vh on mobile, 100vh on desktop) */}
         <div
           style={{
-            height: "100vh",
+            height: window.innerWidth <= 768 ? "115vh" : "100vh",
             display: "flex",
             alignItems: "center",
             justifyContent: "flex-start",
@@ -107,7 +107,7 @@ export default function HoverColumns() {
               backgroundImage: `url(/Media/Images/whatwedobg.jpg)`,
               backgroundSize: "cover",
               backgroundPosition: window.innerWidth <= 768 ? "70% center" : "center",
-              zIndex: 0,
+              zIndex: 1,
             }}
           />
           {/* Dark overlay for better text readability */}
@@ -116,7 +116,7 @@ export default function HoverColumns() {
               position: "absolute",
               inset: 0,
               background: "rgba(0, 0, 0, 0.5)",
-              zIndex: 0,
+              zIndex: 2,
             }}
           />
           
