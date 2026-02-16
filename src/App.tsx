@@ -7,6 +7,7 @@ import Careers from "./pages/Careers";
 import JobDetails from "./pages/JobDetails";
 import AdminWrapper from "./pages/AdminWrapper";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import BiometricAddendum from "./pages/BiometricAddendum";
 import CookieConsent from "./components/CookieConsent";
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/job-details/:jobId" element={<JobDetails />} />
         <Route path="/admin" element={<AdminWrapper />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/biometric-addendum" element={<BiometricAddendum />} />
       </Routes>
       <CookieConsent />
     </>
