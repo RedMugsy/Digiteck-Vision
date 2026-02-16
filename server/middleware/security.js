@@ -121,6 +121,10 @@ export const validateMessage = [
   body('message')
     .isLength({ min: 10, max: 2000 })
     .withMessage('Message must be 10-2000 characters'),
+  body('turnstileToken')
+    .isString()
+    .notEmpty()
+    .withMessage('Captcha verification required'),
 ];
 
 export const validateJobId = [
@@ -359,6 +363,34 @@ export const validateEnvironment = () => {
   }
   
   console.log('✅ Environment validation passed');
+};
+
+// Turnstile Verification
+export const verifyTurnstile = async (token) => {
+  if (!process.env.TURNSTILE_SECRET_KEY) {
+    console.warn('⚠️  Turnstile verification skipped - TURNSTILE_SECRET_KEY not configured');
+    return true; // Allow in development if not configured
+  }
+
+  try {
+    const formData = new URLSearchParams();
+    formData.append('secret', process.env.TURNSTILE_SECRET_KEY);
+    formData.append('response', token);
+
+    const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: formData,
+    });
+
+    const data = await response.json();
+    return data.success === true;
+  } catch (error) {
+    console.error('Turnstile verification error:', error);
+    return false;
+  }
 };
 
 // Security logging

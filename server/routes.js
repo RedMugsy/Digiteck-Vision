@@ -25,7 +25,8 @@ import {
   validateJobId,
   handleValidationErrors,
   authenticateAdmin,
-  securityLogger
+  securityLogger,
+  verifyTurnstile
 } from './middleware/security.js';
 
 const router = express.Router();
@@ -242,7 +243,20 @@ router.post('/jobs/:id/apply', validateJobId, validateJobApplication, handleVali
 // Public Messages Route
 router.post('/messages', validateMessage, handleValidationErrors, async (req, res) => {
   try {
-    const { firstName, lastName, email, phone, company, message } = req.body;
+    const { firstName, lastName, email, phone, company, message, turnstileToken } = req.body;
+    
+    // Verify Turnstile token
+    const isValidCaptcha = await verifyTurnstile(turnstileToken);
+    if (!isValidCaptcha) {
+      securityLogger('CONTACT_MESSAGE_CAPTCHA_FAILED', {
+        ip: req.ip,
+        email: email
+      });
+      return res.status(400).json({ 
+        error: 'Captcha verification failed',
+        message: 'Please complete the security challenge' 
+      });
+    }
     
     securityLogger('CONTACT_MESSAGE_SUBMITTED', {
       ip: req.ip,

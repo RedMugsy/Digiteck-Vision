@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { Turnstile } from '@marsidev/react-turnstile';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import '../phoneInput.css';
@@ -12,6 +13,7 @@ export default function ContactForm() {
   const [error, setError] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("contact");
+  const [turnstileToken, setTurnstileToken] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -56,6 +58,7 @@ export default function ContactForm() {
           company: formData.company,
           message: formData.message,
           interests: formData.interests,
+          turnstileToken: turnstileToken,
         }),
       });
 
@@ -67,6 +70,7 @@ export default function ContactForm() {
 
       // Success
       setSubmitted(true);
+      setTurnstileToken("");
       setFormData({
         firstName: "",
         lastName: "",
@@ -408,11 +412,21 @@ export default function ContactForm() {
             </label>
           </div>
 
+          {/* Turnstile Widget */}
+          <div style={{ marginBottom: "2rem", display: "flex", justifyContent: "center" }}>
+            <Turnstile
+              siteKey="0x4AAAAAACdii85OZzyC5X_N"
+              onSuccess={(token: string) => setTurnstileToken(token)}
+              onError={() => setTurnstileToken("")}
+              onExpire={() => setTurnstileToken("")}
+            />
+          </div>
+
           {/* Submit Button */}
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1rem" }}>
             <button
               type="submit"
-              disabled={isSubmitting || !formData.agreeToTerms}
+              disabled={isSubmitting || !formData.agreeToTerms || !turnstileToken}
               style={{
                 width: "150px",
                 height: "150px",
@@ -422,13 +436,13 @@ export default function ContactForm() {
                 color: isSubmitting ? "#999" : "#FFAD01",
                 fontSize: "1.25rem",
                 fontWeight: 700,
-                cursor: isSubmitting || !formData.agreeToTerms ? "not-allowed" : "pointer",
+                cursor: isSubmitting || !formData.agreeToTerms || !turnstileToken ? "not-allowed" : "pointer",
                 transition: "all 0.3s ease",
                 textTransform: "uppercase",
-                opacity: isSubmitting || !formData.agreeToTerms ? 0.5 : 1,
+                opacity: isSubmitting || !formData.agreeToTerms || !turnstileToken ? 0.5 : 1,
               }}
               onMouseEnter={(e) => {
-                if (!isSubmitting && formData.agreeToTerms) {
+                if (!isSubmitting && formData.agreeToTerms && turnstileToken) {
                   e.currentTarget.style.background = "#FFAD01";
                   e.currentTarget.style.color = "#fff";
                 }

@@ -64,10 +64,10 @@ export const siteContent = {
     content: "We are a MENA based technology company that aims to support the region's digital transformation. By partnering with local and international companies to build digital solutions that transform customer and user experiences.",
     image: "/Media/Images/cover-solid.jpg",
     stats: [
-      { number: 150, label: "Projects Delivered" },
-      { number: 50, label: "Global Clients" },
-      { number: 98, label: "Success Rate" },
-      { number: 25, label: "Industry Awards" },
+      { number: 235, label: "Projects Delivered" },
+      { number: 53, label: "Global Clients" },
+      { number: 93, label: "Success Rate" },
+      { number: 37, label: "Innovative Digital Solutions" },
     ],
   },
   
