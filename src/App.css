@@ -1074,11 +1074,15 @@ body {
     grid-template-rows: repeat(2, 1fr) !important;
     padding: 1.5rem 2rem !important;
     gap: 1rem !important;
+    align-items: start !important;
   }
 
   .coverSolid-stats-row > div {
     flex: none !important;
     min-width: auto !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
   }
 
   .coverSolid-stats-row .stat-number {
@@ -1277,11 +1281,15 @@ body {
     height: auto !important;
     min-height: 160px !important;
     gap: 0.75rem !important;
+    align-items: start !important;
   }
 
   .coverSolid-stats-row > div {
     flex: none !important;
     min-width: auto !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
   }
 
   .coverSolid-stats-row .stat-number {

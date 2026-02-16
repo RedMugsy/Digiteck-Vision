@@ -72,7 +72,7 @@ export default function MediaLink() {
             filter: "grayscale(100%)",
           }}
         >
-          <source src="/Media/Video/media-link.mp4" type="video/mp4" />
+          <source src="/Media/Video/media-link.mp4?v=2" type="video/mp4" />
         </video>
 
         <div
