@@ -264,6 +264,7 @@ export default function Footer() {
                   {[
                     { text: "Privacy Policy", href: "/privacy-policy" },
                     { text: "Terms of Service", href: "/terms-of-service" },
+                    { text: "Cookie Policy", href: "/cookie-policy" },
                     { text: "Biometric Addendum", href: "/biometric-addendum" },
                   ].map((l: { text: string; href: string }) => (
                     <a key={l.href} href={l.href} style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>{l.text}</a>

@@ -9,6 +9,7 @@ import AdminWrapper from "./pages/AdminWrapper";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import BiometricAddendum from "./pages/BiometricAddendum";
 import TermsOfService from "./pages/TermsOfService";
+import CookiePolicy from "./pages/CookiePolicy";
 import CookieConsent from "./components/CookieConsent";
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/biometric-addendum" element={<BiometricAddendum />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/cookie-policy" element={<CookiePolicy />} />
       </Routes>
       <CookieConsent />
     </>
