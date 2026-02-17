@@ -263,6 +263,7 @@ export default function Footer() {
                 <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                   {[
                     { text: "Privacy Policy", href: "/privacy-policy" },
+                    { text: "Terms of Service", href: "/terms-of-service" },
                     { text: "Biometric Addendum", href: "/biometric-addendum" },
                   ].map((l: { text: string; href: string }) => (
                     <a key={l.href} href={l.href} style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>{l.text}</a>
