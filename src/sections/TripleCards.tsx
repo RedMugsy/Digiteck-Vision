@@ -17,9 +17,6 @@ export default function TripleCards() {
   const isMobile = useIsMobile();
 
   useScene(root, () => {
-    
-    console.log('TripleCards - isMobile:', isMobile);
-
     // Set content in position immediately - no slide animation
     gsap.set(content.current!, { yPercent: 0 });
 
@@ -51,7 +48,6 @@ export default function TripleCards() {
     });
 
     if (isMobile) {
-      console.log('TripleCards - Applying MOBILE (VERTICAL) animation');
       // Mobile: Cards animate VERTICALLY ONLY
       slideOutTl
         .to(leftCard.current!, 
@@ -67,7 +63,6 @@ export default function TripleCards() {
           0
         );
     } else {
-      console.log('TripleCards - Applying DESKTOP (HORIZONTAL) animation');
       // Desktop: Cards animate HORIZONTALLY ONLY
       slideOutTl
         .to(leftCard.current!, 

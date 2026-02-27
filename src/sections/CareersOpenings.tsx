@@ -35,17 +35,17 @@ export default function CareersOpenings() {
       style={{ 
         background: "#0A0A0A", 
         padding: "8rem 4rem", 
-        overflow: "visible !important" as any,
+        overflow: "visible",
         height: "auto",
         minHeight: "100vh"
-      }}
+      } as React.CSSProperties}
     >
       <div
         style={{
           maxWidth: "1200px",
           margin: "0 auto",
-          overflow: "visible !important" as any
-        }}
+          overflow: "visible"
+        } as React.CSSProperties}
       >
         {/* Title */}
         <h2

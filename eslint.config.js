@@ -19,5 +19,11 @@ export default defineConfig([
       ecmaVersion: 2020,
       globals: globals.browser,
     },
+    rules: {
+      // Allow inline styles - necessary for dynamic responsive styling
+      'react/forbid-dom-props': 'off',
+      'react/forbid-component-props': 'off',
+      '@typescript-eslint/no-explicit-any': 'warn',
+    },
   },
 ])

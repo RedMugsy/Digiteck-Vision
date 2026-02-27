@@ -62,7 +62,6 @@ export default function Expertise() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    console.log("Expertise component mounted");
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
