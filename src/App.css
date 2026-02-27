@@ -707,28 +707,31 @@ body {
   letter-spacing: -0.02em !important;
   z-index: 100 !important;
   text-align: left !important;
+  font-size: clamp(1.8rem, 2.4vw, 2.9rem) !important;
 }
 
 /* Intermediate screen sizes - tablets and small laptops (769px to 1200px) */
 @media (min-width: 769px) and (max-width: 1200px) {
   /* AboutOverview section - ensure text stays contained */
   #aboutOverview-container .coverSolid-text-container {
-    max-width: min(60vw, 650px) !important;
+    max-width: 50vw !important;
     width: 100% !important;
     box-sizing: border-box !important;
-    padding-right: 2rem !important;
-  }
-
-  #aboutOverview-container .coverSolid-text-container h3 {
-    font-size: clamp(1.5rem, 2.5vw, 2.21rem) !important;
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
   }
 
   #aboutOverview-container .coverSolid-text-container p {
-    font-size: clamp(1rem, 1.8vw, 1.53rem) !important;
+    font-size: clamp(0.85rem, 1.28vw, 1.53rem) !important;
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
+  }
+
+  /* HoverColumns section 3.1 - scale text on mid-range desktops */
+  .hoverColumns-section31-content h3 {
+    font-size: clamp(1.4rem, 1.84vw, 2.21rem) !important;
+  }
+
+  .hoverColumns-section31-content p {
+    font-size: clamp(0.9rem, 1.28vw, 1.53rem) !important;
   }
 }
 
@@ -1532,6 +1535,38 @@ body {
   .hero-cta-button {
     font-size: 12px !important;
     padding: 0.75rem 1.25rem !important;
+  }
+}
+
+/* =====================================================
+   DESKTOP CONTENT-OVERFLOW FIXES
+   These three sections need height:auto + no clipping
+   so text/cards scale to fit on smaller desktop screens
+   ===================================================== */
+@media (min-width: 769px) {
+  /* HoverColumns: section 3.1 is 100vh, let it clip
+     naturally via its own overflow:hidden wrapper   */
+  .hoverColumns-section {
+    contain: none !important;
+    overflow: visible !important;
+    height: auto !important;
+    min-height: 100vh !important;
+  }
+
+  /* AboutOverview: purely text overlay on bg image;
+     section title must always be above the text box  */
+  .coverSolid-section {
+    contain: layout style !important;
+    overflow: hidden !important;
+  }
+
+  /* Expertise: content grows beyond 100vh on mid-range
+     desktops, allow the section to expand to fit       */
+  .expertise-section {
+    contain: none !important;
+    overflow: visible !important;
+    height: auto !important;
+    min-height: 100vh !important;
   }
 }
 
