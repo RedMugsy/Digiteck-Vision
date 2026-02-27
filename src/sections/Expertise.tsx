@@ -190,20 +190,23 @@ export default function Expertise() {
   });
 
   return (
-    <section ref={root} className="panel expertise-section" style={{ height: isMobile ? undefined : "130vh" }}>
+    <section ref={root} className="panel expertise-section" style={{ height: "auto", minHeight: "100vh" }}>
       <div
         ref={content}
         style={{
-          position: isMobile ? "relative" : "absolute",
-          inset: isMobile ? undefined : 0,
+          position: "relative",
           background: "#0B0B0F",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          padding: "4rem",
+          padding: isMobile ? "2rem 1.5rem" : "clamp(2rem, 3.5vw, 4rem)",
+          paddingTop: isMobile ? "5rem" : "clamp(6rem, 8vh, 8rem)",
+          paddingBottom: isMobile ? "3rem" : "clamp(3rem, 5vh, 5rem)",
           overflow: "visible",
-          minHeight: isMobile ? "100vh" : undefined,
+          minHeight: "100vh",
+          width: "100%",
+          boxSizing: "border-box",
         }}
       >
         {/* Section Title - top left */}
@@ -231,15 +234,14 @@ export default function Expertise() {
           style={{
             width: "100%",
             maxWidth: "1200px",
-            marginBottom: "3rem",
+            marginBottom: isMobile ? "1.5rem" : "clamp(1.5rem, 2.5vw, 3rem)",
             opacity: 0,
-            paddingTop: "6rem" // Add space below section title
           }}
         >
-          <h2 style={{ 
-            fontSize: "3.5rem", 
-            fontWeight: 700, 
-            color: "#fff", 
+          <h2 style={{
+            fontSize: isMobile ? "2.2rem" : "clamp(2rem, 2.92vw, 3.5rem)",
+            fontWeight: 700,
+            color: "#fff",
             margin: 0,
             lineHeight: 1.2
           }}>
@@ -254,7 +256,7 @@ export default function Expertise() {
             maxWidth: "1200px",
             display: "grid",
             gridTemplateColumns: isMobile ? "1fr" : "1.3fr 0.7fr",
-            gap: "4rem",
+            gap: isMobile ? "2rem" : "clamp(1.5rem, 3.5vw, 4rem)",
             alignItems: "start"
           }}
         >
@@ -264,9 +266,9 @@ export default function Expertise() {
             style={{
               display: "grid",
               gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-              gap: "2rem",
+              gap: isMobile ? "1.2rem" : "clamp(1rem, 1.8vw, 2rem)",
               opacity: 0,
-              marginTop: "2rem"
+              marginTop: isMobile ? "1rem" : "clamp(0.5rem, 1.5vw, 2rem)",
             }}
           >
             {siteContent.expertise.cards.map((card, index) => (
@@ -275,27 +277,27 @@ export default function Expertise() {
                 style={{
                   background: "#1A1A1A",
                   borderRadius: "12px",
-                  padding: "2rem",
+                  padding: isMobile ? "1.25rem" : "clamp(1rem, 1.5vw, 2rem)",
                   display: "flex",
                   flexDirection: "column",
-                  gap: "1rem"
+                  gap: isMobile ? "0.75rem" : "clamp(0.5rem, 0.8vw, 1rem)",
                 }}
               >
                 <div>{getIcon(card.icon)}</div>
-                <h3 style={{ 
-                  fontSize: "1.25rem", 
-                  fontWeight: 600, 
-                  color: "#fff", 
-                  margin: 0 
+                <h3 style={{
+                  fontSize: isMobile ? "1rem" : "clamp(0.85rem, 1.05vw, 1.25rem)",
+                  fontWeight: 600,
+                  color: "#fff",
+                  margin: 0
                 }}>
                   {card.title}
                 </h3>
-                <p style={{ 
-                  fontSize: "0.9rem", 
-                  color: "#B0B0B0", 
-                  margin: 0, 
+                <p style={{
+                  fontSize: isMobile ? "0.85rem" : "clamp(0.72rem, 0.78vw, 0.9rem)",
+                  color: "#B0B0B0",
+                  margin: 0,
                   lineHeight: 1.5,
-                  whiteSpace: "pre-line" 
+                  whiteSpace: "pre-line"
                 }}>
                   {card.description}
                 </p>
@@ -304,7 +306,7 @@ export default function Expertise() {
           </div>
 
           {/* Right Side - Image and Content */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: isMobile ? "1.2rem" : "clamp(1rem, 1.8vw, 2rem)" }}>
             {/* Image */}
             <div
               ref={imageRef}
@@ -335,7 +337,7 @@ export default function Expertise() {
             <p
               ref={descriptionRef}
               style={{
-                fontSize: "1rem",
+                fontSize: isMobile ? "0.85rem" : "clamp(0.8rem, 0.9vw, 1rem)",
                 color: "#B0B0B0",
                 lineHeight: 1.6,
                 margin: 0,

@@ -72,10 +72,10 @@ export default function AboutOverview() {
           flexDirection: "column",
           justifyContent: isMobile ? "flex-start" : "center",
           alignItems: "flex-start",
-          padding: isMobile ? "1rem" : "4rem",
-          paddingTop: isMobile ? "6rem" : "7rem",
-          paddingBottom: "4rem",
-          paddingRight: isMobile ? "1rem" : "4rem",
+          padding: isMobile ? "1rem" : "clamp(2rem, 3.5vw, 4rem)",
+          paddingTop: isMobile ? "6rem" : "clamp(6rem, 8vh, 8rem)",
+          paddingBottom: isMobile ? "2rem" : "clamp(2rem, 4vh, 4rem)",
+          paddingRight: isMobile ? "1rem" : "clamp(2rem, 3.5vw, 4rem)",
           zIndex: 3,
           overflow: "hidden",
         }}
@@ -86,7 +86,7 @@ export default function AboutOverview() {
           style={{
             position: "relative",
             zIndex: 5,
-            maxWidth: isMobile ? "95vw" : "calc(50vw - 4rem)",
+            maxWidth: isMobile ? "95vw" : "50vw",
             marginLeft: "0",
             transform: "none",
             width: "100%",
@@ -97,7 +97,7 @@ export default function AboutOverview() {
             style={{ 
               margin: 0,
               opacity: 0.8, 
-              fontSize: isMobile ? "clamp(1rem, 1.8vw, 1.53rem)" : "min(1.53rem, 1.8vw, 2.5vh)", 
+              fontSize: isMobile ? "clamp(1rem, 1.8vw, 1.53rem)" : "clamp(0.85rem, 1.28vw, 1.53rem)",
               lineHeight: 1.6, 
               textAlign: "left",
               color: "#fff",

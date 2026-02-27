@@ -92,10 +92,16 @@ export default function HoverColumns() {
           style={{
             height: window.innerWidth <= 768 ? "115vh" : "100vh",
             display: "flex",
-            alignItems: "center",
+            // Desktop: top-align so content stays at a fixed distance from the
+            // section title regardless of viewport height. Mobile keeps centering.
+            alignItems: window.innerWidth <= 768 ? "center" : "flex-start",
             justifyContent: "flex-start",
             position: "relative",
-            padding: window.innerWidth <= 768 ? "1rem" : "4rem 4rem 0 4rem",
+            padding: window.innerWidth <= 768 ? "1rem" : "clamp(2rem, 3.5vw, 4rem)",
+            // Desktop: fixed paddingTop so content is always the same distance
+            // below the section title. Mobile keeps its own value.
+            paddingTop: window.innerWidth <= 768 ? "6rem" : "7.5rem",
+            paddingBottom: window.innerWidth <= 768 ? "1rem" : "clamp(2rem, 4vh, 4rem)",
             overflow: "hidden",
             zIndex: 2,
           }}
@@ -130,14 +136,14 @@ export default function HoverColumns() {
               maxWidth: window.innerWidth <= 768 ? "95vw" : "50vw",
               display: "flex",
               flexDirection: "column",
-              gap: "1.5rem",
+              gap: "clamp(0.75rem, 1.2vw, 1.5rem)",
             }}
           >
             {/* Title Container */}
             <div>
               <h3
                 style={{
-                  fontSize: "2.21rem",
+                  fontSize: window.innerWidth <= 768 ? "2rem" : "clamp(1.4rem, 1.84vw, 2.21rem)",
                   margin: 0,
                   color: "#fff",
                   fontWeight: 600,
@@ -155,7 +161,7 @@ export default function HoverColumns() {
                 style={{
                   margin: 0,
                   opacity: 0.8,
-                  fontSize: "1.53rem",
+                  fontSize: window.innerWidth <= 768 ? "1.02rem" : "clamp(0.9rem, 1.28vw, 1.53rem)",
                   lineHeight: 1.6,
                   textAlign: "left",
                   color: "#fff",
