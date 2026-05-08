@@ -28,7 +28,8 @@ FRONTEND_URL=http://localhost:3000
 
 # Admin login credentials
 DEFAULT_ADMIN_USERNAME=admin
-DEFAULT_ADMIN_PASSWORD=change-this-to-secure-password
+# Optional for non-interactive seeding (CI/CD)
+ADMIN_PASSWORD=change-this-to-secure-password
 ```
 
 ### 3. Initialize Database
@@ -95,7 +96,7 @@ POST http://localhost:3001/api/messages
 2. Visit your frontend admin route (typically `/admin`)
 3. Login with credentials from `.env`:
    - Username: `admin` (or your `DEFAULT_ADMIN_USERNAME`)
-   - Password: `admin123` (or your `DEFAULT_ADMIN_PASSWORD`)
+   - Password: the value you entered during `npm run seed` (or `ADMIN_PASSWORD` if set)
 
 ### Production Deployment
 

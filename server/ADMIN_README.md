@@ -42,7 +42,7 @@ npm run seed
 ```
 This will:
 - Create SQLite database with all required tables
-- Create default admin user (admin/admin123)
+- Create admin user (username from env or default `admin`, password from secure prompt/env)
 - Seed sample job data
 
 ### 4. Start Server
@@ -59,7 +59,7 @@ npm start
 ### Default Credentials
 - **URL**: `http://localhost:3000/admin`
 - **Username**: `admin`
-- **Password**: `admin123`
+- **Password**: Value entered during seeding (or `ADMIN_PASSWORD` if set)
 
 ⚠️ **Important**: Change the default password after first login!
 
@@ -206,7 +206,7 @@ curl -X GET http://localhost:3001/api/health
 # Test admin login
 curl -X POST http://localhost:3001/api/admin/login \
   -H "Content-Type: application/json" \
-  -d '{"username":"admin","password":"admin123"}'
+  -d '{"username":"admin","password":"<your-seeded-password>"}'
 ```
 
 ## Support

@@ -71,6 +71,9 @@ config.json
 *.tmp
 *~
 
+# Local AI assistant workspace artifacts
+.claude/worktrees/
+
 # OS generated files
 .DS_Store
 .DS_Store?

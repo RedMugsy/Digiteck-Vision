@@ -5,6 +5,7 @@ export const siteContent = {
       { label: "About Us", href: "/about" },
       { label: "Solutions", href: "#solutions" },
       { label: "Contact", href: "/contact" },
+      { label: "Book a Meeting", href: "/book-appointment" },
       { label: "Careers", href: "/careers" }
     ],
     ctaButton: "Get started"
@@ -445,6 +446,7 @@ export const siteContent = {
       heading: "Company",
       links: [
         { text: "About", href: "/about" },
+        { text: "Book a Meeting", href: "/book-appointment" },
         { text: "Careers", href: "/careers" },
         { text: "Contact", href: "/contact" },
       ],

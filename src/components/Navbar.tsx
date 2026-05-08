@@ -18,10 +18,25 @@ export default function Navbar({ theme = "dark" }: NavbarProps) {
       </div>
 
       <nav className="navLinks" aria-label="Primary">
-        {siteContent.navigation.links.map((link, index) => (
+        {siteContent.navigation.links.filter((link) => link.href !== "/book-appointment").map((link, index) => (
           <a key={index} href={link.href} style={{ color: textColor }}>{link.label}</a>
         ))}
       </nav>
+
+      <a
+        href="/book-appointment"
+        className="btn"
+        style={{
+          color: theme === "light" ? "#000" : "#fff",
+          borderColor: theme === "light" ? "rgba(0, 0, 0, 0.25)" : "rgba(255, 255, 255, 0.35)",
+          textDecoration: "none",
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        Book a Meeting
+      </a>
 
       {/* Hamburger menu button - hidden on desktop, shown on mobile/tablet */}
       <button
@@ -54,7 +69,20 @@ export default function Navbar({ theme = "dark" }: NavbarProps) {
             gap: '1.5rem',
           }}
         >
-          {siteContent.navigation.links.map((link, index) => (
+          <a
+            href="/book-appointment"
+            onClick={() => setIsOpen(false)}
+            style={{
+              color: '#FFAD01',
+              fontSize: '1.68rem',
+              textDecoration: 'none',
+              fontWeight: 700,
+            }}
+          >
+            Book a Meeting
+          </a>
+
+          {siteContent.navigation.links.filter((link) => link.href !== "/book-appointment").map((link, index) => (
             <a 
               key={index}
               href={link.href} 

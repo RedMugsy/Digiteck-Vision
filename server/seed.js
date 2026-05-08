@@ -1,5 +1,31 @@
 import bcrypt from 'bcryptjs';
+import promptSync from 'prompt-sync';
 import { initDatabase, createAdmin, createJob } from './database.js';
+
+function validateAdminPassword(password) {
+  if (!password || password.length < 12) {
+    throw new Error('Admin password must be at least 12 characters long.');
+  }
+
+  if (password.toLowerCase() === 'admin123') {
+    throw new Error('Weak password detected. Do not use default passwords like "admin123".');
+  }
+}
+
+function resolveAdminPassword() {
+  const envPassword = process.env.ADMIN_PASSWORD?.trim();
+
+  if (envPassword) {
+    validateAdminPassword(envPassword);
+    return envPassword;
+  }
+
+  const prompt = promptSync({ sigint: true });
+  const enteredPassword = prompt('🔐 Enter admin password (min 12 chars): ', { echo: '*' })?.trim();
+
+  validateAdminPassword(enteredPassword);
+  return enteredPassword;
+}
 
 function seedDatabase() {
   console.log('🌱 Seeding database...');
@@ -10,18 +36,21 @@ function seedDatabase() {
     
     // Create default admin user
     console.log('👤 Creating default admin user...');
-    const hashedPassword = bcrypt.hashSync('admin123', 10);
+    const adminUsername = process.env.DEFAULT_ADMIN_USERNAME?.trim() || 'admin';
+    const adminPassword = resolveAdminPassword();
+    const hashedPassword = bcrypt.hashSync(adminPassword, 10);
     
     try {
       createAdmin({
-        username: 'admin',
+        username: adminUsername,
         password: hashedPassword,
         email: 'admin@digiteckvision.com'
       });
-      console.log('✅ Default admin created: username: admin, password: admin123');
+      console.log(`✅ Admin created: username: ${adminUsername}`);
+      console.log('🔒 Password was provided securely (env var or prompt) and was not logged.');
     } catch (error) {
       if (error.message.includes('UNIQUE constraint failed')) {
-        console.log('ℹ️  Admin user already exists');
+        console.log(`ℹ️  Admin user already exists: ${adminUsername}`);
       } else {
         throw error;
       }
@@ -98,7 +127,7 @@ function seedDatabase() {
     
     console.log('🎉 Database seeding completed successfully!');
     console.log('\n📋 Summary:');
-    console.log('• Default admin user: admin / admin123');
+    console.log(`• Admin user: ${adminUsername}`);
     console.log('• Sample jobs created');
     console.log('• Admin panel available at: /admin');
     
